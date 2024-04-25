@@ -1,0 +1,753 @@
+/* homeheader */
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+nav li a {
+    color: white;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.navbar-button li a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 5px;
+}
+
+.language-select {
+    padding: 7px 12px;
+    font-size: 16px;
+    border: 2px solid #424242;
+    border-radius: 5px;
+    outline: none;
+    background: url('assets/images/header-bg.png') no-repeat right center;
+    background-size: cover;
+    color: #fff; 
+}
+
+
+.language-select option {
+    font-size: 16px;
+}
+
+.language-icon {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#home-header {
+    color: white;
+}
+
+#home-header .contains-header {
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+
+
+#home-header .title-header {
+    text-align: left;
+    margin-top: 120px;
+}
+
+#home-header .title-header h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 55px;
+}
+
+#home-header .title-header p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 55px;
+}
+
+#home-header .title-header span {
+    color: #F05940;
+}
+
+.getstart {
+    text-align: center;
+    background: #F05940;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.09);
+    border-radius: 5px;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+#home-header .title-header .getstart {
+    padding: 12px 18px;
+}
+
+#home-header a {
+    text-decoration: none;
+    color: white;
+}
+
+#home-header .dropdown {
+    background-color: transparent;
+}
+
+/* how it work section */
+.avantages {
+    text-align: center;
+}
+
+.avantages .row {
+    padding: 10px 0px 10px 0px;
+}
+
+.avantages .row .col {
+    margin: 0 auto;
+    position: relative;
+}
+
+.avantages .col h4 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #2E2E2E;
+    display: flex;
+    align-items: center;
+}
+
+.avantages .col::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: translateY(-30%);
+    height: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.avantages .line {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* process */
+.process {
+    margin-top: 2%;
+}
+
+.process h6,
+.digitalisation h6,
+.ecom h6,
+.websitehome h6,
+.templtesweb h6,
+.features h6,
+.ourpartners h6,
+.testimonial h6,
+.pricing h6,
+.faq h6 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #F77A56;
+}
+
+
+.process h2,
+.digitalisation h2,
+.ecom h2,
+.websitehome h2,
+.templtesweb h2,
+.features h2,
+.ourpartners h2,
+.testimonial h2,
+.pricing h2,
+.faq h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 55px;
+    color: #2E2E2E;
+}
+
+.process p,
+.digitalisation P,
+.ecom P,
+.websitehome P,
+.features p,
+.ourpartners p,
+.pricing p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #727272;
+}
+
+.tree {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.tree ul {
+    padding-top: 20px;
+    position: relative;
+
+}
+
+.tree li {
+    float: left;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before,
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #ccc;
+    width: 50%;
+    height: 20px;
+}
+
+.tree li::after {
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after,
+.tree li:only-child::before {
+    display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child {
+    padding-top: 0;
+}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before,
+.tree li:last-child::after {
+    border: 0 none;
+}
+
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+    border-right: 1px solid #ccc;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 20px;
+}
+
+.tree li a {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #666;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;
+}
+
+/* Ajouter une classe spécifique pour les liens des Grand Child */
+.tree ul ul li a {
+    position: relative;
+}
+
+/* Ajouter un point rouge à l'extrémité du trait reliant le parent à l'enfant */
+.tree>ul>li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+
+
+/*digitalisation,ecom,websitehome  */
+.digitalisation .row,
+.ecom .row,
+.websitehome .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.digitalisation img,
+.ecom img,
+.websitehome img {
+    width: 450px;
+    height: 450px;
+}
+
+.websitehome {
+    background: #FFF6EC;
+    border-radius: 15px;
+}
+
+.ecom {
+    background: #F1FCFF;
+    border-radius: 15px;
+}
+
+.digitalisation {
+    background: #E3F8EF;
+    border-radius: 15px;
+}
+
+.digitalisation .getstart,
+.ecom .getstart,
+.websitehome .getstart {
+    padding: 12px 18px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.digitalisation,
+.ecom,
+.websitehome {
+    margin-top: 5%;
+}
+
+.templtesweb {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.templtesweb .arrows i {
+    width: 45px;
+    height: 45px;
+    color: #2E2E2E;
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.templtesweb .arrows .left {
+    background-color: #F1F1F1;
+}
+
+.templtesweb .arrows .right {
+    color: white;
+    background-color: #F05940;
+}
+
+/* display templates */
+.displaytemplates .templateimg {
+    height: 70Vh;
+}
+
+.displaytemplates .templateimg img {
+    min-width: 100%;
+    height: 100%;
+}
+
+/* features */
+
+.features .features-text {
+    background: #FFF6EC;
+    height: 45vh;
+    padding-top: 4%;
+}
+
+.features .cartes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 65%;
+    z-index: 1;
+    margin: auto;
+}
+
+.features .cartes .card {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #CDCDCD;
+    box-shadow: -4px 34px 14px rgba(184, 183, 183, 0.01), -2px 19px 12px rgba(184, 183, 183, 0.05), -1px 9px 9px rgba(184, 183, 183, 0.09), 0px 2px 5px rgba(184, 183, 183, 0.1);
+    border-radius: 5px;
+    display: grid;
+    padding: 15px 10px 20px 10px;
+    align-items: center;
+}
+
+.features .cartes .card img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 20px;
+    text-align: left;
+
+}
+
+.features .cartes .card .card-title {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    color: #2E2E2E;
+}
+
+.features .cartes .card .card-text {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #727272;
+}
+
+/* partners */
+.ourpartners {
+    margin-top: 25%;
+}
+
+.ourpartners .partnersimage img {
+    width: 120px;
+    height: 60px;
+}
+
+/* testimonial */
+.testimonial {
+    margin-top: 5%;
+    background: #F1FCFF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+    height: 60vh;
+
+
+}
+
+.testimonial .testimonialcards .card .card-title {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    color: #2E2E2E;
+}
+
+.testimonial .testimonialcards .card .card-text {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #4E4E4E;
+}
+
+.testimonial .testimonialcards hr {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.testimonial .testimonialcards h3 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #F05940;
+}
+
+.testimonial .testimonialcards p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #4E4E4E;
+}
+
+/* faq */
+/* accordeons */
+.faq {
+    margin-top: 5%;
+
+}
+
+.faq .accordion h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #2E2E2E;
+}
+
+/* Retirer les bordures de l'accordéon */
+#accordionExample .accordion-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Retirer les bordures des boutons d'accordéon */
+#accordionExample .accordion-button {
+    border: none;
+}
+
+/* Retirer les bordures des éléments de contenu d'accordéon */
+#accordionExample .accordion-collapse {
+    border: none;
+}
+
+
+
+
+
+/* pricing */
+.pricing {
+    background: #FFF6EC;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+
+}
+
+.pricing .pricing-circle {
+    background: #FFFFFF;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.pricing .pricing-circle h2 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    color: #2E2E2E !important;
+}
+
+.pricing .pricing-circle h4 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 15px;
+    text-align: center;
+    color: #2E2E2E;
+}
+
+.pricing .pricing-circle h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 15px;
+    text-align: center;
+    color: #F05940;
+}
+
+.pricing .pricinglink {
+    padding: 12px 30px;
+    gap: 10px;
+    background: #2E2E2E;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.09);
+    border-radius: 5px;
+}
+
+.pricing h6,
+.pricing h2,
+.pricing p {
+    color: white !important;
+}
+
+
+
+/* letstart */
+.radiocheck {
+    background: #F9F9F9;
+    border: 1px solid #DCDCDC;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 2%;
+}
+
+.startprocess {
+    padding-top: 50px;
+}
+
+.startprocess .letsimage img,
+.signup .signupimg img {
+    width: 200px;
+    height: 200px;
+}
+
+/* signup */
+.signup .signuptext,
+.signup .signupimg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+}
+
+.divider-text span {
+    padding: 10px;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.whatsapp-btn {
+    background-color: #1EC149;
+    /* Définissez la couleur de fond du bouton */
+    color: white;
+}
+
+.btn-info {
+    background-color: #F05940;
+    /* Définissez la couleur de fond du bouton */
+    color: white;
+}
+
+.required {
+    color: red;
+    margin-left: 5px;
+    /* Espace entre l'astérisque et le texte du libellé */
+}
+
+
+
+
+/* footer */
+footer {
+    background: #212121;
+}
+
+footer .row h5 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #FFFFFF;
+}
+
+footer .row .column1 .men1 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #F0ECEC;
+}
+
+footer .row .column1 .men2 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500 ;
+    font-size: 16px;
+    line-height: 24px;
+    color: #F0ECEC;
+}
+footer .row .column1 .men3{
+font-family: 'Graphik';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+color: #F05940;
+
+
+    }
+    
+
+
+
+footer .row p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: #F0ECEC;
+}
+
+
+
+
+
+/* Media responsive */
+/* letstart */
+@media(max-width:1091px){
+    .startprocess {
+        padding-top: 50px;
+        width: 80%;
+    }
+     
+}
