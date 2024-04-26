@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     {{-- css links --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
         integrity="sha384-F3pso4BSF02doNItN/n7cqOwxr3VgyR4v2RVKL4oQhpP/P1Tv5Ztp6SwyF0kr24d" crossorigin="anonymous">
@@ -30,10 +31,10 @@
 <body>
     <!-- section navbar -->
     <header id="home-header"
-    style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-blend-mode: overlay; background-size: cover; height: 80vh;">
+    style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-blend-mode: overlay; background-size: cover; height: 700px;">
         <div class="contains-header">
-            <nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo" width="200"
                             height="50" class="d-inline-block align-text-top">
@@ -42,57 +43,57 @@
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-center align-items-center"
+                    <div class="collapse navbar-collapse "
                         id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item me-2">
                                 <a class="nav-link active" aria-current="page" href="#">How It Works</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Pricing </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Templates</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Help Center</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Templates</a>
-                            </li>
                         </ul>
+                        <div class="navbar-button d-flex ">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#">login</a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link getstart" href="">Get Started</a>
+                                </li>
+                                <li class="nav-item">
+                                    <select class="language-select">
+                                        <option value="fr">
+                                            <img src="french.svg" alt="French" class="language-icon"> Français
+                                        </option>
+                                        <option value="en">
+                                            <img src="english.svg" alt="English" class="language-icon"> English
+                                        </option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="navbar-button d-flex">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link getstart" href="">Get Started</a>
-                            </li>
-                            <li class="nav-item ms-2">
-                                <select class="language-select">
-                                    <option value="fr">
-                                        <img src="french.svg" alt="French" class="language-icon"> Français
-                                    </option>
-                                    <option value="en">
-                                        <img src="english.svg" alt="English" class="language-icon"> English
-                                    </option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </nav>
-
-            <div class="title-header ">
+            <div class="title-header">
                 <h3>Establish your <br>
-                    <span>web</span> presence & e-commerce <br>
+                    <span class="circle-word">web</span> presence & e-commerce <br>
                     capabilities with <span>Webtinz</span>
                 </h3>
                 <p>Create a website in <span>10 minutes</span>.</p>
-                <a class="getstart" href="">Get Started</a>
+                <div class="get-started-container">
+                    <a class="getstart" href="#">Get Started</a>
+                </div>
             </div>
+
         </div>
 
     </header>
@@ -207,6 +208,16 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+    var navbar = document.getElementById('navbar');
+    if (window.scrollY > 0) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+    </script>
 
     @yield('js')
 </body>

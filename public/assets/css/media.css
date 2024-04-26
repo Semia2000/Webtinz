@@ -1,0 +1,188 @@
+/* Media responsive */
+/* letstart */
+@media(max-width:1200px) {
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .ourpartners {
+        margin-top: 45%;
+    }
+
+}
+
+@media(max-width:1090px) {
+    nav .navbar-brand img {
+        width: 150px;
+    }
+
+    .avantages .col h4 {
+        font-size: 17px;
+    }
+
+    .avantages .row {
+        padding: 5px 0px 5px 0px;
+    }
+
+    .ourpartners {
+        margin-top: 55%;
+    }
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .process h2,
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2,
+    .templtesweb h2,
+    .features h2,
+    .ourpartners h2,
+    .testimonial h2,
+    .pricing h2,
+    .faq h2 {
+        font-size: 35px;
+    }
+}
+
+@media(max-width:855px) {
+
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2 {
+        font-size: 32px;
+    }
+}
+
+@media(max-width:991px) {
+
+    .digitalisation,
+    .ecom,
+    .websitehome {
+        width: 100%;
+    }
+
+    .process h2,
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2,
+    .templtesweb h2,
+    .features h2,
+    .ourpartners h2,
+    .testimonial h2,
+    .pricing h2,
+    .faq h2 {
+        font-size: 30px;
+    }
+
+    .testimonial {
+        height: 700px;
+    }
+
+    .container {
+        min-width: 90%;
+    }
+    /* nav */
+    .navbar-button li a{
+        justify-content: left;
+    }
+    /* letstart */
+    .startprocess {
+        width: 90% !important;
+    }
+}
+
+@media(max-width:767px) {
+    .avantages .row .col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .process h2,
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2,
+    .templtesweb h2,
+    .features h2,
+    .ourpartners h2,
+    .testimonial h2,
+    .pricing h2,
+    .faq h2 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .features {
+        margin-bottom: 100%;
+    }
+
+    .ourpartners {
+        margin-top: 1500px;
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .ecom .row,
+    .digitalisation .row, .websitehome .row {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ecom .col-4,
+    .digitalisation .col-5,
+    .digitalisation .col-5,
+    .digitalisation .col-5 ,.websitehome .col-5{
+        width: 100%;
+        text-align: center;
+    }
+    .ecom .images {
+        order: 1;
+    }
+
+    .ecom .texte {
+        order: 2;
+    }
+
+}
+
+@media(max-width:480px) {
+    #home-header .title-header h3 {
+        font-size: 35px;
+        line-height: 45px;
+    }
+
+    #home-header .title-header p {
+        font-size: 18px;
+        line-height: 45px;
+    }
+    .testimonial {
+        height: 900px;
+    }
+    /* letstart */
+    .startprocess {
+        width: 100% !important;
+    }
+
+}
+
+/* letstart */

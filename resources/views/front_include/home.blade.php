@@ -54,7 +54,7 @@
     </section>
     <section class="websitehome container">
         <div class="row">
-            <div class="col-5 text-center">
+            <div class="col-5 images text-center">
                 <img src="{{ asset('assets/images/website-designing 1.png') }}" alt="">
             </div>
             <div class="col-5 text-left">
@@ -81,7 +81,7 @@
     </section>
     <section class="digitalisation container">
         <div class="row">
-            <div class="col-5 text-center">
+            <div class="col-5 images text-center">
                 <img src="{{ asset('assets/images/customer-feedback-analysis 1.png') }}" alt="">
             </div>
             <div class="col-5 text-left">
@@ -102,41 +102,22 @@
             </div>
         </div>
         <div class="displaytemplates">
-            <div class="row">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
-                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="templateimg">
-                                            <img src="{{ asset('assets/images/2.png') }}"
-                                                alt="" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="templateimg">
-                                            <img src="{{ asset('assets/images/2.png') }}"
-                                                alt="" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="templateimg">
-                                            <img src="{{ asset('assets/images/2.png') }}"
-                                                alt="" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
+                </div>
+                <div class="col">
+                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
+                </div>
+                <div class="col">
+                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
                 </div>
             </div>
         </div>
 
 
     </section>
-    <section class="features position-relative">
+    <section class="features position-relative mb-5">
         <div class="features-text text-center position-relative">
             <h6>Webtinz Features</h6>
             <H2>why choose us</H2>
@@ -229,8 +210,8 @@
             <H2>Our Partners</H2>
             <p>Over 50K+ Websites businesses growing with Tektinz</p>
         </div>
-        <div class="partnersimage mt-5">
-            <div class="row">
+        <div class="partnersimage d-flex align-items-center justify-content-center mt-5">
+            <div class="row row-cols-2 row-cols-md-6 g-4 ">
                 <div class="col">
                     <img src="{{ asset('assets/images/partners/image 1.png') }}" alt="">
                 </div>
@@ -246,7 +227,7 @@
                 <div class="col">
                     <img src="{{ asset('assets/images/partners/image 5.png') }}" alt="">
                 </div>
-                <div class="col">
+                <div class="col-2">
                     <img src="{{ asset('assets/images/partners/Logo-5f01c355 1.png') }}" alt="">
                 </div>
             </div>
@@ -258,7 +239,7 @@
             <H2>50K+ Clients Love Webtinz</H2>
         </div>
         <div class="testimonialcards container mt-5">
-            <div class="row row-cols-1 row-cols-md-2">
+            <div class="row row-cols-1 row-cols-md-3 d-flex align-items-center justify-content-center">
                 <div class="col">
                     <div class="card text-left">
                         <div class="card-body">
@@ -328,46 +309,28 @@
             <h6>Faqs</h6>
             <h2>Frequently Asked Questions?</h2>
 
-            <div class="">
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Accordion Item #1
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus.
-                        </div>
-                      </div>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Accordion Item #2
-                        </button>
-                      </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus..
-                        </div>
-                      </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Accordion Item #3
-                        </button>
-                      </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus..
-                        </div>
-                      </div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 2</span>
+                        <i class="bi bi-plus"></i>
                     </div>
-                  </div>
+                    <div class="answer">
+                        <p>Réponse à la question 2.</p>
+                    </div>
+                </div>
+                <!-- Ajoutez d'autres éléments FAQ ici -->
             </div>
+
 
 
 
@@ -378,18 +341,34 @@
 
     <section class="pricing container"
         style="background:url('{{ asset('assets/images/Gradient Background 1.png') }}');background-size:cover;height:500px">
-        <div class="pricing-circle d-flex flex-column align-items-center justify-content-center">
-            <h2>pricing Start @</h2>
-            <h4>CFCA</h4>
-            <h3>5000</h3>
+        <div class="row">
+            <div class="col-3 d-flex pricing-circle flex-column align-items-center justify-content-center">
+                <h2>pricing Start @</h2>
+                <h4>CFCA</h4>
+                <h3>5000</h3>
+            </div>
+
+            <div class="col-7 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <h6>pricing</h6>
+                    <h2>Low Pricing</h2>
+                    <p class="mb-5">Start building your websites just at CFCA 5000</p>
+                    <a class="pricinglink" href="">See Pricing</a>
+                </div>
+            </div>
         </div>
-        <div class="text-center">
-            <h6>pricing</h6>
-            <h2>Low Pricing</h2>
-            <p class="mb-5">Start building your websites just at CFCA 5000</p>
-            <a class="pricinglink" href="">See Pricing</a>
-        </div>
+
     </section>
 @endsection
 @section('js')
+
+    <script>
+        $(document).ready(function() {
+            $('.question').click(function() {
+                $(this).toggleClass('active');
+                $(this).next('.answer').slideToggle(200);
+                $('.question').not(this).removeClass('active').next('.answer').slideUp(200);
+            });
+        });
+    </script>
 @endsection

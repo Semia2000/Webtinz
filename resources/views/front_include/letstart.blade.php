@@ -3,12 +3,12 @@
 @endsection
 @section('content')
 <section class="d-flex justify-content-center align-items-center" style="height: 80vh; padding: 60px;">
-    <div class="startprocess" style="width: 70%;">
+    <div class="startprocess" style="">
         <div class="text-center mb-4">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col-6 letstext d-flex justify-content-center align-items-center p-5" style="background-color: white;">
+        <div class="row row-cols-1 row-cols-md-2 g-">
+            <div class="col letstext d-flex justify-content-center align-items-center p-5" style="background-color: white;">
                 <div>
                     <h2>Lets Get Started!</h2>
                     <p>Select your business type</p>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="letsimage col-6 d-flex justify-content-center align-items-center" style="background-color: #FFF6EC;">
+            <div class="letsimage col d-flex justify-content-center align-items-center" style="background-color: #FFF6EC;">
                 <img src="{{ asset('assets/images/girl-choosing-one-option.png') }}" alt="">
             </div>
         </div>

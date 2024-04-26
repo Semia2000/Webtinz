@@ -1,9 +1,8 @@
 /* homeheader */
-header nav {
-    display: flex;
-    align-items: center;
+body {
+    width: 100%;
+    overflow-x: hidden;
 }
-
 nav li a {
     color: white;
     font-family: 'Graphik';
@@ -12,7 +11,9 @@ nav li a {
     font-size: 14px;
     line-height: 15px;
 }
-
+.navbar.scrolled {
+    background-color: white; /* Nouvelle couleur de fond de la barre de navigation lors du défilement */
+}
 .navbar-button li a{
     display: flex;
     flex-direction: row;
@@ -29,7 +30,7 @@ nav li a {
     outline: none;
     background: url('assets/images/header-bg.png') no-repeat right center;
     background-size: cover;
-    color: #fff; 
+    color: #fff;
 }
 
 
@@ -48,17 +49,19 @@ nav li a {
     color: white;
 }
 
-#home-header .contains-header {
+/* #home-header .contains-header {
     padding-right: 5vw;
     padding-left: 5vw;
-}
-
-
+} */
 
 #home-header .title-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: left;
-    margin-top: 120px;
+    height: 100vh;
 }
+
 
 #home-header .title-header h3 {
     font-family: 'Magnet';
@@ -75,6 +78,27 @@ nav li a {
     font-size: 24px;
     line-height: 55px;
 }
+
+.circle-word {
+    position: relative;
+    display: inline-block;
+}
+
+.circle-word::before {
+    content: '';
+    position: absolute;
+    width: 2.1em; /* Ajustez la largeur du cercle */
+    height: 1em; /* Ajustez la hauteur du cercle */
+    border: 5px solid #F05940; /* Couleur et épaisseur du trait du cercle */
+    top: 0.2em;
+    left: -0.2em;
+    border-radius: 50%;
+    background-color: transparent;
+    border-top: none;
+    transform: rotate(10deg);
+}
+
+
 
 #home-header .title-header span {
     color: #F05940;
@@ -99,10 +123,6 @@ nav li a {
 #home-header a {
     text-decoration: none;
     color: white;
-}
-
-#home-header .dropdown {
-    background-color: transparent;
 }
 
 /* how it work section */
@@ -246,7 +266,7 @@ nav li a {
     border-left: 1px solid #ccc;
 }
 
-/*We need to remove left-right connectors from elements without 
+/*We need to remove left-right connectors from elements without
 any siblings*/
 .tree li:only-child::after,
 .tree li:only-child::before {
@@ -258,7 +278,7 @@ any siblings*/
     padding-top: 0;
 }
 
-/*Remove left connector from first child and 
+/*Remove left connector from first child and
 right connector from last child*/
 .tree li:first-child::before,
 .tree li:last-child::after {
@@ -318,13 +338,21 @@ right connector from last child*/
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 500px;
 }
+.digitalisation ,
+.ecom ,
+.websitehome {
+
+    width: 80%;
+}
+
 
 .digitalisation img,
 .ecom img,
 .websitehome img {
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 400px;
 }
 
 .websitehome {
@@ -386,7 +414,7 @@ a {
 
 /* display templates */
 .displaytemplates .templateimg {
-    height: 70Vh;
+    height: 700px;
 }
 
 .displaytemplates .templateimg img {
@@ -395,10 +423,12 @@ a {
 }
 
 /* features */
-
+.features{
+    z-index: 1;
+}
 .features .features-text {
     background: #FFF6EC;
-    height: 45vh;
+    height: 400px;
     padding-top: 4%;
 }
 
@@ -407,7 +437,7 @@ a {
     left: 0;
     right: 0;
     top: 65%;
-    z-index: 1;
+    z-index: 2;
     margin: auto;
 }
 
@@ -449,7 +479,7 @@ a {
 
 /* partners */
 .ourpartners {
-    margin-top: 25%;
+    margin-top: 35%;
 }
 
 .ourpartners .partnersimage img {
@@ -459,17 +489,14 @@ a {
 
 /* testimonial */
 .testimonial {
-    margin-top: 5%;
+    margin-top: 10%;
     background: #F1FCFF;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 10%;
-    height: 60vh;
-
-
+    height: 600px;
 }
 
 .testimonial .testimonialcards .card .card-title {
@@ -519,7 +546,25 @@ a {
 
 }
 
-.faq .accordion h2 {
+
+
+.faq-section {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Trait horizontal séparant les éléments */
+}
+
+.faq-item {
+    border: none; /* Supprime la bordure autour de chaque élément */
+}
+
+.question {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.question span{
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 500;
@@ -528,19 +573,13 @@ a {
     color: #2E2E2E;
 }
 
-/* Retirer les bordures de l'accordéon */
-#accordionExample .accordion-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+.answer {
+    display: none; /* Masque la réponse par défaut */
+    padding: 10px;
 }
 
-/* Retirer les bordures des boutons d'accordéon */
-#accordionExample .accordion-button {
-    border: none;
-}
-
-/* Retirer les bordures des éléments de contenu d'accordéon */
-#accordionExample .accordion-collapse {
-    border: none;
+.answer p {
+    margin: 0; /* Supprime les marges autour du paragraphe */
 }
 
 
@@ -622,6 +661,7 @@ a {
 
 .startprocess {
     padding-top: 50px;
+    width: 70%;
 }
 
 .startprocess .letsimage img,
@@ -725,7 +765,7 @@ color: #F05940;
 
 
     }
-    
+
 
 
 
@@ -742,12 +782,4 @@ footer .row p {
 
 
 
-/* Media responsive */
-/* letstart */
-@media(max-width:1091px){
-    .startprocess {
-        padding-top: 50px;
-        width: 80%;
-    }
-     
-}
+
