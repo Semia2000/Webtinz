@@ -10,7 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     {{-- css links --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
+{{--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
         integrity="sha384-F3pso4BSF02doNItN/n7cqOwxr3VgyR4v2RVKL4oQhpP/P1Tv5Ztp6SwyF0kr24d" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -21,7 +22,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
         integrity="sha512-rk/7usD8qDJhjKFcXrUJxLwX7dGs7Z7mTR5UvOHSLhe6uQ5QbBSExlDEUdUKE7gqGq4Hr9VmiDnvSrSqczRNYg=="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> --}}
 
 
     @yield('links')
@@ -33,7 +34,7 @@
         @yield('content')
     </main>
 
-   
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 

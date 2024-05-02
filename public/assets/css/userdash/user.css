@@ -1,0 +1,341 @@
+/* dashboarduser */
+/* leftbar , horizontalbar */
+.leftbar {
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar {
+    height: 100%;
+    background-color: #141414;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.leftbar .col-3 {
+    width: 20%;
+}
+
+.leftbar .col-9 {
+    width: 80%;
+    margin-left: 20%;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-link.active {
+    background-color: #F05940;
+    color: white !important;
+    border-radius: 5px;
+    padding: 0.65em 4em 0.65em 0.5em;
+}
+
+.menu-link.active i {
+    padding-left: 0em;
+}
+
+.sidebar hr {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-profile p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: #929292;
+}
+
+.sidebar .nav-profile h4 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.sidebar .nav-profile h4 {
+    margin-top: -0.7em;
+}
+
+.sidebar .nav-category i {
+    font-size: 20px;
+}
+
+.sidebar .nav-category a {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    color: #929292;
+}
+
+.leftbar .content {
+    color: black;
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100%;
+}
+
+/* nav */
+.leftbar .col-9 .navbar-brand {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #2E2E2E;
+}
+
+.leftbar .col-9 .navbar-brand span {
+    color: #F05940;
+}
+
+/* dashboard */
+
+.dashboard .card {
+    border: none;
+    background-color: white;
+    border-radius: 1px;
+}
+
+.dashboard .card h5 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1px;
+    color: #2E2E2E;
+}
+
+.dashboard .card h5 span {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #2E2E2E;
+}
+
+.dashboard .card p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1px;
+    color: #4E4E4E;
+
+
+}
+
+.dashboard .tablestat .col-8 {
+    width: 73%;
+}
+
+.dashboard .graphics {
+    width: 23%;
+}
+
+.dashboard .tablestat .col-8,
+.dashboard .graphics {
+    background-color: white;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+
+}
+
+.dashboard .tablestat h4 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    color: #4E4E4E;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr {
+    border: 1px solid white;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #4E4E4E;
+}
+
+.table tr td:last-child {
+    color: #F05940;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.pagination {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.pagination a {
+    padding: 2px 10px;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination a.disabled {
+    pointer-events: none;
+    color: #aaa;
+}
+
+.dashboard .graphics .col {
+    background: rgba(233, 236, 241, 0.82);
+    border-radius: 10px;
+    height: 10em;
+    width: 10;
+}
+
+.chart {
+    display: flex;
+    justify-content: space-between;
+    width: 400px; /* Ajustez la largeur selon vos besoins */
+    height: 300px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.bar {
+    width: 20%; /* Ajustez la largeur des tubes selon vos besoins */
+    background-color: gray; /* Couleur de base des tubes */
+    border-radius: 10px; /* Pour arrondir les coins des tubes */
+    overflow: hidden; /* Pour cacher le dépassement du contenu */
+}
+
+.level {
+    background-color: orange; /* Couleur des niveaux */
+
+    height: 100%; /* Hauteur maximale pour remplir complètement la barre parente */
+    border-radius: 10px; /* Pour arrondir les coins des niveaux */
+}
+
+
+/* processpay */
+.processtopay {
+    height: max-content;
+}
+
+.processtopay .col-4 {
+    width: 33%;
+}
+
+.processtopay .col-8 {
+    width: 65%;
+}
+
+.processtopay .radiocheck {
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.processtopay .radiocheck input[type="radio"]:checked {
+    background-color: #FEC446;
+    border-color: #DCDCDC;
+}
+
+.processtopay .radiocheck input[type="radio"] {
+    width: 10px;
+    height: 10px;
+}
+
+.processtopay .radiochoice label {
+    margin: 0 auto;
+}
+
+.processtopay .row h3{
+font-family: 'Magnet';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+}
+/* dashurl */
+
+.whitepage {
+    background: #FFFFFF;
+    border: 1px solid #DCDCDC;
+    /* shadow-box */
+    box-shadow: -14px 167px 67px rgba(179, 179, 179, 0.01), -8px 94px 57px rgba(179, 179, 179, 0.05), -4px 42px 42px rgba(179, 179, 179, 0.09), -1px 10px 23px rgba(179, 179, 179, 0.1);
+    border-radius: 5px;
+    height: 100%;
+}
+
+h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: #2E2E2E;
+}
+
+.myprofileuser h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    color: #2E2E2E;
+}
+
+p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #4E4E4E;
+
+}
+
+.dashviewtemplates .whitepage,
+.myprofileuser .whitepage {
+    height: 100vh;
+}
+
+/* responsives */
+.leftbar .contenant {
+    max-width: calc(100vw - 20%); 
+}

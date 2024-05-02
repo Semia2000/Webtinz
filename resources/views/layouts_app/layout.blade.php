@@ -12,26 +12,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
 
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
-        integrity="sha384-F3pso4BSF02doNItN/n7cqOwxr3VgyR4v2RVKL4oQhpP/P1Tv5Ztp6SwyF0kr24d" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-0h1KGCNNTjxhlErPzC2k62uxkD1hZHZs/rGd6i2gAPgQToUgyZrA5w9hQl27WrUW4Er06OKjvIDfPzrJz7N5XQ=="
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha384-pC4Si8zd+VcVTzvb2aX+oLlsOGd2WH/TEs5zTmg5trt0rT+6ZlYeuWrwYNcF/E+q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
-        integrity="sha512-rk/7usD8qDJhjKFcXrUJxLwX7dGs7Z7mTR5UvOHSLhe6uQ5QbBSExlDEUdUKE7gqGq4Hr9VmiDnvSrSqczRNYg=="
-        crossorigin="anonymous"></script> --}}
-
-
     @yield('links')
 </head>
 
 <body>
     <!-- section navbar -->
     <header id="home-header"
-    style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-blend-mode: overlay; background-size: cover; height: 700px;">
+        style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-blend-mode: overlay; background-size: cover; height:800px;">
         <div class="contains-header">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
@@ -43,8 +30,7 @@
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse "
-                        id="navbarNav">
+                    <div class="collapse navbar-collapse " id="navbarNav">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item me-2">
                                 <a class="nav-link active" aria-current="page" href="#">How It Works</a>
@@ -83,9 +69,9 @@
 
                 </div>
             </nav>
-            <div class="title-header">
+            <div class="container title-header">
                 <h3>Establish your <br>
-                    <span class="circle-word">web</span> presence & e-commerce <br>
+                    <span class="circle-word">web</span>  presence & e-commerce <br>
                     capabilities with <span>Webtinz</span>
                 </h3>
                 <p>Create a website in <span>10 minutes</span>.</p>
@@ -204,19 +190,19 @@
         </div>
         <!--Grid row-->
         </div>
-        <!-- Grid container -->>
+        <!-- Grid container -->
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
-    var navbar = document.getElementById('navbar');
-    if (window.scrollY > 0) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
     </script>
 
     @yield('js')

@@ -52,12 +52,13 @@
             </ul>
         </div>
     </section>
+
     <section class="websitehome container">
         <div class="row">
-            <div class="col-5 images text-center">
+            <div class="col text-center">
                 <img src="{{ asset('assets/images/website-designing 1.png') }}" alt="">
             </div>
-            <div class="col-5 text-left">
+            <div class="col">
                 <h6>website design</h6>
                 <H2>Transform Your <br> Ideas into Beautiful <br> Website</H2>
                 <p>Phasellus pulvinar purus ex, sed iaculis lectus</p>
@@ -67,24 +68,24 @@
     </section>
     <section class="ecom container">
         <div class="row">
-            <div class="col-4 text-right">
-                <h6>ecommerce</h6>
+            <div class="col-5 texte">
+                   <h6>ecommerce</h6>
                 <H2>Build Your <br> eCommerce Store <br>
                     With Webtinz</H2>
                 <p>Phasellus pulvinar purus ex, sed iaculis lectus</p>
                 <a class="getstart" href="">Get Started</a>
             </div>
-            <div class="col-5">
+            <div class="col-5 images">
                 <img src="{{ asset('assets/images/ILLUSTRATION.png') }}" alt="">
             </div>
         </div>
     </section>
     <section class="digitalisation container">
         <div class="row">
-            <div class="col-5 images text-center">
+            <div class="col text-center ">
                 <img src="{{ asset('assets/images/customer-feedback-analysis 1.png') }}" alt="">
             </div>
-            <div class="col-5 text-left">
+            <div class="col ">
                 <h6>Custom Digitalization</h6>
                 <H2>Custom <br> Digitalization as <br> Your Need</H2>
                 <p>Phasellus pulvinar purus ex, sed iaculis lectus</p>
@@ -114,10 +115,8 @@
                 </div>
             </div>
         </div>
-
-
     </section>
-    <section class="features position-relative mb-5">
+    <section class="features position-relative ">
         <div class="features-text text-center position-relative">
             <h6>Webtinz Features</h6>
             <H2>why choose us</H2>
@@ -204,14 +203,14 @@
             </div>
         </div>
     </section>
-    <section class="ourpartners container">
+    <section class="ourpartners ">
         <div class="ourpartners-text text-center">
             <h6>Who Use</h6>
             <H2>Our Partners</H2>
             <p>Over 50K+ Websites businesses growing with Tektinz</p>
         </div>
-        <div class="partnersimage d-flex align-items-center justify-content-center mt-5">
-            <div class="row row-cols-2 row-cols-md-6 g-4 ">
+        <div class="partnersimage d-flex  justify-content-center">
+            <div class="row row-cols-2 row-cols-md-6  mx-auto">
                 <div class="col">
                     <img src="{{ asset('assets/images/partners/image 1.png') }}" alt="">
                 </div>
@@ -227,7 +226,7 @@
                 <div class="col">
                     <img src="{{ asset('assets/images/partners/image 5.png') }}" alt="">
                 </div>
-                <div class="col-2">
+                <div class="col">
                     <img src="{{ asset('assets/images/partners/Logo-5f01c355 1.png') }}" alt="">
                 </div>
             </div>
@@ -328,7 +327,51 @@
                         <p>Réponse à la question 2.</p>
                     </div>
                 </div>
-                <!-- Ajoutez d'autres éléments FAQ ici -->
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
+                    </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
+                    </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
+                    </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
+                    </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">
+                        <span>Question 1</span>
+                        <i class="bi bi-plus"></i>
+                    </div>
+                    <div class="answer">
+                        <p>Réponse à la question 1.</p>
+                    </div>
+                </div>
             </div>
 
 

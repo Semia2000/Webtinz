@@ -1,6 +1,7 @@
 /* Media responsive */
 /* letstart */
 @media(max-width:1200px) {
+    /* Navbar */
 
     .digitalisation img,
     .ecom img,
@@ -12,6 +13,13 @@
     .ourpartners {
         margin-top: 45%;
     }
+    /* contactinfo */
+    .contactinf .contactback,.listtemplates,.planschoose,.processpay{
+        width: 90%;
+        margin-top: 2%;
+    }
+
+
 
 }
 
@@ -32,42 +40,28 @@
         margin-top: 55%;
     }
 
-    .digitalisation img,
-    .ecom img,
-    .websitehome img {
-        width: 300px;
-        height: 300px;
-    }
-
-    .process h2,
-    .digitalisation h2,
-    .ecom h2,
-    .websitehome h2,
-    .templtesweb h2,
-    .features h2,
-    .ourpartners h2,
-    .testimonial h2,
-    .pricing h2,
-    .faq h2 {
-        font-size: 35px;
-    }
 }
 
-@media(max-width:855px) {
-
-    .digitalisation h2,
-    .ecom h2,
-    .websitehome h2 {
-        font-size: 32px;
-    }
-}
 
 @media(max-width:991px) {
+
+    /* Navbar */
+    #home-header .title-header h3 {
+        font-size: 30px;
+    }
+
+    .circle-word::before {
+        width: 2.3em;
+        height: 1.3em;
+        top: 0.4em;
+        left: -0.3em;
+        border-radius: 50%;
+    }
 
     .digitalisation,
     .ecom,
     .websitehome {
-        width: 100%;
+        width: 95%;
     }
 
     .process h2,
@@ -90,15 +84,29 @@
     .container {
         min-width: 90%;
     }
+
     /* nav */
-    .navbar-button li a{
+    .navbar-button li a {
         justify-content: left;
     }
+
     /* letstart */
-    .startprocess {
-        width: 90% !important;
+    .startprocess,
+    .signup .row {
+        width: 90%;
+        margin-top: 2%;
+    }
+
+    /* choosetemplate */
+    .llisttemplates .input-group{
+        width: 80%;
+    }
+
+    .planschoose{
+        width: 100%;
     }
 }
+
 
 @media(max-width:767px) {
     .avantages .row .col {
@@ -106,19 +114,6 @@
         flex-direction: column;
     }
 
-    .process h2,
-    .digitalisation h2,
-    .ecom h2,
-    .websitehome h2,
-    .templtesweb h2,
-    .features h2,
-    .ourpartners h2,
-    .testimonial h2,
-    .pricing h2,
-    .faq h2 {
-        font-size: 30px;
-        line-height: 40px;
-    }
 
     .digitalisation img,
     .ecom img,
@@ -132,29 +127,126 @@
     }
 
     .ourpartners {
-        margin-top: 1500px;
+        margin-top: 100em;
     }
 
+    .ourpartners .partnersimage .row .col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    /* letstart */
+    .startprocess .letstext,
+    .startprocess .letsimage,
+    .signup .row .col {
+        width: 100%;
+    }
+
+    .startprocess .row .col,
+    .signup .row .col {
+        padding: 40px 50px;
+    }
+
+    .startprocess .row .letstext,
+    .signup .row .signuptext {
+        order: 2;
+    }
+
+    .startprocess .row .letsimage,
+    .signup .row .signupimg {
+        order: 1;
+    }
+
+    /* contactinfo */
+    .contactinf .contactback form .row{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contactinf .contactback form .row .col{
+        margin-top: 15px;
+    }
+    .planschoose{
+        width: 90%;
+    }
+    .planschoose #myTab{
+        width: 60% !important;
+    }
+    .processpay .row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .processpay .row .col-4,.processpay .row .col-8{
+        width: 100% !important;
+        padding: 20px;
+    }
 }
 
 @media(max-width:700px) {
 
-    .ecom .row,
-    .digitalisation .row, .websitehome .row {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2 {
+        font-size: 25px;
+        line-height: 40px;
     }
 
-    .ecom .col-4,
-    .digitalisation .col-5,
-    .digitalisation .col-5,
-    .digitalisation .col-5 ,.websitehome .col-5{
-        width: 100%;
-        text-align: center;
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 200px;
+        height: 200px;
     }
+}
+
+@media(max-width:480px) {
+
+    .process h2,
+    .templtesweb h2,
+    .features h2,
+    .ourpartners h2,
+    .testimonial h2,
+    .pricing h2,
+    .faq h2 {
+        font-size: 25px;
+    }
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .ecom .col-5,
+    .digitalisation .col,
+    .digitalisation .col,
+    .digitalisation .col,
+    .websitehome .col {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 0 0 0% !important;
+
+    }
+
+    .ecom .row,
+    .digitalisation .row,
+    .websitehome .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 600px;
+        padding: 0px 50px;
+    }
+
     .ecom .images {
         order: 1;
     }
@@ -163,26 +255,131 @@
         order: 2;
     }
 
-}
-
-@media(max-width:480px) {
-    #home-header .title-header h3 {
-        font-size: 35px;
-        line-height: 45px;
-    }
-
     #home-header .title-header p {
-        font-size: 18px;
-        line-height: 45px;
+        font-size: 17px;
     }
+
+    .ourpartners .partnersimage img {
+        width: 80px;
+        height: 60px;
+    }
+
     .testimonial {
         height: 900px;
     }
+
+    /* pricing */
+    .pricing .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* display */
+    .templtesweb .defiletemplates {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .templtesweb .defiletemplates h2 {
+        margin-right: 0%;
+        margin-left: 0%;
+    }
+
+    /* .pricing .row .col-3, */
+    .pricing .row .col-7 {
+        width: 100%;
+        margin-top: 15px;
+    }
+
     /* letstart */
-    .startprocess {
-        width: 100% !important;
+
+        /* contact info */
+        .contactinf .contactback{
+            padding: 80px 25px;
+       }
+
+       /* contactinfo */
+       .llisttemplates .input-group{
+        width: 100%;
+    }
+    .listtemplates p ,.listtemplates h3{
+        font-size: 20px;
     }
 
 }
 
-/* letstart */
+@media(max-width:375px) {
+
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2 {
+        font-size: 22px;
+    }
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: 250px;
+        height: 250px;
+    }
+    /* letstart */
+    .startprocess .letsimage img,
+    .signup .signupimg img {
+        width: 250px;
+        height: 250px;
+    }
+
+}
+
+@media(max-width:320px) {
+
+    .digitalisation h2,
+    .ecom h2,
+    .websitehome h2 {
+        font-size: 20px;
+    }
+
+    .digitalisation img,
+    .ecom img,
+    .websitehome img {
+        width: auto;
+        height: 200px;
+    }
+
+    .ecom .row,
+    .digitalisation .row,
+    .websitehome .row {
+        height: max-content;
+        padding: 50px 20px;
+    }
+
+    .ourpartners {
+        margin-top: 105em;
+        margin-bottom: 10em;
+    }
+
+    .testimonial {
+        height: 1000px;
+    }
+
+    .faq {
+        margin-top: 8%;
+
+    }
+
+    body {
+        max-width: 320px;
+        overflow-x: hidden;
+    }
+
+    /* letstart */
+    .startprocess .letsimage img,
+    .signup .signupimg img {
+        width: 100px;
+        height: 100px;
+    }
+}

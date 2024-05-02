@@ -1,8 +1,24 @@
+/* import font */
+
+@font-face {
+    font-family: 'Magnet';
+    src: url('public/fonts/magnet/MagnetTrial-Regular-BF65f3b2c4d8cea.otf') format('otf');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('public/fonts/graphik/GraphikRegular.otf') format('otf');
+    font-style: normal;
+}
+
+
 /* homeheader */
 body {
     width: 100%;
     overflow-x: hidden;
 }
+
 nav li a {
     color: white;
     font-family: 'Graphik';
@@ -11,16 +27,65 @@ nav li a {
     font-size: 14px;
     line-height: 15px;
 }
+
 .navbar.scrolled {
-    background-color: white; /* Nouvelle couleur de fond de la barre de navigation lors du défilement */
+    background-color: white;
+    /* Nouvelle couleur de fond de la barre de navigation lors du défilement */
 }
-.navbar-button li a{
+
+.navbar-button li a {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 10px 12px;
     border-radius: 5px;
 }
+
+/* label and input*/
+label {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    color: #2E2E2E;
+    margin-bottom: 10px;
+}
+
+input[placeholder] {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    color: #727272;
+}
+
+.input-group i {
+    color: #727272;
+    font-size: 15px;
+}
+
+.input-group input {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #727272;
+    border-radius: 5px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #F05940;
+    border: 1px solid #F05940;
+}
+
+input[type="radio"]:checked {
+    background-color: #F05940;
+    border: 1px solid #F05940;
+}
+
 
 .language-select {
     padding: 7px 12px;
@@ -49,17 +114,13 @@ nav li a {
     color: white;
 }
 
-/* #home-header .contains-header {
-    padding-right: 5vw;
-    padding-left: 5vw;
-} */
 
 #home-header .title-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left;
-    height: 100vh;
+    margin-top: 10%;
+
 }
 
 
@@ -67,7 +128,7 @@ nav li a {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 45px;
     line-height: 55px;
 }
 
@@ -75,7 +136,7 @@ nav li a {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 55px;
 }
 
@@ -87,9 +148,9 @@ nav li a {
 .circle-word::before {
     content: '';
     position: absolute;
-    width: 2.1em; /* Ajustez la largeur du cercle */
-    height: 1em; /* Ajustez la hauteur du cercle */
-    border: 5px solid #F05940; /* Couleur et épaisseur du trait du cercle */
+    width: 2.1em;
+    height: 1.1em;
+    border: 5px solid #F05940;
     top: 0.2em;
     left: -0.2em;
     border-radius: 50%;
@@ -97,7 +158,6 @@ nav li a {
     border-top: none;
     transform: rotate(10deg);
 }
-
 
 
 #home-header .title-header span {
@@ -112,7 +172,7 @@ nav li a {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 20px;
 }
 
@@ -131,7 +191,7 @@ nav li a {
 }
 
 .avantages .row {
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0px;
 }
 
 .avantages .row .col {
@@ -142,8 +202,8 @@ nav li a {
 .avantages .col h4 {
     font-family: 'Magnet';
     font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     line-height: 26px;
     color: #2E2E2E;
     display: flex;
@@ -179,7 +239,8 @@ nav li a {
 .ourpartners h6,
 .testimonial h6,
 .pricing h6,
-.faq h6 {
+.faq h6,
+#plans h6 {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 400;
@@ -204,7 +265,7 @@ nav li a {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 55px;
     color: #2E2E2E;
 }
@@ -340,10 +401,10 @@ right connector from last child*/
     justify-content: center;
     height: 500px;
 }
-.digitalisation ,
-.ecom ,
-.websitehome {
 
+.digitalisation,
+.ecom,
+.websitehome {
     width: 80%;
 }
 
@@ -351,8 +412,8 @@ right connector from last child*/
 .digitalisation img,
 .ecom img,
 .websitehome img {
-    width: 400px;
-    height: 400px;
+    width: 420px;
+    height: 420px;
 }
 
 .websitehome {
@@ -418,14 +479,15 @@ a {
 }
 
 .displaytemplates .templateimg img {
-    min-width: 100%;
+    width: 100%;
     height: 100%;
 }
 
 /* features */
-.features{
+.features {
     z-index: 1;
 }
+
 .features .features-text {
     background: #FFF6EC;
     height: 400px;
@@ -503,7 +565,7 @@ a {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 30px;
     color: #2E2E2E;
 }
@@ -549,11 +611,13 @@ a {
 
 
 .faq-section {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Trait horizontal séparant les éléments */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    /* Trait horizontal séparant les éléments */
 }
 
 .faq-item {
-    border: none; /* Supprime la bordure autour de chaque élément */
+    border: none;
+    /* Supprime la bordure autour de chaque élément */
 }
 
 .question {
@@ -564,7 +628,8 @@ a {
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.question span{
+
+.question span {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 500;
@@ -574,12 +639,14 @@ a {
 }
 
 .answer {
-    display: none; /* Masque la réponse par défaut */
+    display: none;
+    /* Masque la réponse par défaut */
     padding: 10px;
 }
 
 .answer p {
-    margin: 0; /* Supprime les marges autour du paragraphe */
+    margin: 0;
+    /* Supprime les marges autour du paragraphe */
 }
 
 
@@ -628,7 +695,7 @@ a {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 800;
-    font-size: 44px;
+    font-size: 35px;
     line-height: 15px;
     text-align: center;
     color: #F05940;
@@ -659,25 +726,76 @@ a {
     margin-top: 2%;
 }
 
-.startprocess {
-    padding-top: 50px;
+
+
+
+.radiocheck {
+    cursor: pointer;
+}
+
+.radiocheck.active {
+    background-color: #F05940;
+}
+
+.radiocheck.active label i,
+.radiocheck.active label {
+    color: white;
+}
+
+.radiocheck input[type="radio"]:checked {
+    background-color: #F05940;
+    border-color: #DCDCDC;
+}
+
+
+.startprocess,.signup .row ,.contactinf .contactback,.listtemplates,.planschoose,.processpay{
     width: 70%;
-}
 
-.startprocess .letsimage img,
-.signup .signupimg img {
-    width: 200px;
-    height: 200px;
 }
-
-/* signup */
-.signup .signuptext,
-.signup .signupimg {
+.contactinf .contactback{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.startprocess .row .col,.signup .row .col,.contactinf .contactback{
+     padding: 80px 50px;
+     margin: 0 auto;
+}
+
+.startprocess .letsimage img,
+.signup .signupimg img {
+    width: 300px;
+    height: 300px;
+}
+
+.startprocess h2,
+.signup h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #2E2E2E;
+}
+
+.startprocess p,
+.signup p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: #4E4E4E;
+}
+
+/* signup */
+/* .signup .signuptext,
+.signup .signupimg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
 
 .divider-text {
     position: relative;
@@ -701,6 +819,24 @@ a {
     z-index: 1;
 }
 
+.btn {
+    /* input style */
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 5px;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+}
+
 .whatsapp-btn {
     background-color: #1EC149;
     /* Définissez la couleur de fond du bouton */
@@ -709,18 +845,375 @@ a {
 
 .btn-info {
     background-color: #F05940;
-    /* Définissez la couleur de fond du bouton */
     color: white;
 }
 
 .required {
     color: red;
     margin-left: 5px;
-    /* Espace entre l'astérisque et le texte du libellé */
+}
+
+/* choosetemplates */
+.listtemplates,
+.planschoose,
+.sucesspay,
+.contactback,
+.processpay {
+    background: #FFFFFF;
+    border: 1px solid #DCDCDC;
+    /* shadow-box */
+    box-shadow: -14px 167px 67px rgba(179, 179, 179, 0.01), -8px 94px 57px rgba(179, 179, 179, 0.05), -4px 42px 42px rgba(179, 179, 179, 0.09), -1px 10px 23px rgba(179, 179, 179, 0.1);
+    border-radius: 15px;
+
+}
+
+/* .startprocess .row , .signup .row{ */
+
+
+.listtemplates p {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: #2E2E2E;
+}
+
+.listtemplates h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: #2E2E2E;
+}
+
+.listtemplates h5 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: #F05940;
+}
+
+.listtemplates a {
+    padding: 12px;
+    background: #F05940;
+    border: 1px solid #F05940;
+    border-radius: 5px;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    width: 50%;
+}
+
+/* payement */
+#plans li {
+    list-style: none;
+}
+
+/* Rounded tabs */
+#plans .navtabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#plans #myTab {
+    background-color: #EBEBEB;
+    width: 30%;
+
+}
+
+#plans #myTab a {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: black;
+}
+
+#plans #myTab .active {
+    background-color: #F05940;
+    color: #FFFFFF;
+}
+
+#plans #myTab li {
+    width: 35%;
+
+}
+
+@media (min-width: 576px) {
+    .rounded-nav {
+        border-radius: 50rem !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .rounded-nav .nav-link {
+        border-radius: 50rem !important;
+    }
 }
 
 
+#plans .card {
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    border-radius: 5px 5px 0px 0px;
+}
 
+#plans .card-body span {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    color: #727272;
+
+}
+
+#plans h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 55px;
+    color: #2E2E2E;
+}
+
+
+#plans .card-body .liens a {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#plans .card-body p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #4E4E4E;
+}
+
+#plans .card-body p i {
+    margin-right: 10px;
+}
+
+#plans .card-header {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #2E2E2E;
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 8px 0;
+
+}
+
+/* successfulpay */
+.sucesspay i {
+    font-size: 30px;
+    color: #1EC149;
+}
+
+.sucesspay p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #4E4E4E;
+}
+
+.sucesspay h4 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 55px;
+    color: #2E2E2E;
+}
+
+.sucesspay a {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    background: #F05940;
+    border-radius: 5px;
+
+}
+
+/* processpay */
+
+.processpay .row {
+    width: 70%;
+}
+
+.processpay .row .col-4 {
+    width: 48% !important;
+}
+
+.processpay .row .col-8 {
+    width: 52% !important;
+}
+
+.processpay p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #4E4E4E;
+
+}
+
+.processpay H4 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.processpay .card-header {
+    background-color: white;
+    border: none;
+}
+
+.processpay H5 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+
+    color: #727272;
+}
+
+.processpay h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2E2E2E;
+
+
+}
+
+.processpay H2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #2E2E2E;
+}
+
+.processpay h2 i {
+    /* width: 50px; */
+    padding: 3px 3px;
+    font-size: 9px;
+    background-color: #FAE7D2;
+    border-radius: 50%;
+}
+
+.processpay .card-body {
+    background-color: #F1FCFF;
+
+}
+
+.processpay .card-body h2 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 24px;
+    color: #F05940;
+}
+
+.processpay .radiocheck {
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 0%;
+}
+
+.processpay .radiocheck input[type="radio"]:checked {
+    background-color: #FEC446;
+    border-color: #DCDCDC;
+}
+
+.processpay .radiocheck input[type="radio"] {
+    width: 10px;
+    height: 10px;
+}
+
+.processpay .radiochoice {
+    width: 100%;
+}
+
+.processpay .radiochoice label {
+    margin: 0 auto;
+}
+
+/* summary */
+.summary h6 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 55px;
+    color: #2E2E2E;
+}
+
+.summary h6 i {
+    padding: 6px 6px;
+    font-size: 9px;
+    background-color: #FAE7D2;
+    border-radius: 50%;
+}
+
+.summary textarea[placeholder] {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: #2E2E2E;
+}
+
+
+/* forms about */
+.formsabout .labeltitle {
+    font-weight: 600;
+}
 
 /* footer */
 footer {
@@ -748,23 +1241,24 @@ footer .row .column1 .men1 {
 footer .row .column1 .men2 {
     font-family: 'Graphik';
     font-style: normal;
-    font-weight: 500 ;
+    font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #F0ECEC;
 }
-footer .row .column1 .men3{
-font-family: 'Graphik';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height, or 150% */
 
-color: #F05940;
+footer .row .column1 .men3 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    color: #F05940;
 
 
-    }
+}
 
 
 
@@ -777,9 +1271,3 @@ footer .row p {
     line-height: 30px;
     color: #F0ECEC;
 }
-
-
-
-
-
-
