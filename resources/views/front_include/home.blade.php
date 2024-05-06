@@ -69,7 +69,7 @@
     <section class="ecom container">
         <div class="row">
             <div class="col-5 texte">
-                   <h6>ecommerce</h6>
+                <h6>ecommerce</h6>
                 <H2>Build Your <br> eCommerce Store <br>
                     With Webtinz</H2>
                 <p>Phasellus pulvinar purus ex, sed iaculis lectus</p>
@@ -93,7 +93,7 @@
             </div>
         </div>
     </section>
-    <section class="templtesweb">
+    <section class="templtesweb mb-5">
         <h6 class="text-center">Sample template</h6>
         <div class="defiletemplates mb-5 d-flex align-items-center justify-content-center">
             <h2 class="text-center" style="margin-right: 8%;margin-left: 8%">Professional Designs</h2>
@@ -102,17 +102,51 @@
                 <i class="bi bi-chevron-right right"></i>
             </div>
         </div>
-        <div class="displaytemplates">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="dashviewtemplate p-5 pt-0">
+            <div class="row row-cols-1 row-cols-md-3 mt-5">
                 <div class="col">
-                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
+                    <div class="card">
+                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (2).png') }}"
+                            width="100%" alt="">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <h4 class="me-auto">Tactix Extend</h4>
+                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
+                            </div>
+                            <p>By Netzilians</p>
+                            <a href="">Wordpress</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
+                    <div class="card">
+                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (3).png') }}"
+                            width="100%" alt="">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <h4 class="me-auto">Tactix Extend</h4>
+                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
+                            </div>
+                            <p>By Netzilians</p>
+                            <a href="">Wordpress</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('assets/images/2.png') }}" alt="" style="width: 100%;">
+                    <div class="card">
+                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (1).png') }}"
+                            width="100%" alt="">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <h4 class="me-auto">Tactix Extend</h4>
+                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
+                            </div>
+                            <p>By Netzilians</p>
+                            <a href="">Wordpress</a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -404,7 +438,6 @@
     </section>
 @endsection
 @section('js')
-
     <script>
         $(document).ready(function() {
             $('.question').click(function() {

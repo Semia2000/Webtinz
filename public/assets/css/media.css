@@ -13,14 +13,41 @@
     .ourpartners {
         margin-top: 45%;
     }
+
     /* contactinfo */
-    .contactinf .contactback,.listtemplates,.planschoose,.processpay{
+    .contactinf .contactback,
+    .listtemplates,
+    .planschoose,
+    .processpay {
         width: 90%;
         margin-top: 2%;
     }
 
+    .dashviewtemplate .row {
+        padding: 0 !important;
+    }
 
+    /* bankdetail */
+    .bankdetails .bankdetail {
+        padding: 3rem 0rem !important;
+    }
 
+}
+
+@media(max-width:1120px) {
+    .dashboard .statnumber .col {
+        padding-left: 0 !important;
+    }
+
+    .dashboard {
+        padding: 0 !important;
+        padding-top: 3rem !important;
+    }
+
+    /* subscription */
+    #plans {
+        padding: 3rem 0rem !important;
+    }
 }
 
 @media(max-width:1090px) {
@@ -39,6 +66,7 @@
     .ourpartners {
         margin-top: 55%;
     }
+
 
 }
 
@@ -98,11 +126,11 @@
     }
 
     /* choosetemplate */
-    .llisttemplates .input-group{
+    .llisttemplates .input-group {
         width: 80%;
     }
 
-    .planschoose{
+    .planschoose {
         width: 100%;
     }
 }
@@ -160,31 +188,88 @@
     }
 
     /* contactinfo */
-    .contactinf .contactback form .row{
+    .contactinf .contactback form .row {
         display: flex;
         flex-direction: column;
     }
 
-    .contactinf .contactback form .row .col{
+    .contactinf .contactback form .row .col {
         margin-top: 15px;
     }
-    .planschoose{
+
+    .planschoose {
         width: 90%;
     }
-    .planschoose #myTab{
+
+    .planschoose #myTab {
         width: 60% !important;
     }
-    .processpay .row{
+
+    .processpay .row {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
     }
-    .processpay .row .col-4,.processpay .row .col-8{
+
+    .processpay .row .col-4,
+    .processpay .row .col-8 {
         width: 100% !important;
         padding: 20px;
     }
+
+    /* dashboard */
+    .dashboard .tablestat {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard .tablestat .tableforstat {
+        width: 100% !important;
+        margin-top: 3rem;
+    }
+
+    .dashboard .tablestat .chartstat {
+        width: 100% !important;
+        margin-left: 0% !important;
+        margin: 3rem;
+        padding: 2rem 0rem;
+    }
+
+    .dashboard .statnumber .col {
+        padding-right: 0 !important;
+    }
+
+    .dashboard .tablestat .chartstat .row {
+        display: flex !important;
+    }
+
+    /* subscription */
+    #plans {
+        padding: 3rem 3rem !important;
+    }
+
+    /* viewtemplate */
+    .listtemplates .row .card img {
+        height: auto;
+    }
+
+    /* bankdetail */
+    .processtopay .bigdiv {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .processtopay .col1 {
+        width: 100% !important;
+        margin-bottom: 3rem;
+    }
+
+    .processtopay .col2 {
+        width: 100% !important;
+    }
+
 }
 
 @media(max-width:700px) {
@@ -201,6 +286,19 @@
     .websitehome img {
         width: 200px;
         height: 200px;
+    }
+
+    /* companyurl */
+    .companyurl {
+        padding: 0 !important;
+        padding-top: 3rem !important;
+    }
+    /* myprofiluser */
+    .myprofileuser .contentrow{
+        padding: 3rem 0rem !important;
+    }
+    .myprofileuser .contentrow .whitepage{
+        padding: 3rem 1rem !important;
     }
 }
 
@@ -297,17 +395,30 @@
 
     /* letstart */
 
-        /* contact info */
-        .contactinf .contactback{
-            padding: 80px 25px;
-       }
+    /* contact info */
+    .contactinf .contactback {
+        padding: 80px 25px;
+    }
 
-       /* contactinfo */
-       .llisttemplates .input-group{
+    /* contactinfo */
+    .llisttemplates .input-group, .processtopay .totalsolde .colum {
         width: 100%;
     }
-    .listtemplates p ,.listtemplates h3{
+
+    .listtemplates p,
+    .listtemplates h3 {
         font-size: 20px;
+    }
+
+    .processtopay .col2 .row,
+    .processtopay .totalsolde,.myprofileuser .contentrow .row{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .processtopay .col2 .row .col ,.processtopay .totalsolde .colum,.myprofileuser .contentrow .row .col{
+        margin-bottom: 1rem;
     }
 
 }
@@ -326,6 +437,7 @@
         width: 250px;
         height: 250px;
     }
+
     /* letstart */
     .startprocess .letsimage img,
     .signup .signupimg img {
@@ -333,6 +445,10 @@
         height: 250px;
     }
 
+    /* subscription */
+    #plans {
+        padding: 3rem 0rem !important;
+    }
 }
 
 @media(max-width:320px) {

@@ -6,7 +6,7 @@
         <div class="text-center mt-5 mb-5">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
-        <div class="planschoose">
+        <div class="planschoose p-5">
             <div class="text-center mt-3 mb-5">
                 <h3>Choose Your Plan</h3>
                 <p>Select your plan based upon your requirements</p>
@@ -29,7 +29,7 @@
                             <div class="card-header" style="background: #F1FCFF;">  Home Business</div>
                             <div class="card-body flex-column d-flex justify-content-center text-left p-4">
                                 <div class="ms-3 mb-4">
-                                    <h6>FCFA</h6>
+                                    <h6 style="font-weight: bold">FCFA</h6>
                                     <h2>5000 <span>Per/Month</span></h2>
                                 </div>
                                 <div class="d-flex liens mb-5">
@@ -94,6 +94,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="acceptpay d-flex flex-column align-items-center">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">  
+                        Subscription<span style="color:#F05940 "> term </span> and <span
+                            style="color:#F05940 "> agreement </span>
+                    </label>
+                </div>
+                <div class="d-flex liens mb-5">
+                    <a href="" class="firstlink" style="background: #F05940">Pay</a>
                 </div>
             </div>
         </div>

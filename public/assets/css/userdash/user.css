@@ -1,47 +1,56 @@
-/* dashboarduser */
-/* leftbar , horizontalbar */
-.leftbar {
-    height: 100%;
-    width: 100%;
-}
-
 .sidebar {
-    height: 100%;
     background-color: #141414;
     color: #fff;
-    margin: 0;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
 }
 
-.sidebar ul {
-    list-style-type: none;
+.sidebar .info p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: #929292;
 }
 
-.leftbar .col-3 {
-    width: 20%;
+.sidebar .info h4 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    margin-top: -0.7em;
 }
 
-.leftbar .col-9 {
-    width: 80%;
-    margin-left: 20%;
+.nav-sidebar li i {
+    font-size: 16px;
+    line-height: 20px;
+    color: #929292;
 }
 
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
+.nav-sidebar li p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #929292;
 }
 
-.menu-link.active {
+.sidebar .user-panel {
+    border: none !important;
+}
+
+.nav-sidebar .nav-link.active {
     background-color: #F05940;
-    color: white !important;
     border-radius: 5px;
-    padding: 0.65em 4em 0.65em 0.5em;
 }
 
-.menu-link.active i {
+.nav-sidebar .nav-link.active p,
+.nav-sidebar .nav-link.active i {
+    color: white !important;
+}
+
+.nav-sidebar .nav-link.active i {
     padding-left: 0em;
 }
 
@@ -49,66 +58,19 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.sidebar .nav-profile p {
-    font-family: 'Graphik';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1;
-    color: #929292;
-}
-
-.sidebar .nav-profile h4 {
-    font-family: 'Graphik';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1;
-}
-
-.sidebar .nav-profile h4 {
-    margin-top: -0.7em;
-}
-
-.sidebar .nav-category i {
-    font-size: 20px;
-}
-
-.sidebar .nav-category a {
-    font-family: 'Graphik';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 40px;
-    color: #929292;
-}
-
-.leftbar .content {
-    color: black;
-    background-color: #F2F2F2;
-    width: 100%;
-    height: 100%;
-}
-
-/* nav */
-.leftbar .col-9 .navbar-brand {
-    font-family: 'Magnet';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    color: #2E2E2E;
-}
-
-.leftbar .col-9 .navbar-brand span {
-    color: #F05940;
-}
 
 /* dashboard */
 
-.dashboard .card {
+.dashboard .info-box {
     border: none;
     background-color: white;
     border-radius: 1px;
+}
+.dashboard .statnumber .col:first-child{
+    padding-left: 0 !important;
+}
+.dashboard .statnumber .col:last-child{
+    padding-right: 0 !important;
 }
 
 .dashboard .card h5 {
@@ -139,24 +101,31 @@
 
 
 }
-
-.dashboard .tablestat .col-8 {
-    width: 73%;
+.dashboard .dotred{
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: red;
 }
 
-.dashboard .graphics {
+.dashboard .tablestat .tableforstat {
+    width: 74.5%;
+}
+
+.dashboard .tablestat .chartstat {
     width: 23%;
+    margin-left: 1.5%;
 }
 
-.dashboard .tablestat .col-8,
-.dashboard .graphics {
+.dashboard .tablestat .tableforstat,
+.dashboard .tablestat .chartstat {
     background-color: white;
     border: 1px solid #E4E4E4;
     border-radius: 5px;
 
 }
 
-.dashboard .tablestat h4 {
+.dashboard .tablestat .tableforstat h4 {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 400;
@@ -165,23 +134,23 @@
     color: #4E4E4E;
 }
 
-.table-container {
+.tablestat .table-container {
     width: 100%;
     overflow-x: auto;
 
 }
 
-.table {
+.tablestat .table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.table tr {
+.tablestat .table tr {
     border: 1px solid white;
 }
 
-.table th,
-.table td {
+.tablestat .table th,
+.tablestat .table td {
     padding: 8px;
     text-align: left;
     font-family: 'Graphik';
@@ -192,22 +161,24 @@
     color: #4E4E4E;
 }
 
-.table tr td:last-child {
+.tablestat .table tr td:last-child {
     color: #F05940;
 }
-
-.table th {
+.tablestat .table th ,.tablestat .table td,.tablestat .table tr{
+    border: none;
+}
+.tablestat .table th {
     font-weight: 600;
 }
 
-.pagination {
+.tablestat .pagination {
     margin-top: 10px;
     display: flex;
     align-items: center;
 }
 
 .pagination a {
-    padding: 2px 10px;
+    padding: 2px 8px;
     margin: 0 2px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -215,41 +186,32 @@
     color: #333;
 }
 
-.pagination a:hover {
+.tablestat .pagination a:hover {
     background-color: #ddd;
 }
 
-.pagination a.disabled {
+.tablestat .pagination a.disabled {
     pointer-events: none;
     color: #aaa;
 }
 
-.dashboard .graphics .col {
+.dashboard .chartstat .col {
     background: rgba(233, 236, 241, 0.82);
     border-radius: 10px;
     height: 10em;
     width: 10;
 }
 
-.chart {
-    display: flex;
-    justify-content: space-between;
-    width: 400px; /* Ajustez la largeur selon vos besoins */
-    height: 300px; /* Ajustez la hauteur selon vos besoins */
-}
-
 .bar {
-    width: 20%; /* Ajustez la largeur des tubes selon vos besoins */
-    background-color: gray; /* Couleur de base des tubes */
-    border-radius: 10px; /* Pour arrondir les coins des tubes */
-    overflow: hidden; /* Pour cacher le dépassement du contenu */
+    position: relative;
+    background-color: grey; /* Couleur de base des colonnes */
 }
 
 .level {
-    background-color: orange; /* Couleur des niveaux */
-
-    height: 100%; /* Hauteur maximale pour remplir complètement la barre parente */
-    border-radius: 10px; /* Pour arrondir les coins des niveaux */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #F05940;
 }
 
 
@@ -258,11 +220,11 @@
     height: max-content;
 }
 
-.processtopay .col-4 {
+.processtopay .col1 {
     width: 33%;
 }
 
-.processtopay .col-8 {
+.processtopay .col2 {
     width: 65%;
 }
 
@@ -285,21 +247,22 @@
     margin: 0 auto;
 }
 
-.processtopay .row h3{
-font-family: 'Magnet';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
+.processtopay .row h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
 }
+
 /* dashurl */
 
 .whitepage {
     background: #FFFFFF;
     border: 1px solid #DCDCDC;
     /* shadow-box */
-    box-shadow: -14px 167px 67px rgba(179, 179, 179, 0.01), -8px 94px 57px rgba(179, 179, 179, 0.05), -4px 42px 42px rgba(179, 179, 179, 0.09), -1px 10px 23px rgba(179, 179, 179, 0.1);
+    box-shadow: -14px 167px 67px rgba(179, 179, 179, 0.01), -8px 94px 57px rgba(179, 179, 179, 0.05), -4px 42px 42px rgba(20, 6, 6, 0.09), -1px 10px 23px rgba(179, 179, 179, 0.1);
     border-radius: 5px;
-    height: 100%;
+    width: 100%;
 }
 
 h2 {
@@ -330,12 +293,11 @@ p {
 
 }
 
-.dashviewtemplates .whitepage,
-.myprofileuser .whitepage {
-    height: 100vh;
+/* view template  */
+.dashviewtemplate .listtemplates .row {
+    padding: 0px 0px;
 }
 
-/* responsives */
-.leftbar .contenant {
-    max-width: calc(100vw - 20%); 
+.dashviewtemplate .listtemplates .row .card {
+    border: 1px solid #F05940;
 }

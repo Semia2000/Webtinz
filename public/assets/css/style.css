@@ -67,7 +67,6 @@ input[placeholder] {
 }
 
 .input-group input {
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -243,8 +242,8 @@ input[type="radio"]:checked {
 #plans h6 {
     font-family: 'Graphik';
     font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 15px;
     line-height: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -265,7 +264,7 @@ input[type="radio"]:checked {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 700;
-    font-size: 35px;
+    font-size: 30px;
     line-height: 55px;
     color: #2E2E2E;
 }
@@ -504,7 +503,6 @@ a {
 }
 
 .features .cartes .card {
-    box-sizing: border-box;
     background: #FFFFFF;
     border: 1px solid #CDCDCD;
     box-shadow: -4px 34px 14px rgba(184, 183, 183, 0.01), -2px 19px 12px rgba(184, 183, 183, 0.05), -1px 9px 9px rgba(184, 183, 183, 0.09), 0px 2px 5px rgba(184, 183, 183, 0.1);
@@ -718,7 +716,7 @@ a {
 
 
 /* letstart */
-.radiocheck {
+.startprocess .radiocheck {
     background: #F9F9F9;
     border: 1px solid #DCDCDC;
     border-radius: 15px;
@@ -748,19 +746,25 @@ a {
 }
 
 
-.startprocess,.signup .row ,.contactinf .contactback,.listtemplates,.planschoose,.processpay{
-    width: 70%;
+.startprocess,
+.signup .row,
+.contactinf .contactback {
+    width: 60%;
 
 }
-.contactinf .contactback{
+
+.contactinf .contactback {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.startprocess .row .col,.signup .row .col,.contactinf .contactback{
-     padding: 80px 50px;
-     margin: 0 auto;
+
+.startprocess .row .col,
+.signup .row .col,
+.contactinf .contactback {
+    padding: 40px 50px;
+    margin: 0 auto;
 }
 
 .startprocess .letsimage img,
@@ -770,7 +774,8 @@ a {
 }
 
 .startprocess h2,
-.signup h2 {
+.signup h2,
+.contactinf h2 {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 600;
@@ -779,7 +784,8 @@ a {
 }
 
 .startprocess p,
-.signup p {
+.signup p,
+.contactinf P {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 400;
@@ -822,7 +828,6 @@ a {
 .btn {
     /* input style */
 
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -838,9 +843,11 @@ a {
 }
 
 .whatsapp-btn {
-    background-color: #1EC149;
-    /* Définissez la couleur de fond du bouton */
-    color: white;
+    color: black;
+    background: #FDFDFD;
+    border: 1px solid #B4B4B4;
+    border-radius: 5px;
+
 }
 
 .btn-info {
@@ -868,14 +875,19 @@ a {
 }
 
 /* .startprocess .row , .signup .row{ */
-
+.listtemplates,
+.planschoose,
+.processpay,
+.listtemplates {
+    width: 75%;
+    margin: 0 auto;
+}
 
 .listtemplates p {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 18px;
     color: #2E2E2E;
 }
 
@@ -883,9 +895,10 @@ a {
     font-family: 'Magnet';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 22px;
     color: #2E2E2E;
+
+
 }
 
 .listtemplates h5 {
@@ -893,7 +906,6 @@ a {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
-    line-height: 15px;
     color: #F05940;
 }
 
@@ -906,8 +918,72 @@ a {
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 15px;
     width: 50%;
+}
+
+.listtemplates .row .card img {
+    height: 250px;
+}
+
+.listtemplates .row .card {
+    border: 1px solid #727272;
+    width: 85%;
+}
+
+.listtemplates .row .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listtemplates .row {
+    padding: 0px 80px;
+}
+
+.listtemplates .row .card h4 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #2E2E2E;
+}
+
+.listtemplates .row .card .templateprice {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #F05940;
+
+
+}
+
+.listtemplates .row .card p {
+
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2E2E2E;
+}
+
+.listtemplates .row .card a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 5px;
+    border: 1px solid #727272;
+    border-radius: 20px;
+    background-color: white;
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #727272;
+
 }
 
 /* payement */
@@ -932,7 +1008,7 @@ a {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 15px;
     color: black;
 }
@@ -961,7 +1037,6 @@ a {
 
 
 #plans .card {
-    box-sizing: border-box;
     border: 1px solid #000000;
     border-radius: 5px 5px 0px 0px;
 }
@@ -980,21 +1055,29 @@ a {
 #plans h2 {
     font-family: 'Magnet';
     font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 55px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 30px;
     color: #2E2E2E;
 }
 
+#plans h3 {
+    font-family: 'Magnet';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    color: #2E2E2E;
+}
 
-#plans .card-body .liens a {
+#plans .card-body .liens a,
+#plans .liens a,
+.processpay .liens a {
     font-family: 'Graphik';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     line-height: 15px;
     color: #FFFFFF;
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1004,16 +1087,27 @@ a {
     width: 100%;
 }
 
+.processpay .liens a {
+    width: 50%;
+    margin-left: 10px;
+}
+
+#plans .acceptpay .liens a {
+    padding: 10px 130px;
+}
+
 #plans .card-body p {
     font-family: 'Graphik';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 17px;
+    line-height: 15px;
     color: #4E4E4E;
 }
 
 #plans .card-body p i {
     margin-right: 10px;
+    font-size: 20px;
 }
 
 #plans .card-header {
@@ -1025,7 +1119,7 @@ a {
     color: #2E2E2E;
     text-align: center;
     border: 1px solid #000000;
-    padding: 8px 0;
+    padding: 9px 0;
 
 }
 
@@ -1061,7 +1155,6 @@ a {
     font-size: 14px;
     line-height: 15px;
     color: #FFFFFF;
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1079,11 +1172,12 @@ a {
 }
 
 .processpay .row .col-4 {
-    width: 48% !important;
+    width: 40% !important;
 }
 
 .processpay .row .col-8 {
-    width: 52% !important;
+    width: 55% !important;
+    margin-left: 5%;
 }
 
 .processpay p {
@@ -1270,4 +1364,46 @@ footer .row p {
     font-size: 16px;
     line-height: 30px;
     color: #F0ECEC;
+}
+
+.sidebar {
+    background-color: #141414;
+    color: #fff;
+}
+
+.sidebar .info p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: #929292;
+}
+
+.sidebar .info h4 {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    margin-top: -0.7em;
+}
+
+.nav-sidebar li i {
+    font-size: 16px;
+    line-height: 20px;
+    color: #929292;
+}
+
+.nav-sidebar li p {
+    font-family: 'Graphik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #929292;
+}
+
+.sidebar .user-panel {
+    border: none !important;
 }

@@ -2,18 +2,18 @@
 @section('links')
 @endsection
 @section('content')
-    <section class="startpro d-flex justify-content-center align-items-center" >
+    <section class="startpro d-flex justify-content-center align-items-center" style="height:100vh">
         <div class="startprocess" >
-            <div class="text-center mt-5  mb-5">
+            <div class="text-center  mb-4">
                 <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
             </div>
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col letstext"
                     style="background-color: white;">
-                    <div>
+                    <div class="">
                         <h2>Lets Get Started!</h2>
                         <p>Select your business type</p>
-                        <div class="radiochoice">
+                        <div class="radiochoice ">
                             <div class="radiocheck  mb-3" >
                                 <input type="radio" class="form-check-input" id="radio1" name="optradio"
                                     value="option1"  >

@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('letstart', function () {
     return view('front_include.letstart');
 })->name('letstart');
+Route::get('login', function () {
+    return view('front_include.login');
+})->name('login');
 Route::get('signup', function () {
     return view('front_include.signup');
 })->name('signup');
@@ -53,7 +56,7 @@ Route::get('summaryecom', function () {
     return view('front_include.summaryecom');
 })->name('summaryecom');
 Route::get('layoutuser', function () {
-    return view('dashboarduser.layoutuser');
+    return view('dashboarduser.layoutuse');
 })->name('layoutuser');
 Route::get('dashboard', function () {
     return view('dashboarduser.dashboard');
@@ -73,4 +76,7 @@ Route::get('myprofile', function () {
 Route::get('bankdetail', function () {
     return view('dashboarduser.bankdetail');
 })->name('bankdetail');
+Route::get('layoutuse', function () {
+    return view('dashboarduser.layoutuse');
+})->name('layoutuse');
 

@@ -1,10 +1,8 @@
-@extends('dashboarduser.layoutuser')
+@extends('dashboarduser.layoutuse')
 @section('links')
 @endsection
 @section('content')
-    <section id="plans">
-        
-        <div class="p-5">
+    <section id="plans" class="p-5">
             <div class="row row-cols-1 row-cols-md-3 ">
                 <div class="col">
                     <div class="card mb-3">
@@ -77,7 +75,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 @section('js')

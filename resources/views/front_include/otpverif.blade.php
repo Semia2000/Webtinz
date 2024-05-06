@@ -2,18 +2,18 @@
 @section('links')
 @endsection
 @section('content')
-    <section class="signup flex-column d-flex justify-content-center align-items-center">
-        <div class="text-center mt-5  mb-5">
+    <section class="signup flex-column d-flex justify-content-center align-items-center" style="height:100vh">
+        <div class="text-center mb-3">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
         <div class="row row-cols-1 row-cols-md-2">
-            <div class="col signuptext  flex-column d-flex justify-content-center align-items-center" style="background-color: white;">
-                <div class="text-left">
-                    <h3>Enter OTP</h3>
-                    <p>4 digit OTP and link was sent <span> to maanas20@gmail.com</span></p>
+            <div class="col signuptext " style="background-color: white;">
+                <div class="text-left ">
+                    <h2 class="mb-4" >Enter OTP</h2>
+                    <p>4 digit OTP and link was sent <br> <span style="color:#F05940"> to maanas20@gmail.com</span></p>
 
                     <form>
-                        <div class="form-group input-group mb-2">
+                        <div class="mt-4 form-group input-group mb-2">
                             <div class="input-group position-relative">
                                 <input name="" class="form-control" placeholder="Full name" type="text">
                                 <i class="bi bi-envelope position-absolute top-50 end-0  me-2 translate-middle-y" style="pointer-events: none;"></i>
