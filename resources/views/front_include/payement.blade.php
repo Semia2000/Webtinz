@@ -105,11 +105,25 @@
                     </label>
                 </div>
                 <div class="d-flex liens mb-5">
-                    <a href="" class="firstlink" style="background: #F05940">Pay</a>
+                    <a href="{{ route('payement-process') }}" class="firstlink" style="background: #F05940">Pay</a>
                 </div>
             </div>
         </div>
     </section>
 @endsection
 @section('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('.card');
+
+        radioButtons.forEach(function(radioButton) {
+            radioButton.addEventListener('click', function() {
+                radioButtons.forEach(function(radioButton) {
+                    radioButton.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
 @endsection

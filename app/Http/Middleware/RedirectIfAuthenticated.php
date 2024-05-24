@@ -22,7 +22,11 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
+           if (Auth::guard($guard)->check()) {
+                // Ignore the redirect for OTP verification routes
+                if ($request->route()->named('otpverif') || $request->route()->named('otpverif.verify'))  {
+                    return $next($request);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Webtinz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" />
+
+    
     {{-- css links --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
@@ -18,65 +22,82 @@
 <body>
     <!-- section navbar -->
     <header id="home-header"
-        style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-blend-mode: overlay; background-size: cover; height:800px;">
+        style="background: url('{{ asset('assets/images/header-bg.png') }}') rgba(0, 0, 0, 0.6); background-size: cover; height:800px;">
         <div class="contains-header">
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar  navbar-expand-lg" id="navbar">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo" width="200"
-                            height="50" class="d-inline-block align-text-top">
+                        <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo" width="150px"
+                            class="d-inline-block align-text-top">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse " id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item me-2">
-                                <a class="nav-link active" aria-current="page" href="#">How It Works</a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Pricing </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Templates</a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Help Center</a>
-                            </li>
-                        </ul>
-                        <div class="navbar-button d-flex ">
-                            <ul class="navbar-nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="#">login</a>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">webtinz</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item me-2">
+                                    <a class="nav-link active" aria-current="page" href="#">How It Works</a>
                                 </li>
                                 <li class="nav-item mx-2">
-                                    <a class="nav-link getstart" href="">Get Started</a>
+                                    <a class="nav-link" href="#">Pricing </a>
                                 </li>
-                                <li class="nav-item">
-                                    <select class="language-select">
-                                        <option value="fr">
-                                            <img src="french.svg" alt="French" class="language-icon"> Français
-                                        </option>
-                                        <option value="en">
-                                            <img src="english.svg" alt="English" class="language-icon"> English
-                                        </option>
-                                    </select>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="#">Templates</a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="#">Help Center</a>
                                 </li>
                             </ul>
+                            <div class="navbar-button  d-flex">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item ">
+                                        <a class="nav-link fistlink" href="{{ route('login') }}">Login</a>
+                                    </li>
+                                    <li class="nav-item mx-2">
+                                        <a class="nav-link getstart" href="{{ route('letstart') }}">Get Started</a>
+                                    </li>
+
+                                    <div class="dropdown">
+                                        <button class="language-select dropdown-toggle" type="button"
+                                            id="language-select" data-bs-toggle="dropdown" aria-expanded="false"><span
+                                                class="flag-icon flag-icon-gb me-1"></span>
+                                            <span>English</span></button>
+                                        <ul class="dropdown-menu" aria-labelledby="language-select">
+                                            <li>
+                                                <a class="dropdown-item active" href="#"><span
+                                                        class="flag-icon flag-icon-us me-1"></span>
+                                                    <span>English</span></a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"><span
+                                                        class="flag-icon flag-icon-fr me-1"></span>
+                                                    <span>French</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </nav>
+
             <div class="container title-header">
                 <h3>Establish your <br>
-                    <span class="circle-word">web</span>  presence & e-commerce <br>
+                    <span class="circle-word">web</span> presence & e-commerce <br>
                     capabilities with <span>Webtinz</span>
                 </h3>
                 <p>Create a website in <span>10 minutes</span>.</p>
                 <div class="get-started-container">
-                    <a class="getstart" href="#">Get Started</a>
+                    <a class="getstart" href="{{ route('letstart') }}">Get Started</a>
                 </div>
             </div>
 
@@ -117,6 +138,9 @@
                     <h5 class="column1 mb-4">Quicklinks</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
+                            <a href="{{ route('letstart') }}" class="text-white">Get Started</a>
+                        </li>
+                        <li class="mb-2">
                             <a href="#!" class="text-white">Home</a>
                         </li>
                         <li class="mb-2">
@@ -131,9 +155,9 @@
                         <li class="mb-2">
                             <a href="#!" class="text-white">Help Centre</a>
                         </li>
-                        <li class="mb-2">
+                        {{-- <li class="mb-2">
                             <a href="#!" class="text-white">Contact </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <!--Grid column-->
@@ -159,8 +183,8 @@
                 </div>
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo" width="250"
-                        height="50" class="d-inline-block align-text-top">
+                    <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo"
+                        class="d-inline-block align-text-top">
                 </div>
 
 
@@ -194,17 +218,44 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
-            if (window.scrollY > 0) {
-                navbar.classList.add('scrolled');
+            var navbarBrand = document.querySelector('.navbar-brand img');
+            var navLinks = navbar.querySelectorAll('li.nav-item a');
+            var languageSelect = document.querySelector('.language-select');
+            var scroll = window.scrollY;
+
+            if (scroll < 10) {
+                navbar.classList.remove('BgColour');
+                navbarBrand.setAttribute('src', '/assets/images/logo (1).png');
+
+                navLinks.forEach(function(link) {
+                    if (link !== languageSelect) {
+                        link.style.color = '#FFF';
+                    }
+                });
+
+                languageSelect.style.background = 'transparent';
+                languageSelect.style.color = '#fff';
+
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.add('BgColour');
+                navbarBrand.setAttribute('src', '/assets/images/logo.png');
+
+                navLinks.forEach(function(link) {
+                    if (link !== languageSelect) {
+                        link.style.color = '#4E4E4E';
+                    }
+                });
+
+                languageSelect.style.background = '#fff ';
+                languageSelect.style.color = '#4E4E4E';
             }
         });
     </script>
-
     @yield('js')
 </body>
 

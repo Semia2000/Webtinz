@@ -2,6 +2,9 @@
 @section('links')
 @endsection
 @section('content')
+<?php 
+$selectedValue = isset($_GET['selectedValue']) ? $_GET['selectedValue'] : null;
+?>
     <section class="signup flex-column d-flex justify-content-center align-items-center" >
         <div class="text-center mt-4  mb-4">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
@@ -29,8 +32,8 @@
                         </div> <!-- form-group// -->
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-info btn-block"
-                                style="width: 100%; border:1px solid #F05940"> Continue </button>
+                            <a  href="{{ route('otpverif') }}?selectedValue=<?php echo urlencode($selectedValue); ?>" class="btn btn-info btn-block"
+                                style="width: 100%; border:1px solid #F05940"> Continue </a>
                         </div> <!-- form-group// -->
                         <br>
                         <p class="divider-text text-center">
@@ -38,8 +41,8 @@
                         </p>
                         <br>
                         <div class="form-group">
-                            <button type="submit" class="btn whatsapp-btn btn-block" style="width: 100%;">Login with Gmail</button>
-                        </div> <!-- form-group// -->
+                            <a  href="{{ route('otpverif') }}?selectedValue=<?php echo urlencode($selectedValue); ?>" class="btn whatsapp-btn btn-block" style="width: 100%;"> <img src="{{ asset('assets/images/icons/google_2504739.png') }}" width="20" height="20" alt=""> &nbsp;&nbsp; Login with Gmail</a>
+                        </div> <!-- form-group// --> 
                         <br>
                     </form>
                 </div>

@@ -15,7 +15,7 @@
                     Your <span style="font-weight: 600;">Home Business</span> subscription will expire on <span style="color:#F05940">May 2.
                         2014</span>
                 </p>
-                <a href="">Go to Dashboard</a>
+                <a href="{{ route('dashboard') }}">Go to Dashboard</a>
             </div>
 
         </div>

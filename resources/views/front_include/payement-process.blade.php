@@ -75,7 +75,7 @@
                             </label>
                         </div>
                         <div class="d-flex liens mb-5">
-                            <a href="" class="firstlink" style="background: #F05940">Pay</a>
+                            <a href="{{ route('paysuccessful') }}" class="firstlink" style="background: #F05940">Pay</a>
                         </div>
                     </div>
                 </div>

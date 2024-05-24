@@ -2,48 +2,59 @@
 
 @font-face {
     font-family: 'Magnet';
-    src: url('public/fonts/magnet/MagnetTrial-Regular-BF65f3b2c4d8cea.otf') format('otf');
-    font-style: normal;
+    src: url('Fonts/Magent/Magnet.otf') format('otf');
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('public/fonts/graphik/GraphikRegular.otf') format('otf');
-    font-style: normal;
+    src: url('Fonts/Graphik/GraphikRegular.otf') format('otf');
 }
 
 
 /* homeheader */
 body {
     width: 100%;
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+
+}
+
+.navbar {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 10000;
 }
 
 nav li a {
     color: white;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 15px;
 }
 
-.navbar.scrolled {
+.BgColour {
+    transition: all 1s;
     background-color: white;
-    /* Nouvelle couleur de fond de la barre de navigation lors du défilement */
+    border-bottom: 1px solid #ccc;
+}
+
+select{
+    background-color: #F8F8F8 !important;
 }
 
 .navbar-button li a {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 5px;
 }
 
 /* label and input*/
 label {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -52,12 +63,13 @@ label {
     margin-bottom: 10px;
 }
 
-input[placeholder] {
-    font-family: 'Graphik';
+input[placeholder],
+textarea[placeholder],
+.form-select option {
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 15px;
     color: #727272;
 }
 
@@ -67,10 +79,10 @@ input[placeholder] {
 }
 
 .input-group input {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    padding: 10px;
+    align-items: flex-start; */
+    padding: 6.5px;
     border: 1px solid #727272;
     border-radius: 5px;
 }
@@ -87,27 +99,27 @@ input[type="radio"]:checked {
 
 
 .language-select {
-    padding: 7px 12px;
+    padding: 4px 12px;
     font-size: 16px;
-    border: 2px solid #424242;
+    border: 1px solid #424242;
     border-radius: 5px;
     outline: none;
-    background: url('assets/images/header-bg.png') no-repeat right center;
-    background-size: cover;
+    background: transparent;
     color: #fff;
 }
 
-
-.language-select option {
-    font-size: 16px;
+.language-select span {
+    border-radius: 50%;
 }
 
-.language-icon {
-    width: 20px;
-    height: auto;
-    vertical-align: middle;
-    margin-right: 5px;
+.dropdown-menu {
+    background-color: #424242;
 }
+
+.dropdown-item a {
+    font-size: 15px;
+}
+
 
 #home-header {
     color: white;
@@ -115,16 +127,13 @@ input[type="radio"]:checked {
 
 
 #home-header .title-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 10%;
+    padding-top: 15%;
 
 }
 
 
 #home-header .title-header h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 45px;
@@ -132,7 +141,7 @@ input[type="radio"]:checked {
 }
 
 #home-header .title-header p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -147,11 +156,11 @@ input[type="radio"]:checked {
 .circle-word::before {
     content: '';
     position: absolute;
-    width: 2.1em;
-    height: 1.1em;
+    width: 2.6em;
+    height: 1.2em;
     border: 5px solid #F05940;
     top: 0.2em;
-    left: -0.2em;
+    left: -0.4em;
     border-radius: 50%;
     background-color: transparent;
     border-top: none;
@@ -164,14 +173,15 @@ input[type="radio"]:checked {
 }
 
 .getstart {
+    color: white !important;
     text-align: center;
     background: #F05940;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.09);
     border-radius: 5px;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 14px;
     line-height: 20px;
 }
 
@@ -199,7 +209,7 @@ input[type="radio"]:checked {
 }
 
 .avantages .col h4 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -218,6 +228,10 @@ input[type="radio"]:checked {
     height: 70%;
     border: 1px solid rgba(0, 0, 0, 0.2);
 
+}
+
+.avantages .col:first-child::before {
+    border: none;
 }
 
 .avantages .line {
@@ -240,11 +254,10 @@ input[type="radio"]:checked {
 .pricing h6,
 .faq h6,
 #plans h6 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
-    line-height: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #F77A56;
@@ -261,12 +274,17 @@ input[type="radio"]:checked {
 .testimonial h2,
 .pricing h2,
 .faq h2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 55px;
+    font-size: 35px;
     color: #2E2E2E;
+}
+
+.digitalisation h2,
+.ecom h2,
+.websitehome h2 {
+    font-size: 40px;
 }
 
 .process p,
@@ -276,7 +294,7 @@ input[type="radio"]:checked {
 .features p,
 .ourpartners p,
 .pricing p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -288,10 +306,13 @@ input[type="radio"]:checked {
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .tree ul {
-    padding-top: 20px;
+    padding-top: 50px;
+    padding-left: 16px;
+    margin: 0 auto;
     position: relative;
 
 }
@@ -300,12 +321,14 @@ input[type="radio"]:checked {
     float: left;
     list-style-type: none;
     position: relative;
-    padding: 20px 5px 0 5px;
-
+    padding: 40px 20px 0px 20px;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
+
 }
+
+
 
 /*We will use ::before and ::after to draw the connectors*/
 
@@ -315,15 +338,26 @@ input[type="radio"]:checked {
     position: absolute;
     top: 0;
     right: 50%;
-    border-top: 1px solid #ccc;
+    border-top: 1px dashed #ccc;
     width: 50%;
-    height: 20px;
+    height: 50px;
 }
+
+.tree .firstchlidli::after,
+.tree .secondchlidli::before {
+    border-top: 1px dashed #F05940;
+}
+
 
 .tree li::after {
     right: auto;
     left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 1px dashed #ccc;
+}
+
+.tree li:first-child::before,
+.tree li:first-child::after {
+    border-left: 1px dashed #F05940;
 }
 
 /*We need to remove left-right connectors from elements without
@@ -347,7 +381,7 @@ right connector from last child*/
 
 /*Adding back the vertical connector to the last nodes*/
 .tree li:last-child::before {
-    border-right: 1px solid #ccc;
+    border-right: 1px dashed #ccc;
 }
 
 /*Time to add downward connectors from parents*/
@@ -356,38 +390,36 @@ right connector from last child*/
     position: absolute;
     top: 0;
     left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 1px dashed #F05940;
     width: 0;
-    height: 20px;
+    height: 50px;
 }
 
 .tree li a {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: -4px 34px 14px rgba(184, 183, 183, 0.01), -2px 19px 12px rgba(184, 183, 183, 0.05), -1px 9px 9px rgba(184, 183, 183, 0.09), 0px 2px 5px rgba(184, 183, 183, 0.1);
+    border-radius: 5px;
+    padding: 15px 30px;
     text-decoration: none;
-    color: #666;
-    font-family: arial, verdana, tahoma;
-    font-size: 11px;
     display: inline-block;
+    font-family: 'Magnet' sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: #2E2E2E;
+
+
 }
 
-/* Ajouter une classe spécifique pour les liens des Grand Child */
-.tree ul ul li a {
-    position: relative;
+.tree li .parent {
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
 }
 
-/* Ajouter un point rouge à l'extrémité du trait reliant le parent à l'enfant */
-.tree>ul>li::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    transform: translate(50%, -50%);
-}
+
 
 
 
@@ -452,6 +484,13 @@ a {
     margin-top: 5%;
 }
 
+.templtesweb .arrows {
+    display: flex;
+    justify-content: end;
+    margin-top: -4%;
+    padding-right: 15%;
+}
+
 .templtesweb .arrows i {
     width: 45px;
     height: 45px;
@@ -485,6 +524,8 @@ a {
 /* features */
 .features {
     z-index: 1;
+    margin-top: 5%;
+
 }
 
 .features .features-text {
@@ -499,7 +540,7 @@ a {
     right: 0;
     top: 65%;
     z-index: 2;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .features .cartes .card {
@@ -521,7 +562,7 @@ a {
 }
 
 .features .cartes .card .card-title {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -529,7 +570,7 @@ a {
 }
 
 .features .cartes .card .card-text {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -539,17 +580,39 @@ a {
 
 /* partners */
 .ourpartners {
-    margin-top: 35%;
+    margin-top: 30em;
+
 }
 
-.ourpartners .partnersimage img {
-    width: 120px;
-    height: 60px;
+.ourpartners .partnersimage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: wrap; */
 }
+
+.ourpartners .partnersimage .row {
+    display: flex;
+    grid-gap: 20px;
+}
+
+.ourpartners .partnersimage .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ourpartners .col img {
+    /* width: 150px;
+    height: 40px; */
+    display: block;
+    margin-bottom: 20px;
+}
+
 
 /* testimonial */
 .testimonial {
-    margin-top: 10%;
+    margin-top: 5%;
     background: #F1FCFF;
     border-radius: 15px;
     display: flex;
@@ -559,8 +622,32 @@ a {
     height: 600px;
 }
 
+.pagination {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #F05940;
+    width: 30px;
+    height: 10px;
+    border-radius: 20px;
+}
+
 .testimonial .testimonialcards .card .card-title {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -569,7 +656,7 @@ a {
 }
 
 .testimonial .testimonialcards .card .card-text {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -582,7 +669,7 @@ a {
 }
 
 .testimonial .testimonialcards h3 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -591,7 +678,7 @@ a {
 }
 
 .testimonial .testimonialcards p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -603,6 +690,7 @@ a {
 /* accordeons */
 .faq {
     margin-top: 5%;
+    width: 50%;
 
 }
 
@@ -610,6 +698,7 @@ a {
 
 .faq-section {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
     /* Trait horizontal séparant les éléments */
 }
 
@@ -621,17 +710,17 @@ a {
 .question {
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .question span {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 26px;
     color: #2E2E2E;
 }
@@ -652,25 +741,60 @@ a {
 
 
 /* pricing */
-.pricing {
-    background: #FFF6EC;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5%;
 
+.pricing {
+    border-radius: 15px;
+    margin-top: 7%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 300% 300%;
+    background-image: linear-gradient(45deg, #F05940 0%, #F77A56 25%, orange 51%, #F05940 100%);
+    animation: AnimateBG 12s ease-in-out infinite;
 }
+
+@-webkit-keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
 
 .pricing .pricing-circle {
     background: #FFFFFF;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
 }
 
 .pricing .pricing-circle h2 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -680,7 +804,7 @@ a {
 }
 
 .pricing .pricing-circle h4 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -690,7 +814,7 @@ a {
 }
 
 .pricing .pricing-circle h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 35px;
@@ -735,6 +859,7 @@ a {
     background-color: #F05940;
 }
 
+
 .radiocheck.active label i,
 .radiocheck.active label {
     color: white;
@@ -776,20 +901,20 @@ a {
 .startprocess h2,
 .signup h2,
 .contactinf h2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     color: #2E2E2E;
 }
 
 .startprocess p,
 .signup p,
 .contactinf P {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 18px;
     color: #4E4E4E;
 }
@@ -834,7 +959,7 @@ a {
     align-items: center;
     padding: 8px;
     border-radius: 5px;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -884,7 +1009,7 @@ a {
 }
 
 .listtemplates p {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -892,7 +1017,7 @@ a {
 }
 
 .listtemplates h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -902,19 +1027,19 @@ a {
 }
 
 .listtemplates h5 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     color: #F05940;
 }
 
-.listtemplates a {
+.listtemplates .btns  {
     padding: 12px;
     background: #F05940;
     border: 1px solid #F05940;
     border-radius: 5px;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -942,7 +1067,7 @@ a {
 }
 
 .listtemplates .row .card h4 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -950,7 +1075,7 @@ a {
 }
 
 .listtemplates .row .card .templateprice {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -961,7 +1086,7 @@ a {
 
 .listtemplates .row .card p {
 
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -969,7 +1094,7 @@ a {
     color: #2E2E2E;
 }
 
-.listtemplates .row .card a {
+.listtemplates .row .card .cardbtns {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -978,13 +1103,18 @@ a {
     border: 1px solid #727272;
     border-radius: 20px;
     background-color: white;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     color: #727272;
 
 }
+
+.listtemplates .card.active {
+    border: 1px solid red;
+}
+
 
 /* payement */
 #plans li {
@@ -998,14 +1128,19 @@ a {
     align-items: center;
 }
 
-#plans #myTab {
+#plans #myTab,
+#plans .nav-pills {
     background-color: #EBEBEB;
     width: 30%;
-
 }
 
-#plans #myTab a {
-    font-family: 'Graphik';
+.subscription .nav-pills {
+    width: 100%;
+}
+
+#plans #myTab a,
+#plans .nav-pills a {
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -1013,7 +1148,8 @@ a {
     color: black;
 }
 
-#plans #myTab .active {
+#plans #myTab .active,
+#plans .nav-pills .active {
     background-color: #F05940;
     color: #FFFFFF;
 }
@@ -1042,7 +1178,7 @@ a {
 }
 
 #plans .card-body span {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1053,7 +1189,7 @@ a {
 }
 
 #plans h2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 40px;
@@ -1062,7 +1198,7 @@ a {
 }
 
 #plans h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1072,7 +1208,7 @@ a {
 #plans .card-body .liens a,
 #plans .liens a,
 .processpay .liens a {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -1097,7 +1233,7 @@ a {
 }
 
 #plans .card-body p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -1111,7 +1247,7 @@ a {
 }
 
 #plans .card-header {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -1123,6 +1259,11 @@ a {
 
 }
 
+#plans .card.active {
+    border: 1px solid #F05940;
+    background-color: #D6F2F6;
+}
+
 /* successfulpay */
 .sucesspay i {
     font-size: 30px;
@@ -1130,7 +1271,7 @@ a {
 }
 
 .sucesspay p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -1140,7 +1281,7 @@ a {
 }
 
 .sucesspay h4 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1148,8 +1289,9 @@ a {
     color: #2E2E2E;
 }
 
-.sucesspay a {
-    font-family: 'Graphik';
+.sucesspay a,
+.letstext a {
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -1162,7 +1304,10 @@ a {
     padding: 14px;
     background: #F05940;
     border-radius: 5px;
+}
 
+.letstext a {
+    width: 50%;
 }
 
 /* processpay */
@@ -1181,7 +1326,7 @@ a {
 }
 
 .processpay p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -1201,7 +1346,7 @@ a {
 }
 
 .processpay H5 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1211,7 +1356,7 @@ a {
 }
 
 .processpay h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -1222,7 +1367,7 @@ a {
 }
 
 .processpay H2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -1245,7 +1390,7 @@ a {
 }
 
 .processpay .card-body h2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
@@ -1279,7 +1424,7 @@ a {
 
 /* summary */
 .summary h6 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -1295,7 +1440,7 @@ a {
 }
 
 .summary textarea[placeholder] {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -1315,7 +1460,7 @@ footer {
 }
 
 footer .row h5 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -1324,7 +1469,7 @@ footer .row h5 {
 }
 
 footer .row .column1 .men1 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -1333,7 +1478,7 @@ footer .row .column1 .men1 {
 }
 
 footer .row .column1 .men2 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -1342,7 +1487,7 @@ footer .row .column1 .men2 {
 }
 
 footer .row .column1 .men3 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -1358,7 +1503,7 @@ footer .row .column1 .men3 {
 
 
 footer .row p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -1372,7 +1517,7 @@ footer .row p {
 }
 
 .sidebar .info p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -1381,7 +1526,7 @@ footer .row p {
 }
 
 .sidebar .info h4 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -1396,7 +1541,7 @@ footer .row p {
 }
 
 .nav-sidebar li p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

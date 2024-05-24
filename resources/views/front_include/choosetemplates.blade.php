@@ -18,103 +18,33 @@
                     </span>
                 </div>
             </div>
-
-            <div class="row row-cols-1 row-cols-md-3 mt-5">
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (2).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
+           
+                <div class="row row-cols-1 row-cols-md-3 mt-5">
+                    @foreach ($templates as $template)
+                    <div class="col">
+                        <a href="{{ route('templates.preview', $template->id) }}">
+                        <div class="card">
+                            <img class="" src="{{ asset('storage/' . $template->thumbnail) }}"
+                                width="100%" alt="">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <h4 class="me-auto">{{ $template->name }}</h4>
+                                    <h4 class="templateprice ms-auto">FCFA 2000</h4>
+                                </div>
+                                <p>By Netzilians</p>
+                                <a class="cardbtns" href="">{{ $template->access_level }}</a>
                             </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
                         </div>
+                        </a>
                     </div>
+                @endforeach
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (3).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                            </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (1).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                            </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row row-cols-1 row-cols-md-3 mt-5">
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (2).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                            </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (3).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                            </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (1).png') }}"
-                            width="100%" alt="">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h4 class="me-auto">Tactix Extend</h4>
-                                <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                            </div>
-                            <p>By Netzilians</p>
-                            <a href="">Wordpress</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
             <div class="p-5 pb-0">
                 <hr>
             </div>
 
             <div class="text-center flex-column d-flex justify-content-center align-items-center mb-5">
-                <p>Selected template </p>
+                <p>Selected Template </p>
                 <h3>AirNex AI Saas Startup</h3>
                 <h5>Price : FCFA 4000</h5>
                 <div class="form-check mb-2">
@@ -124,10 +54,24 @@
                             style="color:#F05940 ">Policy</span>
                     </label>
                 </div>
-                <a href="">Continue</a>
+                <a class="btns" href="{{ route('payement') }}">Continue</a>
             </div>
         </div>
     </section>
 @endsection
 @section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('.card');
+
+            radioButtons.forEach(function(radioButton) {
+                radioButton.addEventListener('click', function() {
+                    radioButtons.forEach(function(radioButton) {
+                        radioButton.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
 @endsection

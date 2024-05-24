@@ -1,10 +1,20 @@
+@font-face {
+    font-family: 'Magnet';
+    src: url('Fonts/Magent/Magnet.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('Fonts/Graphik/GraphikRegular.otf') format('otf');
+}
+
 .sidebar {
     background-color: #141414;
     color: #fff;
 }
 
 .sidebar .info p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -13,7 +23,7 @@
 }
 
 .sidebar .info h4 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -28,7 +38,7 @@
 }
 
 .nav-sidebar li p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -74,7 +84,7 @@
 }
 
 .dashboard .card h5 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
@@ -83,7 +93,7 @@
 }
 
 .dashboard .card h5 span {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -92,7 +102,7 @@
 }
 
 .dashboard .card p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -109,12 +119,12 @@
 }
 
 .dashboard .tablestat .tableforstat {
-    width: 74.5%;
+    width: 74%;
 }
 
 .dashboard .tablestat .chartstat {
     width: 23%;
-    margin-left: 1.5%;
+    margin-left: 2.5%;
 }
 
 .dashboard .tablestat .tableforstat,
@@ -126,7 +136,7 @@
 }
 
 .dashboard .tablestat .tableforstat h4 {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -147,13 +157,14 @@
 
 .tablestat .table tr {
     border: 1px solid white;
+    margin-top: 5rem;
 }
 
 .tablestat .table th,
 .tablestat .table td {
     padding: 8px;
     text-align: left;
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -175,6 +186,7 @@
     margin-top: 10px;
     display: flex;
     align-items: center;
+    justify-content: left !important;
 }
 
 .pagination a {
@@ -248,7 +260,7 @@
 }
 
 .processtopay .row h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -266,7 +278,7 @@
 }
 
 h2 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -275,7 +287,7 @@ h2 {
 }
 
 .myprofileuser h3 {
-    font-family: 'Magnet';
+    font-family: 'Magnet' sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -284,7 +296,7 @@ h2 {
 }
 
 p {
-    font-family: 'Graphik';
+    font-family: 'Graphik' sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

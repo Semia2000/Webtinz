@@ -11,7 +11,7 @@
     }
 
     .ourpartners {
-        margin-top: 45%;
+        margin-top: 32em;
     }
 
     /* contactinfo */
@@ -56,16 +56,14 @@
     }
 
     .avantages .col h4 {
-        font-size: 17px;
+        font-size: 15px;
     }
 
     .avantages .row {
         padding: 5px 0px 5px 0px;
     }
 
-    .ourpartners {
-        margin-top: 55%;
-    }
+
 
 
 }
@@ -102,11 +100,16 @@
     .testimonial h2,
     .pricing h2,
     .faq h2 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     .testimonial {
-        height: 700px;
+        height: max-content;
+        padding: 5rem 0rem;
+    }
+
+    .testimonialcards .row .col {
+        margin-bottom: 10px;
     }
 
     .container {
@@ -114,8 +117,17 @@
     }
 
     /* nav */
+    header .offcanvas-body li {
+        margin: 0 !important;
+    }
+
+    .navbar-button li .fistlink {
+        padding: 0 !important;
+    }
+
     .navbar-button li a {
         justify-content: left;
+        margin-bottom: 10px;
     }
 
     /* letstart */
@@ -133,6 +145,12 @@
     .planschoose {
         width: 100%;
     }
+
+    .ourpartners {
+        margin-top: 35em;
+    }
+
+    
 }
 
 
@@ -155,14 +173,21 @@
     }
 
     .ourpartners {
-        margin-top: 100em;
+        margin-top: 92em;
     }
 
     .ourpartners .partnersimage .row .col {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 50px;
+    }
+
+    /* templateview */
+    .templtesweb .arrows {
+        display: flex;
+        justify-content: center;
+        margin-top: 0%;
+        padding-right: 0%;
     }
 
     /* letstart */
@@ -270,6 +295,76 @@
         width: 100% !important;
     }
 
+    /* pricing */
+    .pricing {
+        height: max-content;
+        padding: 20px;
+    }
+
+    .pricing .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0%;
+    }
+
+    .pricing .row .col-2 {
+        order: 1;
+        margin-top: 0% !important;
+        display: flex;
+        justify-content: end;
+    }
+
+    .pricing .row .col-3 {
+        order: 2;
+        padding-top: 8%;
+        margin-top: 10%;
+        margin-bottom: 2%;
+
+    }
+
+    .pricing .row .col-7 {
+        order: 3;
+    }
+
+    .pricing .row .col-3,
+    .pricing .row .col-2,
+    .pricing .row .col-7 {
+        width: 100%;
+    }
+
+    .pricing .row .col-3 .pricing-circle {
+        left: 0;
+        top: 50 !important;
+    }
+
+    .pricing .row .col-3 {
+        margin-top: 8%;
+    }
+
+    /* tree */
+    .tree {
+        display: block; /* Passage à une disposition verticale */
+    }
+
+    .tree ul ul::before {
+        content: none; /* Supprimer les connecteurs verticaux */
+    }
+
+    .tree li {
+        float: none;
+        margin-right: 0; /* Supprimer l'espace entre les éléments enfants */
+        text-align: center; /* Centrer le texte */
+        padding: 20px 0; /* Ajuster le rembourrage */
+    }
+
+    .tree li::before,
+    .tree li::after {
+        display: none; /* Supprimer les connecteurs horizontaux */
+    }
+
+
 }
 
 @media(max-width:700px) {
@@ -293,11 +388,13 @@
         padding: 0 !important;
         padding-top: 3rem !important;
     }
+
     /* myprofiluser */
-    .myprofileuser .contentrow{
+    .myprofileuser .contentrow {
         padding: 3rem 0rem !important;
     }
-    .myprofileuser .contentrow .whitepage{
+
+    .myprofileuser .contentrow .whitepage {
         padding: 3rem 1rem !important;
     }
 }
@@ -357,34 +454,19 @@
         font-size: 17px;
     }
 
-    .ourpartners .partnersimage img {
-        width: 80px;
-        height: 60px;
-    }
-
-    .testimonial {
-        height: 900px;
+    .testimonial .testimonialcards {
+        padding: 1rem !important;
     }
 
     /* pricing */
-    .pricing .row {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+
 
     /* display */
-    .templtesweb .defiletemplates {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .templtesweb .defiletemplates h2 {
-        margin-right: 0%;
-        margin-left: 0%;
+    .templtesweb .arrows i {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
     }
 
     /* .pricing .row .col-3, */
@@ -400,24 +482,47 @@
         padding: 80px 25px;
     }
 
-    /* contactinfo */
-    .llisttemplates .input-group, .processtopay .totalsolde .colum {
-        width: 100%;
+    .startprocess .row .col,
+    .signup .row .col,
+    .contactinf .contactback {
+        padding: 40px 20px;
     }
 
+    /* contactinfo */
+    .llisttemplates .input-group,
+    .processtopay .totalsolde .colum {
+        width: 100%;
+    }
+    .signup .signuptext div{
+        padding: 0 !important;
+    }
+    .startprocess h2,
+.signup h2,
+.contactinf h2 {
+    font-size: 15px;
+}
+
+.startprocess p,
+.signup p,
+.contactinf P {
+    font-size: 14px;
+}
     .listtemplates p,
     .listtemplates h3 {
         font-size: 20px;
     }
 
     .processtopay .col2 .row,
-    .processtopay .totalsolde,.myprofileuser .contentrow .row{
+    .processtopay .totalsolde,
+    .myprofileuser .contentrow .row {
         display: flex;
         flex-direction: column;
     }
 
 
-    .processtopay .col2 .row .col ,.processtopay .totalsolde .colum,.myprofileuser .contentrow .row .col{
+    .processtopay .col2 .row .col,
+    .processtopay .totalsolde .colum,
+    .myprofileuser .contentrow .row .col {
         margin-bottom: 1rem;
     }
 
@@ -436,6 +541,10 @@
     .websitehome img {
         width: 250px;
         height: 250px;
+    }
+
+    .ourpartners {
+        margin-top: 95em;
     }
 
     /* letstart */
@@ -473,15 +582,6 @@
         padding: 50px 20px;
     }
 
-    .ourpartners {
-        margin-top: 105em;
-        margin-bottom: 10em;
-    }
-
-    .testimonial {
-        height: 1000px;
-    }
-
     .faq {
         margin-top: 8%;
 
@@ -490,6 +590,10 @@
     body {
         max-width: 320px;
         overflow-x: hidden;
+    }
+
+    .ourpartners {
+        margin-top: 100em;
     }
 
     /* letstart */

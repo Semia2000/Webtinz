@@ -40,23 +40,6 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="country">Country<span class="required">*</span></label>
-                                <select id="country" class="form-select form-select-md"
-                                    aria-label=".form-select-md example">
-                                    <option selected>Benin</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label for="state">State / Province<span class="required">*</span></label>
-                                <select id="state" class="form-select  form-select-md"
-                                    aria-label=".form-select-md example">
-                                    <option selected>Littoral</option>
-                                </select>
-                            </div>
-                            <div class="col">
                                 <label for="phone">Phone<span class="required">*</span></label>
                                 <div class="input-group">
                                     <input type="tel" class="form-control pr-5" id="phone"
@@ -65,6 +48,25 @@
                                         style="pointer-events: none;"></i>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="country">Country<span class="required">*</span></label>
+                                <select id="country" class="form-select form-select-md"
+                                    aria-label=".form-select-md example">
+                                    <option selected>Benin</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="state">State / Province<span class="required">*</span></label>
+                                <select id="state" class="form-select  form-select-md"
+                                    aria-label=".form-select-md example">
+                                    <option selected>Littoral</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
 

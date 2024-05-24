@@ -44,7 +44,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                    <a class="nav-link" style="color: white" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
@@ -53,13 +53,13 @@
             </ul>
 
 
-                <div class="mx-auto  input-group rounded" style="width: 40%">
-                    <input type="search" class="form-control rounded" placeholder="Search"
-                        aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="bi bi-search"></i>
-                    </span>
-                </div>
+            <div class="mx-auto  input-group rounded" style="width: 40%">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -67,91 +67,14 @@
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
+                        <i class="far fa-envelope"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i
-                                                class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
                 </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
                 </li>
             </ul>
         </nav>
@@ -161,7 +84,7 @@
         <aside class="main-sidebar pt-4" style="background-color: #141414">
             <!-- Brand Logo -->
             <a href="" class=" p-4">
-                <img src="{{ asset('assets/images/logo (1).png') }}" width="150" height="40" alt="Webtinz Logo" >
+                <img src="{{ asset('assets/images/logo (1).png') }}" width="150" height="40" alt="Webtinz Logo">
             </a>
 
             <!-- Sidebar -->
@@ -169,14 +92,14 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-4 d-flex">
                     <div class="image">
-                        <img  src="{{ asset('assets/images/girl-choosing-one-option.png') }}"
-                            class="img-circle mt-2" alt="User Image" width="100" height="100">
+                        <img src="{{ asset('assets/images/girl-choosing-one-option.png') }}" class="img-circle mt-2"
+                            alt="User Image" width="100" height="100">
                     </div>
                     <div class="info">
                         <p>welcome</p>
                         <h4>steve Johnson</h4>
                     </div>
-                    <div class="dot ml-auto">
+                    <div class=" ml-auto">
                         <i class="bi bi-three-dots"></i>
                     </div>
                 </div>
@@ -190,78 +113,125 @@
                         data-accordion="false">
 
                         <li class="nav-item">
-                          <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                              <i class="nav-icon far fa-image"></i>
-                              <p>
-                                Dashboard
-                              </p>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                        <a  class="nav-link {{ Request::is('companyurl') ? 'active' : '' }}" href="{{ route('companyurl') }}">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                              BackendUrl
-                            </p>
-                        </a>
-                    </li>
-                        <li class="nav-item">
-                            <a  class="nav-link {{ Request::is('subscription') ? 'active' : '' }}" href="{{ route('subscription') }}">
+                            <a class="nav-link {{ Request::is('dashboarduser') ? 'active' : '' }}"
+                                href="{{ route('dashboarduser') }}">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                  Subscriptions
+                                    Dashboard
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                          <a  class="nav-link  {{ Request::is('viewtemplates') ? 'active' : '' }}" href="{{ route('viewtemplates') }}">
-                              <i class="nav-icon far fa-image"></i>
-                              <p>
-                                View Templates
-                              </p>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                        <a  class="nav-link" href="">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                              Ecommerce Platform
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                      <a  class="nav-link {{ Request::is('bankdetail') ? 'active' : '' }}" href="{{ route('bankdetail') }}">
-                          <i class="nav-icon far fa-image"></i>
-                          <p>
-                            Bank Detail
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a  class="nav-link" href="">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                          Ecommerce Cashout
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                  <a  class="nav-link {{ Request::is('myprofile') ? 'active' : '' }}" href="{{ route('myprofile') }}">
-                      <i class="nav-icon far fa-image"></i>
-                      <p>
-                        My Profile
-                      </p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                <a  class="nav-link " href="">
-                    <i class="nav-icon far fa-image"></i>
-                    <p>
-                      Support & Help
-                    </p>
-                </a>
-            </li>
+                            <a class="nav-link {{ Request::is('welcome') ? 'active' : '' }}"
+                                href="{{ route('welcome') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('letstart') ? 'active' : '' }}"
+                                href="{{ route('letstart') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Our services
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('companyurl') ? 'active' : '' }}"
+                                href="{{ route('companyurl') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    BackendUrl
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('subscription') ? 'active' : '' }}"
+                                href="{{ route('subscription') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Subscriptions
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  {{ Request::is('viewtemplates') ? 'active' : '' }}"
+                                href="{{ route('viewtemplates') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    View Templates
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Ecommerce Platform
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('bankdetail') ? 'active' : '' }}"
+                                href="{{ route('bankdetail') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Bank Detail
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Ecommerce Cashout
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('myprofile') ? 'active' : '' }}"
+                                href="{{ route('myprofile') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    My Profile
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Support & Help
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}"
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        {{ __('Logout') }}
+                                    </p>
 
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            {{-- <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}"
+                                href="{{ route('logout') }}">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a> --}}
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -270,12 +240,12 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="background-color:#E4E4E4;">
+        <div class="content-wrapper" style="background-color:#F2F2F2; height:auto">
 
             <!-- Main content -->
-            <section class="content" >
+            <section class="content pt-5">
                 <div class="container-fluid">
-                  @yield('content')
+                    @yield('content')
                 </div>
             </section>
             <!-- /.content -->
@@ -290,15 +260,15 @@
     </div>
 
     <script>
-      $(document).ready(function() {
-          var currentUrl = window.location.href;
-          $('.nav-link').each(function() {
-              if ($(this).attr('href') === currentUrl) {
-                  $(this).parent().addClass('active');
-              }
-          });
-      });
-  </script>
+        $(document).ready(function() {
+            var currentUrl = window.location.href;
+            $('.nav-link').each(function() {
+                if ($(this).attr('href') === currentUrl) {
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
+    </script>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
