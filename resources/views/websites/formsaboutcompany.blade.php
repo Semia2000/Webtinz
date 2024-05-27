@@ -41,41 +41,40 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="sector" class="form-label labeltitle">Select Business Sector<span
-                                class="required">*</span></label>
+                        <label for="sector" class="form-label labeltitle">Select Business Sector<span class="required">*</span></label>
                         <div class="row mt-3 mb-5">
                             <div class="col">
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Automotive" name="sector[]"
-                                        id="sector_automotive">
+                                    <input class="form-check-input" type="checkbox" value="Automotive" name="sector"
+                                        id="sector_automotive" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_automotive">
                                         Automotive
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Business Support" name="sector[]"
-                                        id="sector_business_support">
+                                    <input class="form-check-input" type="checkbox" value="Business Support" name="sector"
+                                        id="sector_business_support" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_business_support">
                                         Business Support
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Computers" name="sector[]"
-                                        id="sector_computers">
+                                    <input class="form-check-input" type="checkbox" value="Computers" name="sector"
+                                        id="sector_computers" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_computers">
                                         Computers
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Entertainment" name="sector[]"
-                                        id="sector_entertainment">
+                                    <input class="form-check-input" type="checkbox" value="Entertainment" name="sector"
+                                        id="sector_entertainment" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_entertainment">
                                         Entertainment
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Education" name="sector[]"
-                                        id="sector_education">
+                                    <input class="form-check-input" type="checkbox" value="Education" name="sector"
+                                        id="sector_education" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_education">
                                         Education
                                     </label>
@@ -83,36 +82,36 @@
                             </div>
                             <div class="col">
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Real Estate" name="sector[]"
-                                        id="sector_real_estate">
+                                    <input class="form-check-input" type="checkbox" value="Real Estate" name="sector"
+                                        id="sector_real_estate" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_real_estate">
                                         Real Estate
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Travels" name="sector[]"
-                                        id="sector_travels">
+                                    <input class="form-check-input" type="checkbox" value="Travels" name="sector"
+                                        id="sector_travels" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_travels">
                                         Travels
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Others" name="sector[]"
-                                        id="sector_others">
+                                    <input class="form-check-input" type="checkbox" value="Others" name="sector"
+                                        id="sector_others" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_others">
                                         Others
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Retail" name="sector[]"
-                                        id="sector_retail">
+                                    <input class="form-check-input" type="checkbox" value="Retail" name="sector"
+                                        id="sector_retail" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_retail">
                                         Retail
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Personal Care"
-                                        name="sector[]" id="sector_personal_care">
+                                    <input class="form-check-input" type="checkbox" value="Personal Care" name="sector"
+                                        id="sector_personal_care" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_personal_care">
                                         Personal Care
                                     </label>
@@ -120,36 +119,36 @@
                             </div>
                             <div class="col">
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Health & Medicine"
-                                        name="sector[]" id="sector_health_medicine">
+                                    <input class="form-check-input" type="checkbox" value="Health & Medicine" name="sector"
+                                        id="sector_health_medicine" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_health_medicine">
                                         Health & Medicine
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Home & Garden"
-                                        name="sector[]" id="sector_home_garden">
+                                    <input class="form-check-input" type="checkbox" value="Home & Garden" name="sector"
+                                        id="sector_home_garden" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_home_garden">
                                         Home & Garden
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Information Technology"
-                                        name="sector[]" id="sector_information_technology">
+                                    <input class="form-check-input" type="checkbox" value="Information Technology" name="sector"
+                                        id="sector_information_technology" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_information_technology">
                                         Information Technology
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Food & Dining"
-                                        name="sector[]" id="sector_food_dining">
+                                    <input class="form-check-input" type="checkbox" value="Food & Dining" name="sector"
+                                        id="sector_food_dining" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_food_dining">
                                         Food & Dining
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="Manufacturing"
-                                        name="sector[]" id="sector_manufacturing">
+                                    <input class="form-check-input" type="checkbox" value="Manufacturing" name="sector"
+                                        id="sector_manufacturing" onclick="limitSelection(this)">
                                     <label class="form-check-label" for="sector_manufacturing">
                                         Manufacturing
                                     </label>
@@ -157,7 +156,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="mb-3">
                         <label for="others_services" class="form-label labeltitle">Other Services <span
@@ -186,4 +184,14 @@
     </section>
 @endsection
 @section('js')
+<script>
+    function limitSelection(selectedCheckbox) {
+        var checkboxes = document.querySelectorAll('input[name="sector"]');
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox !== selectedCheckbox) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    </script>
 @endsection

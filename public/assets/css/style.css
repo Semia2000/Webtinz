@@ -1034,7 +1034,7 @@ a {
     color: #F05940;
 }
 
-.listtemplates .btns  {
+.listtemplates a  {
     padding: 12px;
     background: #F05940;
     border: 1px solid #F05940;
@@ -1094,7 +1094,7 @@ a {
     color: #2E2E2E;
 }
 
-.listtemplates .row .card .cardbtns {
+.listtemplates .row .card a {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1111,8 +1111,8 @@ a {
 
 }
 
-.listtemplates .card.active {
-    border: 1px solid red;
+.listtemplates .row .card.active {
+    border: 1px solid #F05940 !important;
 }
 
 

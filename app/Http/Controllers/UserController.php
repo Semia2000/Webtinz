@@ -24,7 +24,6 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'address' => 'required|string|max:255',
-            'tel' => 'required|string|max:20',
         ]);
 
         // Récupérer l'utilisateur connecté

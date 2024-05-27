@@ -3,8 +3,11 @@
 @endsection
 @section('content')
     <section class="content">
-
-        <!-- Default box -->
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Template</h3>
@@ -22,7 +25,7 @@
                     <thead>
                         <tr>
                             <th>
-                               Type Services
+                                Type Services
                             </th>
                             <th>
                                 Names
@@ -57,15 +60,16 @@
                                     <span class="badge badge-success">{{ $template->access_level }}</span>
                                 </td>
                                 <td>
-                                    <img alt="Avatar" width="100" height="auto" src="{{ asset('storage/' . $template->thumbnail) }}">
+                                    <img alt="Avatar" width="100" height="auto"
+                                        src="{{ asset('storage/' . $template->thumbnail) }}">
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('templates.view', $template->id) }}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="#">
+                                    <a class="btn btn-info btn-sm" href="{{ route('templates.edit', $template->id) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit

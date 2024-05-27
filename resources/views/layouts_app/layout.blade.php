@@ -62,7 +62,7 @@
                                         <a class="nav-link fistlink" href="{{ route('login') }}">Login</a>
                                     </li>
                                     <li class="nav-item mx-2">
-                                        <a class="nav-link getstart" href="{{ route('letstart') }}">Get Started</a>
+                                        <a class="nav-link getstart" href="{{ route('register') }}">Sign UP</a>
                                     </li>
 
                                     <div class="dropdown">

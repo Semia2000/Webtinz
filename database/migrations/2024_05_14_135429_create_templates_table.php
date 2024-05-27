@@ -19,8 +19,12 @@ return new class extends Migration
             $table->string('description');
             $table->string('access_level');
             $table->string('typeservice');
+            $table->string('createby');
+            $table->string('price')->nullable();
+            $table->string('typetemplate');
+            $table->string('productcategory')->nullable();
             $table->string('commerce_mode')->nullable();  // if it is multiple or single for ecom
-            $table->string('industrie');
+            $table->string('industrie')->nullable();
             $table->string('thumbnail'); // For the template preview image
             $table->string('zip_file'); // For the template zip file
             $table->timestamps();

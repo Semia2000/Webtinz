@@ -115,7 +115,8 @@ Route::get('/successOtp', [OtpController::class, 'successOtp'])->name('successOt
 Route::get('formsaboutcompany',[WebsiteController::class , 'showForm'])->name('formsaboutcompany');
 Route::post('formsaboutcompany.store',[WebsiteController::class , 'storeForm'])->name('formsaboutcompany.store');
 Route::get('summarywebsite',[WebsiteController::class , 'showsummarypage'])->name('summarywebsite');
-Route::get('updateSummary',[WebsiteController::class , 'updateSummary'])->name('updateSummary');
+Route::post('updateSummary/{companyId}/{websiteId}', [WebsiteController::class, 'updateSummary'])->name('updateSummary');
+
 // Ecom
 Route::get('formsecom', function () {
     return view('ecom.formsecom');
@@ -132,8 +133,10 @@ Route::get('templates/{template}/preview', [TemplateController::class, 'preview'
 Route::get('/custumform', [CustumdigitalisationController::class, 'index'])->name('custumform');
 Route::post('/custumform.store', [CustumdigitalisationController::class, 'store'])->name('custumform.store');
 
+// subscription
 
-
+Route::get('/subscription', [CustumdigitalisationController::class, 'index'])->name('subscription');
+Route::post('/subscription.store', [CustumdigitalisationController::class, 'store'])->name('sbscription.store');
 
 
 
