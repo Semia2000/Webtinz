@@ -96,15 +96,16 @@ class SubscriptionplanController extends Controller
         return redirect()->route('subscriptionlist')->with('success', 'Plan updated successfully.');
     }
 
-    public function destroy(Rquest)
+    public function destroy(Request $request,$id)
     {
+        $subscriptionplan = Subscriptionplan::findOrFail($id);
         // Affiche une boîte de dialogue de confirmation avant la suppression
         if (confirm("Are you sure you want to delete this plan?")) {
-            $plan->delete();
-            return redirect()->route('admin.plans.index')->with('success', 'Plan deleted successfully.');
+            $subscriptionplan->delete();
+            return redirect()->route('subscriptionlist')->with('success', 'Plan deleted successfully.');
         } else {
             // Si l'utilisateur annule, redirigez simplement sans effectuer la suppression
-            return redirect()->route('admin.plans.index')->with('info', 'Plan deletion canceled.');
+            return redirect()->route('subscriptionlist')->with('info', 'Plan deletion canceled.');
         }
     }
     

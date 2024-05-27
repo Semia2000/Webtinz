@@ -70,7 +70,7 @@
                                     </i>
                                     Edit
                                 </a>
-                                <a class="btn btn-danger btn-sm" href="#">
+                                <a class="btn btn-danger btn-sm" href="{{ route('subscription.delete', $subscriptionplan->id) }}">
                                     <i class="fas fa-trash">
                                     </i>
                                     Delete
