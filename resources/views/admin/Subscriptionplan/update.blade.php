@@ -27,9 +27,14 @@
                     <div class="card-body">
                         <form action="{{ route('subscription.update', $subscriptionplan->id) }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ $subscriptionplan->name }}" required>
+                            <div class="form-group mt-3">
+                                <label for="name">Status</label>
+                                <select id="name" name="name" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="home" {{ $subscriptionplan->name == 'home' ? 'selected' : '' }}>HOME BUSINESS</option>
+                                    <option value="small_mid" {{ $subscriptionplan->name == 'small_mid' ? 'selected' : '' }}> SMALL & MID SIZE BUSINESS</option>
+                                    <option value="enterprise" {{ $subscriptionplan->name == 'enterprise' ? 'selected' : '' }}> ENTERPRISE</option>
+                                </select>
                             </div>
                             <div class="form-group mt-3">
                                 <label for="description">Template Description</label>
@@ -39,9 +44,13 @@
                                 <label for="price">Price</label>
                                 <input type="number" name="price" id="price" class="form-control" value="{{ $subscriptionplan->price }}" step="0.01" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="duration">Duration (in months)</label>
-                                <input type="number" name="duration" id="duration" class="form-control" value="{{ $subscriptionplan->duration }}" required>
+                                <select id="duration" name="duration" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="6" {{ $subscriptionplan->duration == 6 ? 'selected' : '' }}>6 Months </option>
+                                    <option value="12" {{ $subscriptionplan->duration == 12 ? 'selected' : '' }}>12 Months</option>
+                                </select>
                             </div>
                             
                             <div class="form-group">

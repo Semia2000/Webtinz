@@ -99,8 +99,22 @@ class TemplateController extends Controller
         $template->createby = $request->input('createby');
         $template->price = $request->input('price');
         $template->typetemplate = $request->input('typetemplate');
-        $template->productcategory = $request->input('productcategory');
-        $template->industrie = implode(',', $request->input('industrie'));
+
+        $industries = $request->input('industrie');
+        $productcategories = $request->input('productcategory');
+    
+        if (is_array($industries)) {
+            $template->industrie = implode(',', $industries);
+        } else {
+            $template->industrie = $industries;
+        }
+    
+        if (is_array($productcategories)) {
+            $template->productcategory = implode(',', $productcategories);
+        } else {
+            $template->productcategory = $productcategories;
+        }
+
 
         if ($request->hasFile('thumbnail')) {
             $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -139,6 +153,14 @@ class TemplateController extends Controller
     {
         $templates = Template::all();
         return view('admin.template.listtemplate', compact('templates'));
+    }
+
+    // delete
+    public function destroy($id)
+    {
+        $template = Template::findOrFail($id);
+        $template->delete();
+        return redirect()->route('templateslist')->with('success', 'Template deleted successfully.');
     }
 
 }

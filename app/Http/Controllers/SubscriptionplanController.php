@@ -6,7 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Subscriptionplan;
 class SubscriptionplanController extends Controller
 {
-    //
+    // user 
+    // subscription plan index
+    public function index()
+    {
+        $subscriptionplans = Subscriptionplan::all();
+        foreach ($subscriptionplans as $plan) {
+            $plan->features = json_decode($plan->features);
+        }
+        return view('front_include.payement',compact('subscriptionplans'));
+    }
 
 
 
@@ -36,6 +45,7 @@ class SubscriptionplanController extends Controller
         // Création du plan avec les fonctionnalités converties en JSON
         $plans = Subscriptionplan::create([
             'name' => $request->name,
+            'description' => $request->description,
             'price' => $request->price,
             'duration' => $request->duration,
             'features' => json_encode($request->features), // Conversion en JSON
@@ -96,17 +106,11 @@ class SubscriptionplanController extends Controller
         return redirect()->route('subscriptionlist')->with('success', 'Plan updated successfully.');
     }
 
-    public function destroy(Request $request,$id)
+    public function destroy($id)
     {
-        $subscriptionplan = Subscriptionplan::findOrFail($id);
-        // Affiche une boîte de dialogue de confirmation avant la suppression
-        if (confirm("Are you sure you want to delete this plan?")) {
-            $subscriptionplan->delete();
-            return redirect()->route('subscriptionlist')->with('success', 'Plan deleted successfully.');
-        } else {
-            // Si l'utilisateur annule, redirigez simplement sans effectuer la suppression
-            return redirect()->route('subscriptionlist')->with('info', 'Plan deletion canceled.');
-        }
+        $plan = Subscriptionplan::findOrFail($id);
+        $plan->delete();
+        return redirect()->route('subscriptionlist')->with('success', 'Plan deleted successfully.');
     }
     
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('access_level');
             $table->string('typeservice');
             $table->string('createby');
-            $table->string('price')->nullable();
+            $table->integer('price')->nullable();
             $table->string('typetemplate');
             $table->string('productcategory')->nullable();
             $table->string('commerce_mode')->nullable();  // if it is multiple or single for ecom

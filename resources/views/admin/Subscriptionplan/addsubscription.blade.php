@@ -27,9 +27,14 @@
                     <div class="card-body">
                         <form action="{{ route('subscription.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
+                            <div class="form-group mt-3">
+                                <label for="name">Status</label>
+                                <select id="name" name="name" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="home">HOME BUSINESS</option>
+                                    <option value="small_mid"> SMALL & MID SIZE BUSINESS</option>
+                                    <option value="enterprise">ENTERPRISE</option>
+                                </select>
                             </div>
                             <div class="form-group mt-3">
                                 <label for="description">Template Description</label>
@@ -37,12 +42,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="number" name="price" id="price" class="form-control" step="0.01"
+                                <input type="number" name="price" id="price" class="form-control" 
                                     required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="duration">Duration (in months)</label>
-                                <input type="number" name="duration" id="duration" class="form-control"  required>
+                                <select id="duration" name="duration" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="6">6 Months </option>
+                                    <option value="12">12 Months</option>
+                                </select>
                             </div>
 
                             <!-- Dynamic Features Section -->

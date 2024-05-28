@@ -74,7 +74,7 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
+                                    <a class="btn btn-danger btn-sm" id="confirmDelete" data-template-id="{{ $template->id }}" onclick="deletetemplate()">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -95,4 +95,15 @@
     </section>
 @endsection
 @section('js')
+        <!-- JavaScript pour gérer la suppression -->
+        <script>
+            function deletetemplate() {
+                var templateId = document.getElementById('confirmDelete').getAttribute('data-template-id');
+                if (confirm("Are you sure you want to delete this template?")) {
+                    window.location.href = "{{ url('templates') }}/" + templateId ;
+                } else {
+                    window.location.href = "{{ route('templateslist') }}";
+                }
+            }
+        </script>
 @endsection

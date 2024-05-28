@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Company;
-
+use App\Models\User_subscription;
+use App\Models\Subscriptionplan;
+use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,5 +79,35 @@ class UserController extends Controller
     public function dashboarduserview()
     {
         return view('dashboarduser.dashboard');
+    }
+
+
+    //  subscription for user 
+    public function saveplanSelection(Request $request)
+    {
+        // Valide les données du formulaire
+        // $request->validate([
+        //     'website_id' => 'required|integer',
+        //     'plan_id' => 'required|integer|exists:subscriptionplans,id',
+        // ]);
+
+        // Récupère l'utilisateur authentifié
+        $user = Auth::user();
+        $userSubscription = new User_Subscription();
+        $userSubscription->user_id = $user->id;
+        $userSubscription->website_id = $request->input('website_id');
+        $userSubscription->subscription_plan_id = $request->input('plan_id');
+        $userSubscription->start_date = now();
+        // Calcule la date de fin en fonction de la durée du plan sélectionné
+        $plan = SubscriptionPlan::find($request->input('plan_id'));
+        $userSubscription->end_date = now()->addMonths($plan->duration);
+        $userSubscription->save();
+
+        // Enregistrer l'id du plan dan website
+
+        $website = Website::findOrFail($request->input('website_id'));
+        $website ->update(['subscription_id' => $request->input('plan_id')]);
+
+            
     }
 }

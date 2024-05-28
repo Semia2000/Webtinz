@@ -42,42 +42,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($subscriptionplans as $subscriptionplan )
-                        <tr>
-                            <td>
-                                {{ $subscriptionplan->duration }}
-                            </td>
-                            <td>
-                                {{ $subscriptionplan->name }}
+                        @foreach ($subscriptionplans as $subscriptionplan)
+                            <tr>
+                                <td>
+                                    @if ($subscriptionplan->duration == 6)
+                                    6 Months
+                                    @else
+                                    Yearly
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($subscriptionplan->name == "home")
+                                    HOME BUSINESS
+                                    @elseif ($subscriptionplan->name == "small_mid")
+                                    SMALL & MID SIZE BUSINESS
+                                    @else
+                                    ENTERPRISE
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $subscriptionplan->price }}
 
-                            </td>
-                            <td>
-                                {{ $subscriptionplan->price }}
+                                </td>
+                                <td>
+                                    {{ $subscriptionplan->setupfee }}
 
-                            </td>
-                            <td>
-                                {{ $subscriptionplan->setupfee }}
-
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('subscription.view', $subscriptionplan->id) }}">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    View
-                                </a>
-                                <a class="btn btn-info btn-sm" href="{{ route('subscription.edit', $subscriptionplan->id) }}">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="{{ route('subscription.delete', $subscriptionplan->id) }}">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                            
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('subscription.view', $subscriptionplan->id) }}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('subscription.edit', $subscriptionplan->id) }}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm"  id="confirmDeleteModal" data-plan-id="{{ $subscriptionplan->id }}" onclick="deletePlan()">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
                         @endforeach
 
 
@@ -90,4 +100,18 @@
     </section>
 @endsection
 @section('js')
+    <!-- JavaScript pour gérer la suppression -->
+    <script>
+        function deletePlan() {
+            var planId = document.getElementById('confirmDeleteModal').getAttribute('data-plan-id');
+            if (confirm("Are you sure you want to delete this plan?")) {
+                // Si l'utilisateur clique sur OK, redirigez vers la route de suppression avec l'identifiant du plan
+                window.location.href = "{{ url('subscription') }}/" + planId ;
+            } else {
+                // Si l'utilisateur clique sur Annuler, redirigez simplement
+                window.location.href = "{{ route('subscriptionlist') }}";
+            }
+        }
+    </script>
+    
 @endsection

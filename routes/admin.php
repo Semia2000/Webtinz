@@ -26,6 +26,7 @@ Route::post('templates', [TemplateController::class, 'store'])->name('templates.
 Route::get('templates/{id}/edit', [TemplateController::class, 'edit'])->name('templates.edit');
 Route::get('templates/{id}/view', [TemplateController::class, 'view'])->name('templates.view');
 Route::post('templates/{id}/update', [TemplateController::class, 'update'])->name('templates.update');
+Route::get('/templates/{id}', [TemplateController::class, 'destroy'])->name('templates.delete');
 
 // subscription
 
@@ -35,4 +36,4 @@ Route::get('subscriptionlist', [SubscriptionplanController::class, 'listsubscrip
 Route::get('subscription/{id}/view', [SubscriptionplanController::class, 'view'])->name('subscription.view');
 Route::get('subscription/{id}/edit', [SubscriptionplanController::class, 'edit'])->name('subscription.edit');
 Route::post('subscription/{id}/update', [SubscriptionplanController::class, 'update'])->name('subscription.update');
-Route::delete('/subscription/{id}', [SubscriptionplanController::class, 'destroy'])->name('subscription.delete');
+Route::get('/subscription/{id}', [SubscriptionplanController::class, 'destroy'])->name('subscription.delete');

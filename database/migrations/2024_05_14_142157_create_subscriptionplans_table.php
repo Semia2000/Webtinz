@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 8, 2);
+            $table->Integer('price');
             $table->string('duration');
             $table->string('features');
-            $table->decimal('setupfee', 8, 2);
+            $table->Integer('setupfee');
             $table->timestamps();
         });
     }

@@ -35,7 +35,11 @@
                                 Duration
                             </td>
                             <td>
-                                {{ $subscriptionplan->duration }}
+                                @if ($subscriptionplan->duration == 6)
+                                6 Months
+                                @else
+                                Yearly
+                                @endif
                             </td>
 
                         </tr>
@@ -44,7 +48,13 @@
                                 Name
                             </td>
                             <td>
-                                {{ $subscriptionplan->name }}
+                                @if ($subscriptionplan->name == "home")
+                                HOME BUSINESS
+                                @elseif ($subscriptionplan->name == "small_mid")
+                                SMALL & MID SIZE BUSINESS
+                                @else
+                                ENTERPRISE
+                                @endif
                             </td>
 
                         </tr>

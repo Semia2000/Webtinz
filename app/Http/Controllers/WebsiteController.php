@@ -31,7 +31,7 @@ class WebsiteController extends Controller
         $websiterequest->user_id = auth()->user()->id; 
         $websiterequest->save();
 
-        return redirect()->route('summarywebsite')->with('success', 'Info enregistre!');
+        return redirect()->route('summarywebsite')->with('message', 'Info enregistre!');
 
     }
 
@@ -64,12 +64,24 @@ class WebsiteController extends Controller
             'sector' => $request->input('sector'),
             'others_services' => $request->input('others_services'),
         ]);
-    
+
         $templates = Template::where('typeservice', 'web')->get();
     
         // Rediriger l'utilisateur vers une autre page après la mise à jour
-        return view('front_include.choosetemplates', compact('templates'));
+        return view('front_include.choosetemplates', compact('templates','website'));
     }
     
+    public function saveTemplateSelection(Request $request)
+    {
+        $website = Website::findOrFail($request->input('website_id'));
+        $website->update(['template_id' => $request->input('template_id')]);
+
+        $website_id = $request->input('website_id');
+
+        return redirect()->route('viewsubscription')->with(['message'=> 'Template Successfully selected','website_id' => $website_id]);
+    }
+
+    //  subscription_summary
+
 
 }

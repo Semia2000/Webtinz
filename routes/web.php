@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\CustumdigitalisationController;
+use App\Http\Controllers\SubscriptionplanController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,6 +119,8 @@ Route::get('formsaboutcompany',[WebsiteController::class , 'showForm'])->name('f
 Route::post('formsaboutcompany.store',[WebsiteController::class , 'storeForm'])->name('formsaboutcompany.store');
 Route::get('summarywebsite',[WebsiteController::class , 'showsummarypage'])->name('summarywebsite');
 Route::post('updateSummary/{companyId}/{websiteId}', [WebsiteController::class, 'updateSummary'])->name('updateSummary');
+Route::post('/savetemplateselection', [WebsiteController::class, 'saveTemplateSelection'])->name('saveTemplateSelection');
+Route::post('/saveplanselection', [UserController::class, 'saveplanSelection'])->name('saveplanSelection');
 
 // Ecom
 Route::get('formsecom', function () {
@@ -129,13 +134,15 @@ Route::get('summaryecom', function () {
 Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
 Route::get('templates/{template}/preview', [TemplateController::class, 'preview'])->name('templates.preview');
 
+
+
 // custum
 Route::get('/custumform', [CustumdigitalisationController::class, 'index'])->name('custumform');
 Route::post('/custumform.store', [CustumdigitalisationController::class, 'store'])->name('custumform.store');
 
 // subscription
 
-Route::get('/subscription', [CustumdigitalisationController::class, 'index'])->name('subscription');
+Route::get('/viewsubscription', [SubscriptionplanController::class , 'index'])->name('viewsubscription');
 Route::post('/subscription.store', [CustumdigitalisationController::class, 'store'])->name('sbscription.store');
 
 
