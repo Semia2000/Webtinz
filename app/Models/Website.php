@@ -19,4 +19,14 @@ class Website extends Model
         'template_id'
         
     ];
+
+    public function subscription()
+    {
+        return $this->belongsTo(Subscriptionplan::class, 'subscription_id');
+    }
+
+    public function template()
+    {
+        return $this->belongsTo(Template::class, 'template_id');
+    }
 }

@@ -105,9 +105,11 @@ class UserController extends Controller
 
         // Enregistrer l'id du plan dan website
 
-        $website = Website::findOrFail($request->input('website_id'));
+        $website = Website::with('subscription', 'template')->findOrFail($request->input('website_id'));
         $website ->update(['subscription_id' => $request->input('plan_id')]);
 
-            
+        // subscription_summary
+        return view('front_include.payement-process',compact('website'));
+
     }
 }

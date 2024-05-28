@@ -81,7 +81,6 @@ class WebsiteController extends Controller
         return redirect()->route('viewsubscription')->with(['message'=> 'Template Successfully selected','website_id' => $website_id]);
     }
 
-    //  subscription_summary
 
 
 }

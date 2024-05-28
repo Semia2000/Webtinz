@@ -16,7 +16,7 @@
                     <div class="card mb-3">
                         <div class="card-header pt-2">
                             <h5>Your Plan </h5>
-                            <h3>Home Business Plan</h3>
+                            <h3>{{ $website->subscription->name }}</h3>
                             <h2>FCFA 5000 <span><i class="bi bi-pencil"></i></span> </h2>
                             <hr>
                             <h5>Your Plan </h5>
