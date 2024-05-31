@@ -28,7 +28,7 @@
                         <form action="{{ route('subscription.store') }}" method="POST">
                             @csrf
                             <div class="form-group mt-3">
-                                <label for="name">Status</label>
+                                <label for="name"> Plan Name</label>
                                 <select id="name" name="name" class="form-control custom-select">
                                     <option selected disabled>Select one</option>
                                     <option value="home">HOME BUSINESS</option>
@@ -37,7 +37,15 @@
                                 </select>
                             </div>
                             <div class="form-group mt-3">
-                                <label for="description">Template Description</label>
+                                <label for="typeservice">Type Service</label>
+                                <select id="typeservice" name="typeservice" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="web">Web Site</option>
+                                    <option value="ecom"> Ecommerce</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="description">Plan Description</label>
                                 <textarea name="description" class="form-control"></textarea>
                             </div>
                             <div class="form-group">

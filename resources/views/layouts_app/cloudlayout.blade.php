@@ -11,20 +11,6 @@
     {{-- css links --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
-{{--
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
-        integrity="sha384-F3pso4BSF02doNItN/n7cqOwxr3VgyR4v2RVKL4oQhpP/P1Tv5Ztp6SwyF0kr24d" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-0h1KGCNNTjxhlErPzC2k62uxkD1hZHZs/rGd6i2gAPgQToUgyZrA5w9hQl27WrUW4Er06OKjvIDfPzrJz7N5XQ=="
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha384-pC4Si8zd+VcVTzvb2aX+oLlsOGd2WH/TEs5zTmg5trt0rT+6ZlYeuWrwYNcF/E+q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
-        integrity="sha512-rk/7usD8qDJhjKFcXrUJxLwX7dGs7Z7mTR5UvOHSLhe6uQ5QbBSExlDEUdUKE7gqGq4Hr9VmiDnvSrSqczRNYg=="
-        crossorigin="anonymous"></script> --}}
-
-
     @yield('links')
 </head>
 
@@ -37,7 +23,36 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
-
+    <script>
+        let timeout;
+    
+        function resetTimeout() {
+            clearTimeout(timeout);
+            timeout = setTimeout(logoutUser, 100 * 60 * 1000); // 100 minutes in milliseconds
+        }
+    
+        function logoutUser() {
+            fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '{{ route('login') }}';
+                }
+            });
+        }
+    
+        // Reset the timeout on any user activity
+        window.onload = resetTimeout;
+        document.onmousemove = resetTimeout;
+        document.onkeydown = resetTimeout;
+        document.onclick = resetTimeout;
+        document.onscroll = resetTimeout;
+    </script>
+    
     @yield('js')
 </body>
 

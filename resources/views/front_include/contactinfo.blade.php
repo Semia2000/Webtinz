@@ -15,10 +15,10 @@
                     </p>
                 </div>
 
-                <form method="POST" action="{{ route('storecontactinfo') }}">
+                <form method="POST" action="{{ route('storecontactinfo',['service_id' => $service->id]) }}">
                     @csrf
-                    <input type="hidden" name="selected_service" value="{{ $selectedService }}">
-
+                    <input type="hidden" name="selected_service" value="{{ $service->service_type}}">
+                    <input type="hidden" name="selected_service_id" value="{{ $service->id}}">
                     <div class="row mt-3 mb-4 ">
                         <div class="col">
                             <label for="firstname">First Name<span class="required">*</span></label>

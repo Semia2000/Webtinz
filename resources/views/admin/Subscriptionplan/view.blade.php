@@ -96,6 +96,15 @@
                             </td>
 
                         </tr>
+                        <tr>
+                            <td>
+                                Type Service
+                            </td>
+                            <td>
+                                {{ $subscriptionplan->typeservice }}
+                            </td>
+
+                        </tr>
                     </tbody>
                 </table>
             </div>

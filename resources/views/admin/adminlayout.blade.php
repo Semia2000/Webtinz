@@ -190,12 +190,53 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-header">USER MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                User
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+               Admin
+              </p>
+            </a>
+          </li>
           <li class="nav-header">CONTENT MANAGEMENT </li>
+          <li class="nav-item">
+            <a href="{{ route('typetemplatelist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Type Template
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('templateslist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Template
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('productcategorylist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Product Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('templateslist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Business Sector
               </p>
             </a>
           </li>
@@ -205,6 +246,15 @@
               <i class="nav-icon far fa-image"></i>
               <p>
                 Subscription
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">EARNING MANAGEMENT </li>
+          <li class="nav-item">
+            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                User Earning
               </p>
             </a>
           </li>

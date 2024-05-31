@@ -221,6 +221,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        let timeout;
+    
+        function resetTimeout() {
+            clearTimeout(timeout);
+            timeout = setTimeout(logoutUser, 100 * 60 * 1000); // 100 minutes in milliseconds
+        }
+    
+        function logoutUser() {
+            fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '{{ route('login') }}';
+                }
+            });
+        }
+    
+        // Reset the timeout on any user activity
+        window.onload = resetTimeout;
+        document.onmousemove = resetTimeout;
+        document.onkeydown = resetTimeout;
+        document.onclick = resetTimeout;
+        document.onscroll = resetTimeout;
+    </script>
+    
+    <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
             var navbarBrand = document.querySelector('.navbar-brand img');

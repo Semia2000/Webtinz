@@ -37,7 +37,15 @@
                                 </select>
                             </div>
                             <div class="form-group mt-3">
-                                <label for="description">Template Description</label>
+                                <label for="typeservice">Type Service</label>
+                                <select id="typeservice" name="typeservice" class="form-control custom-select">
+                                    <option selected disabled>Select one</option>
+                                    <option value="web" {{ $subscriptionplan->typeservice == 'web' ? 'selected' : '' }}>Web Site</option>
+                                    <option value="ecom" {{ $subscriptionplan->typeservice == 'ecom' ? 'selected' : '' }}> Ecommerce</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="description">Plan Description</label>
                                 <textarea name="description" class="form-control">{{ $subscriptionplan->description }}</textarea>
                             </div>
                             <div class="form-group">

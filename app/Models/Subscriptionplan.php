@@ -13,6 +13,7 @@ class Subscriptionplan extends Model
     protected $fillable = [
         'name',
         'description',
+        'typeservice',
         'price',
         'duration',
         'features',

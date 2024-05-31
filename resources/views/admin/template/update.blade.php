@@ -24,15 +24,19 @@
                                 <label>Template Type</label><br>
                                 <input type="radio" name="typeservice" value="web" id="template_web"
                                     {{ $template->typeservice == 'web' ? 'checked' : '' }}>
-                                <label for="template_web">Web</label>
-                                <input type="radio" name="typeservice" value="ecom" id="template_ecom">
-                                <label for="template_ecom"
-                                    {{ $template->typeservice == 'ecom' ? 'checked' : '' }}>Ecom</label>
+                                <label for="template_web">Web Site</label>
+                                <input type="radio" name="typeservice" value="ecom" id="template_ecom"
+                                    {{ $template->typeservice == 'ecom' ? 'checked' : '' }}>
+                                <label for="template_ecom">Ecommerce</label>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="name">Template Name</label>
                                 <input type="text" id="name" name="name" class="form-control"
                                     value="{{ $template->name }}" required>
+                                    @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="description">Template Description</label>
@@ -41,7 +45,7 @@
                             <div class="form-group">
                                 <label for="createby">Created By</label>
                                 <input type="text" id="createby" name="createby" value="{{ $template->createby }}"
-                                    class="form-control" required>
+                                    class="form-control" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="access_level">Status</label>
@@ -63,27 +67,10 @@
                                 <label for="typetemplate">Template Type</label>
                                 <select id="typetemplate" name="typetemplate" class="form-control custom-select">
                                     <option selected disabled>Select one</option>
-                                    <option value="Joomla" {{ $template->typetemplate == 'Joomla' ? 'selected' : '' }}>
-                                        Joomla</option>
-                                    <option value="Drupal" {{ $template->typetemplate == 'Drupal' ? 'selected' : '' }}>
-                                        Drupal</option>
-                                    <option value="Wix" {{ $template->typetemplate == 'Wix' ? 'selected' : '' }}>Wix
-                                    </option>
-                                    <option value="Squarespace"
-                                        {{ $template->typetemplate == 'Squarespace' ? 'selected' : '' }}>Squarespace
-                                    </option>
-                                    <option value="Weebly" {{ $template->typetemplate == 'Weebly' ? 'selected' : '' }}>
-                                        Weebly</option>
-                                    <option value="Wordpress"
-                                        {{ $template->typetemplate == 'Wordpress' ? 'selected' : '' }}>Wordpress</option>
-                                    <option value="Bootstrap"
-                                        {{ $template->typetemplate == 'Bootstrap' ? 'selected' : '' }}>Bootstrap</option>
-                                    <option value="Shopify" {{ $template->typetemplate == 'Shopify' ? 'selected' : '' }}>
-                                        Shopify</option>
-                                    <option value="Magento" {{ $template->typetemplate == 'Magento' ? 'selected' : '' }}>
-                                        Magento</option>
-                                    <option value="PrestaShop"
-                                        {{ $template->typetemplate == 'PrestaShop' ? 'selected' : '' }}>PrestaShop</option>
+                                    @foreach ($typetemplates as $typetemplate)
+                                    <option value="{{ $typetemplate->name }}" {{ $template->typetemplate == $typetemplate->name ? 'selected' : '' }}>{{ $typetemplate->name }}</option>
+
+                                @endforeach
                                 </select>
                             </div>
 
@@ -99,119 +86,24 @@
                                 </div>
                                 <div class="form-goup mt-3">
                                     <label for="productcategory">Product Category</label>
-                                    <div class="row ">
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Automotive"
-                                                    name="productcategory[]" id="sector_automotive">
-                                                <label class="form-check-label" for="sector_automotive">
-                                                    Automotive
-                                                </label>
+                                    <div class="row">
+                                        @php
+                                            $chunks = $productcategorys->chunk(5); // Divise les catégories en groupes de 5
+                                        @endphp
+                                        @foreach ($chunks as $chunk)
+                                            <div class="col">
+                                                @foreach ($chunk as $productcategory)
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="{{ $productcategory->name }}" name="productcategory[]"
+                                                            id="{{ $productcategory->name }}">
+                                                        <label class="form-check-label" for="{{ $productcategory->name }}">
+                                                            {{ $productcategory->name }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Business Support"
-                                                    name="productcategory[]" id="sector_business_support">
-                                                <label class="form-check-label" for="sector_business_support">
-                                                    Business Support
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Computers"
-                                                    name="productcategory[]" id="sector_computers">
-                                                <label class="form-check-label" for="sector_computers">
-                                                    Computers
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Entertainment"
-                                                    name="productcategory[]" id="sector_entertainment">
-                                                <label class="form-check-label" for="sector_entertainment">
-                                                    Entertainment
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Education"
-                                                    name="productcategory[]" id="sector_education">
-                                                <label class="form-check-label" for="sector_education">
-                                                    Education
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Real Estate"
-                                                    name="productcategory[]" id="sector_real_estate">
-                                                <label class="form-check-label" for="sector_real_estate">
-                                                    Real Estate
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Travels"
-                                                    name="productcategory[]" id="sector_travels">
-                                                <label class="form-check-label" for="sector_travels">
-                                                    Travels
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Others"
-                                                    name="productcategory[]" id="sector_others">
-                                                <label class="form-check-label" for="sector_others">
-                                                    Others
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Retail"
-                                                    name="productcategory[]" id="sector_retail">
-                                                <label class="form-check-label" for="sector_retail">
-                                                    Retail
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Personal Care"
-                                                    name="productcategory[]" id="sector_personal_care">
-                                                <label class="form-check-label" for="sector_personal_care">
-                                                    Personal Care
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Health & Medicine"
-                                                    name="productcategory[]" id="sector_health_medicine">
-                                                <label class="form-check-label" for="sector_health_medicine">
-                                                    Health & Medicine
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Home & Garden"
-                                                    name="productcategory[]" id="sector_home_garden">
-                                                <label class="form-check-label" for="sector_home_garden">
-                                                    Home & Garden
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="Information Technology" name="productcategory[]"
-                                                    id="sector_information_technology">
-                                                <label class="form-check-label" for="sector_information_technology">
-                                                    Information Technology
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Food & Dining"
-                                                    name="productcategory[]" id="sector_food_dining">
-                                                <label class="form-check-label" for="sector_food_dining">
-                                                    Food & Dining
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Manufacturing"
-                                                    name="productcategory[]" id="sector_manufacturing">
-                                                <label class="form-check-label" for="sector_manufacturing">
-                                                    Manufacturing
-                                                </label>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -350,80 +242,88 @@
     </section>
 @endsection
 @section('js')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const templateWeb = document.getElementById('template_web');
-            const templateEcom = document.getElementById('template_ecom');
-            const ecomFields = document.getElementById('ecom-fields');
-            const businessectorField = document.getElementById('businessector')
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+        const templateWeb = document.getElementById('template_web');
+        const templateEcom = document.getElementById('template_ecom');
+        const ecomFields = document.getElementById('ecom-fields');
+        const businessectorField = document.getElementById('businessector');
 
-            templateWeb.addEventListener('change', function() {
-                if (this.checked) {
-                    ecomFields.style.display = 'none';
-                }
-            });
-
-            templateEcom.addEventListener('change', function() {
-                if (this.checked) {
-                    ecomFields.style.display = 'block';
-                    businessectorField.style.display = 'none';
-                }
-            });
+        templateWeb.addEventListener('change', function() {
+            if (this.checked) {
+                ecomFields.style.display = 'none';
+                businessectorField.style.display = 'block'; // Ensure businessector is visible when web is selected
+            }
         });
-    </script>
-    <script>
-        function togglePriceField() {
-            const accessLevel = document.getElementById('access_level').value;
-            const priceField = document.getElementById('price');
-            if (accessLevel === 'Paid') {
-                priceField.classList.remove('hidden');
+
+        templateEcom.addEventListener('change', function() {
+            if (this.checked) {
+                ecomFields.style.display = 'block';
+                businessectorField.style.display = 'none'; // Ensure businessector is hidden when ecom is selected
+            }
+        });
+
+        // Trigger the change event to initialize the correct display state
+        if (templateWeb.checked) {
+            templateWeb.dispatchEvent(new Event('change'));
+        } else if (templateEcom.checked) {
+            templateEcom.dispatchEvent(new Event('change'));
+        }
+    });
+</script>
+<script>
+    function togglePriceField() {
+        const accessLevel = document.getElementById('access_level').value;
+        const priceField = document.getElementById('price');
+        if (accessLevel === 'Paid') {
+            priceField.classList.remove('hidden');
+        } else {
+            priceField.classList.add('hidden');
+        }
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const multiProductRadio = document.getElementById('multi_product');
+        const singleProductRadio = document.getElementById('single_product');
+        const checkboxes = document.querySelectorAll('input[name="productcategory[]"]');
+
+        function updateCheckboxes() {
+            if (singleProductRadio.checked) {
+                // Uncheck all checkboxes when switching to Single Product
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = false;
+                    checkbox.disabled = false;
+                    checkbox.addEventListener('change', handleSingleProductSelection);
+                });
             } else {
-                priceField.classList.add('hidden');
+                // Remove event listeners and enable all checkboxes for Multi Product
+                checkboxes.forEach((checkbox) => {
+                    checkbox.removeEventListener('change', handleSingleProductSelection);
+                    checkbox.disabled = false;
+                });
             }
         }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const multiProductRadio = document.getElementById('multi_product');
-            const singleProductRadio = document.getElementById('single_product');
-            const checkboxes = document.querySelectorAll('input[name="productcategory[]"]');
 
-            function updateCheckboxes() {
-                if (singleProductRadio.checked) {
-                    // Uncheck all checkboxes when switching to Single Product
-                    checkboxes.forEach((checkbox) => {
-                        checkbox.checked = false;
-                        checkbox.disabled = false;
-                        checkbox.addEventListener('change', handleSingleProductSelection);
-                    });
-                } else {
-                    // Remove event listeners and enable all checkboxes for Multi Product
-                    checkboxes.forEach((checkbox) => {
-                        checkbox.removeEventListener('change', handleSingleProductSelection);
-                        checkbox.disabled = false;
-                    });
-                }
+        function handleSingleProductSelection(event) {
+            if (event.target.checked) {
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox !== event.target) {
+                        checkbox.disabled = true;
+                    }
+                });
+            } else {
+                checkboxes.forEach((checkbox) => {
+                    checkbox.disabled = false;
+                });
             }
+        }
 
-            function handleSingleProductSelection(event) {
-                if (event.target.checked) {
-                    checkboxes.forEach((checkbox) => {
-                        if (checkbox !== event.target) {
-                            checkbox.disabled = true;
-                        }
-                    });
-                } else {
-                    checkboxes.forEach((checkbox) => {
-                        checkbox.disabled = false;
-                    });
-                }
-            }
+        multiProductRadio.addEventListener('change', updateCheckboxes);
+        singleProductRadio.addEventListener('change', updateCheckboxes);
 
-            multiProductRadio.addEventListener('change', updateCheckboxes);
-            singleProductRadio.addEventListener('change', updateCheckboxes);
-
-            // Initial call to set up correct state
-            updateCheckboxes();
-        });
-    </script>
+        // Initial call to set up correct state
+        updateCheckboxes();
+    });
+</script>
 @endsection

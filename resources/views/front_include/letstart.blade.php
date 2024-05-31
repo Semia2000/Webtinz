@@ -12,32 +12,33 @@
                     <div class="">
                         <h2>Lets Get Started!</h2>
                         <p>Select your business type</p>
-                        <div class="radiochoice">
-                            <div class="radiocheck  mb-3">
-                                <input type="radio" class="form-check-input" id="radio1" name="optradio"
-                                    value="option1">
+                        <form id="serviceForm" method="POST" action="{{ route('saveService') }}">
+                            @csrf
+                            <div class="radiochoice">
+                            <div class="form-group radiocheck mb-3">
+                                <input type="radio" class="form-check-input" id="radio1" name="service_type" value="web" checked>
                                 <label class="form-check-label" for="radio1">
                                     <i class="bi bi-receipt mx-2"></i> Web Site
                                 </label>
                             </div>
-                            <div class="radiocheck  mb-3">
-                                <input type="radio" class="form-check-input" id="radio2" name="optradio"
-                                    value="option2">
+                            <div class="form-group radiocheck mb-3">
+                                <input type="radio" class="form-check-input" id="radio2" name="service_type" value="ecom">
                                 <label class="form-check-label" for="radio2">
                                     <i class="bi bi-receipt mx-2"></i> Ecommerce
                                 </label>
                             </div>
-                            <div class="radiocheck  mb-3">
-                                <input type="radio" class="form-check-input" id="radio3" name="optradio"
-                                    value="option3">
+                            <div class="form-group radiocheck mb-3">
+                                <input type="radio"class="form-check-input" id="radio3" name="service_type" value="Custom">
                                 <label class="form-check-label" for="radio3">
                                     <i class="bi bi-receipt mx-2"></i> Custom Digitalization
                                 </label>
                             </div>
-                        </div>
+                            </div>
+                            <button type="submit" id="continueLink" class="btn btn-primary">Continue</button>
+                        </form>
 
                     </div>
-                    <a id="continueLink" style="color: white">Continue</a>
+                    {{-- <a id="continueLink" style="color: white">Continue</a> --}}
                 </div>
                 <div class="letsimage col text-center " style="background-color: #FFF6EC;">
                     <img src="{{ asset('assets/images/girl-choosing-one-option.png') }}" alt="">
@@ -80,19 +81,6 @@
                         return;
                     }
 
-                    @auth
-                    // Store selected service in session
-                    sessionStorage.setItem('selectedService', selectedService);
-
-                    // console.log(selectedService);
-                    
-
-                    // Redirect to contact info page
-                    window.location.href = "{{ route('contactinfo') }}?service=" + encodeURIComponent(selectedService);
-                    @else
-                        // Redirect to login page
-                        window.location.href = "{{ route('login') }}";
-                    @endauth
             });
         });
     </script>

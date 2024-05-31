@@ -149,8 +149,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('subscription') ? 'active' : '' }}"
-                                href="{{ route('subscription') }}">
+                            <a class="nav-link {{ Request::is('subscriptionuser') ? 'active' : '' }}"
+                                href="{{ route('subscriptionuser') }}">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Subscriptions

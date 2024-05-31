@@ -18,11 +18,15 @@
             color: black;
             /* Changez la couleur du texte des labels */
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 @endsection
 @section('content')
     <section class="contactinf flex-column d-flex justify-content-center align-items-center">
-        <div class="text-center mt-5  mb-5">
+        <div class="text-center mt-5  mb-3">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
         <div class="contactback ">
@@ -37,10 +41,12 @@
                             data-target="contact-info"></i></span></h6>
 
                 <form method="POST"
-                    action="{{ route('updateSummary', ['companyId' => $companyinfo->first()->id, 'websiteId' => $websites->id]) }}">
+                    action="{{ route('summaryinfo.update', ['companyId' => $companyinfo->first()->id, 'service_id' => $service->id]) }}">
                     @csrf
 
-                    <input type="hidden" name="website_id" value="{{ $websites->id }}">
+                    <input type="hidden" name="service_id" value="{{ $service->id }}">
+                    <input type="hidden" name="selected_service" id="selected_service"
+                        value="{{ $service->service_type }}">
                     @if ($companyinfo)
                         <input type="hidden" name="company_id" value="{{ $companyinfo->first()->id }}">
                         <div class="row" id="contact-info">
@@ -120,36 +126,85 @@
                     <h6 class="mt-4 mb-4">Company Info &nbsp;&nbsp;<span><i class="bi bi-pencil edit-icon"
                                 data-target="company-info"></i></span></h6>
 
-                    @if ($websites)
+                    @if ($service)
                         <div class="row" id="company-info">
                             <div class="mb-3">
                                 <label for="description" class="form-label labeltitle">Company Information <span
                                         class="required">*</span></label>
                                 <textarea class="form-control" id="description" name="description" rows="5"
-                                    placeholder="{{ $websites->description }}" readonly>{{ $websites->description }}</textarea>
+                                    placeholder="{{ $service->description }}" readonly>{{ $service->description }}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="products_services" class="form-label labeltitle">Products or services<span
                                         class="required">*</span></label>
                                 <textarea class="form-control" id="products_services" name="products_services" rows="5"
-                                    placeholder="{{ $websites->products_services }}" readonly>{{ $websites->products_services }}</textarea>
+                                    placeholder="{{ $service->products_services }}" readonly>{{ $service->products_services }}</textarea>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="sector" class="form-label labeltitle">Select Business Sector<span
-                                        class="required">*</span></label>
-                                <div class="row">
-                                    <div class="col mt-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                value="{{ $websites->sector }}" name="sector"
-                                                id="sector_{{ $websites->sector }}" checked disabled>
-                                            <label class="form-check-label" for="sector_{{ $websites->sector }}">
-                                                {{ $websites->sector }}
-                                            </label>
-                                            <input type="hidden" name="sector"
-                                                value="{{ $companyinfo->first()->sector }}">
+                            @if ($service->service_type == 'ecom')
+                                <div id="ecom-fields" class="hidden">
+                                    <div class="form-group mt-5">
+                                        <label>Product Type</label><br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="radio" name="commerce_mode" value="multi_product" 
+                                                    id="multi_product"
+                                                    {{ $service->commerce_mode == 'multi_product' ? 'checked' : '' }} disabled>
+                                                    <input type="hidden" name="commerce_mode" value="multi_product"
+                                                    id="multi_product" value="{{ $service->commerce_mode}}">
+                                                <label for="commerce_mode">Multi Products</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" name="commerce_mode" value="single_product"
+                                                    id="single_product"
+                                                    {{ $service->commerce_mode == 'single_product' ? 'checked' : '' }} disabled>
+                                                <label for="commerce_mode">Single Product</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-goup mt-3 mb-5">
+                                        <label for="exampleFormControlTextarea1" class="form-label labeltitle">Select
+                                            Business
+                                            Sector<span class="required">*</span></label>
+                                        @foreach (explode(',', $service->productcategory) as $productcategory)
+                                            <div class="row">
+                                                <div class="col mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault" name="productcategory" checked disabled>
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            {{ $productcategory }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="productcategory"
+                                            value="{{ $productcategory }}">
+                                        @endforeach
+
+                                    </div>
+
+                                </div>
+                            @endif
+
+                            <div id="businessector" class="hidden">
+                                <div class="mb-3">
+                                    <label for="sector" class="form-label labeltitle">Select Business Sector<span
+                                            class="required">*</span></label>
+                                    <div class="row">
+                                        <div class="col mt-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="{{ $service->sector }}" name="sector"
+                                                    id="sector_{{ $service->sector }}" checked disabled>
+                                                <label class="form-check-label" for="sector_{{ $service->sector }}">
+                                                    {{ $service->sector }}
+                                                </label>
+                                                <input type="hidden" name="sector"
+                                                    value="{{ $service->sector }}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +214,7 @@
                                 <label for="others_services" class="form-label labeltitle">Other Services <span
                                         class="required">*</span></label>
                                 <textarea class="form-control" id="others_services" name="others_services" rows="5"
-                                    placeholder="{{ $websites->others_services }}" readonly>{{ $websites->others_services }}</textarea>
+                                    placeholder="{{ $service->others_services }}" readonly>{{ $service->others_services }}</textarea>
                             </div>
                         </div>
                     @endif
@@ -194,5 +249,70 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const selectedService = document.getElementById('selected_service').value;
+        const ecomFields = document.getElementById('ecom-fields');
+        const businessectorField = document.getElementById('businessector');
+
+        if (selectedService === "ecom") {
+            ecomFields.classList.remove('hidden');
+            businessectorField.classList.add('hidden');
+        } else if (selectedService === "web") {
+            businessectorField.classList.remove('hidden');
+            ecomFields.classList.add('hidden');
+        }
+    });
+
+    function limitSelection(selectedCheckbox) {
+        const checkboxes = document.querySelectorAll('input[name="sector"]');
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox !== selectedCheckbox) {
+                checkbox.checked = false;
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const multiProductRadio = document.getElementById('multi_product');
+        const singleProductRadio = document.getElementById('single_product');
+        const checkboxes = document.querySelectorAll('input[name="productcategory[]"]');
+
+        function updateCheckboxes() {
+            if (singleProductRadio.checked) {
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = false;
+                    checkbox.disabled = false;
+                    checkbox.addEventListener('change', handleSingleProductSelection);
+                });
+            } else {
+                checkboxes.forEach((checkbox) => {
+                    checkbox.removeEventListener('change', handleSingleProductSelection);
+                    checkbox.disabled = false;
+                });
+            }
+        }
+
+        function handleSingleProductSelection(event) {
+            if (event.target.checked) {
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox !== event.target) {
+                        checkbox.disabled = true;
+                    }
+                });
+            } else {
+                checkboxes.forEach((checkbox) => {
+                    checkbox.disabled = false;
+                });
+            }
+        }
+
+        multiProductRadio.addEventListener('change', updateCheckboxes);
+        singleProductRadio.addEventListener('change', updateCheckboxes);
+
+        updateCheckboxes();
+    });
+
+
     </script>
 @endsection

@@ -1116,7 +1116,7 @@ border-radius: 0px 0px 5px 5px;
 }
 
 .listtemplates .row .card.active {
-    border: 1px solid #F05940 !important;
+    border: 2px solid #F05940 !important;
 }
 
 

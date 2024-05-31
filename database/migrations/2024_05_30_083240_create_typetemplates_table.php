@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptionplans', function (Blueprint $table) {
+        Schema::create('typetemplates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->string('typeservice');
-            $table->Integer('price');
-            $table->string('duration');
-            $table->string('features');
-            $table->Integer('setupfee');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriptionplans');
+        Schema::dropIfExists('typetemplates');
     }
 };

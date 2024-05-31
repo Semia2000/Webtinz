@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\SubscriptionplanController;
+use App\Http\Controllers\ProductcategoryController;
+use App\Http\Controllers\TypetemplateController;
+
+
 // routes/admin.php
 
 
@@ -37,3 +41,20 @@ Route::get('subscription/{id}/view', [SubscriptionplanController::class, 'view']
 Route::get('subscription/{id}/edit', [SubscriptionplanController::class, 'edit'])->name('subscription.edit');
 Route::post('subscription/{id}/update', [SubscriptionplanController::class, 'update'])->name('subscription.update');
 Route::get('/subscription/{id}', [SubscriptionplanController::class, 'destroy'])->name('subscription.delete');
+
+// Product Category
+
+Route::get('/productcategory', [ProductcategoryController::class, 'create'])->name('addproductcategory');
+Route::post('/productcategory.store', [ProductcategoryController::class, 'store'])->name('productcategory.store');
+Route::get('productcategorylist', [ProductcategoryController::class, 'list'])->name('productcategorylist');
+Route::get('productcategory/{id}/edit', [ProductcategoryController::class, 'edit'])->name('productcategory.edit');
+Route::post('productcategory/{id}/update', [ProductcategoryController::class, 'update'])->name('productcategory.update');
+
+// Type Template
+
+Route::get('/typetemplate', [TypetemplateController::class,'create'])->name('addtypetemplate');
+Route::post('/typetemplate.store', [TypetemplateController::class, 'store'])->name('typetemplate.store');
+Route::get('typetemplatelist', [TypetemplateController::class, 'list'])->name('typetemplatelist');
+Route::get('typetemplate/{id}/edit', [TypetemplateController::class, 'edit'])->name('typetemplate.edit');
+Route::post('typetemplate/{id}/update', [TypetemplateController::class, 'update'])->name('typetemplate.update');
+

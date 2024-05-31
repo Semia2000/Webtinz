@@ -10,13 +10,13 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Template</h3>
+                <h3 class="card-title">Subscription plan</h3>
 
                 <div class="card-tools">
                     <a class="btn btn-primary btn-sm" href="{{ route('addsubscription') }}">
                         <i class="fas fa-plus">
                         </i>
-                        Add Template
+                        Add Subscription plan
                     </a>
                 </div>
             </div>
@@ -24,6 +24,9 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
+                            <th>
+                                Service Type
+                            </th>
                             <th>
                                 Duration
                             </th>
@@ -44,6 +47,7 @@
                     <tbody>
                         @foreach ($subscriptionplans as $subscriptionplan)
                             <tr>
+                                <td>{{ $subscriptionplan->typeservice }}</td>
                                 <td>
                                     @if ($subscriptionplan->duration == 6)
                                     6 Months

@@ -6,7 +6,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\CustumdigitalisationController;
-use App\Http\Controllers\SubscriptionplanController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PaymentController;
+
+
+
 
 
 /*
@@ -72,9 +77,7 @@ Route::get('layoutuser', function () {
 Route::get('companyurl', function () {
     return view('dashboarduser.companyurl');
 })->name('companyurl');
-Route::get('subscription', function () {
-    return view('dashboarduser.subscription');
-})->name('subscription');
+
 Route::get('viewtemplates', function () {
     return view('dashboarduser.viewtemplates');
 })->name('viewtemplates');
@@ -91,17 +94,49 @@ Route::get('layoutuse', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Auth::routes();
+    // Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/contactinfo', [UserController::class, 'showcontactinfo'])->name('contactinfo');
-    Route::post('/storecontactinfo', [UserController::class, 'storeContactInfo'])->name('storecontactinfo');
+Route::middleware( ['auth', 'logout.inactive'])->group(function () {
+    Route::get('/contactinfo/{service_id}', [UserController::class, 'showcontactinfo'])->name('contactinfo');
+    Route::post('/storecontactinfo/{service_id}', [UserController::class, 'storeContactInfo'])->name('storecontactinfo');
     // User dashboard
     Route::get('/dashboarduser', [UserController::class, 'dashboarduserview'])->name('dashboarduser');
     // Services
-    Route::get('/letstart', [UserController::class, 'startservices'])->name('letstart');
+    // Route::get('/letstart', [UserController::class, 'startservices'])->name('letstart');
+    Route::get('/letstart', [ServiceController::class, 'startservices'])->name('letstart');
+    Route::post('/saveService', [ServiceController::class, 'saveService'])->name('saveService');
+
+    // forms
+    Route::get('/formsaboutservices/{service_id}', [ServiceController::class, 'showFormgenerale'])->name('formsaboutservices');
+    Route::post('/formsaboutservices/{service_id}/store', [ServiceController::class, 'store'])->name('formsaboutservices.store');
+
+    // summarypage
+
+    Route::get('/summaryinfo/{service_id}/', [ServiceController::class, 'showsummarypage'])->name('summaryinfo');
+    Route::post('/summaryinfo/{companyId}/{service_id}/update', [ServiceController::class, 'updateSummary'])->name('summaryinfo.update');
+
+    // Template choose
+    // Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
+    // Route::get('templates/{template}/preview', [TemplateController::class, 'preview'])->name('templates.preview');
+    Route::post('/savetemplateselection/{service_id}', [ServiceController::class, 'saveTemplateSelection'])->name('saveTemplateSelection');
+
+    // subscription
+    Route::get('/viewsubscription/{service_id}', [ServiceController::class, 'viewsubscription'])->name('viewsubscription');
+    Route::post('/saveplanselection/{service_id}', [ServiceController::class, 'saveplanSelection'])->name('saveplanSelection');
+
+    // summaryall
+
+
+    // payment
+    Route::post('/process-mobile-money-payment', [PaymentController::class, 'processMobileMoneyPayment'])->name('processMobileMoneyPayment');
+
+    // user dashboard
+    Route::get('subscriptionuser', function () {
+        return view('dashboarduser.subscription');
+    })->name('subscriptionuser');
 });
 
 
@@ -115,12 +150,12 @@ Route::get('/successOtp', [OtpController::class, 'successOtp'])->name('successOt
 
 
 // website
-Route::get('formsaboutcompany',[WebsiteController::class , 'showForm'])->name('formsaboutcompany');
-Route::post('formsaboutcompany.store',[WebsiteController::class , 'storeForm'])->name('formsaboutcompany.store');
-Route::get('summarywebsite',[WebsiteController::class , 'showsummarypage'])->name('summarywebsite');
+Route::get('formsaboutcompany', [WebsiteController::class, 'showForm'])->name('formsaboutcompany');
+Route::post('formsaboutcompany.store', [WebsiteController::class, 'storeForm'])->name('formsaboutcompany.store');
+Route::get('summarywebsite', [WebsiteController::class, 'showsummarypage'])->name('summarywebsite');
 Route::post('updateSummary/{companyId}/{websiteId}', [WebsiteController::class, 'updateSummary'])->name('updateSummary');
-Route::post('/savetemplateselection', [WebsiteController::class, 'saveTemplateSelection'])->name('saveTemplateSelection');
-Route::post('/saveplanselection', [UserController::class, 'saveplanSelection'])->name('saveplanSelection');
+// Route::post('/savetemplateselection', [WebsiteController::class, 'saveTemplateSelection'])->name('saveTemplateSelection');
+// Route::post('/saveplanselection', [UserController::class, 'saveplanSelection'])->name('saveplanSelection');
 
 // Ecom
 Route::get('formsecom', function () {
@@ -142,9 +177,11 @@ Route::post('/custumform.store', [CustumdigitalisationController::class, 'store'
 
 // subscription
 
-Route::get('/viewsubscription', [SubscriptionplanController::class , 'index'])->name('viewsubscription');
-Route::post('/subscription.store', [CustumdigitalisationController::class, 'store'])->name('sbscription.store');
+// Route::get('/viewsubscription', [SubscriptionplanController::class, 'index'])->name('viewsubscription');
+// Route::post('/subscription.store', [CustumdigitalisationController::class, 'store'])->name('subscription.store');
 
 
 
-// admin
+// another
+// service
+

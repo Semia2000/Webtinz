@@ -1,15 +1,25 @@
 @extends('layouts_app.cloudlayout')
 @section('links')
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .plan-features p {
+            font-family: 'Graphik', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 25px !important;
+            color: #4E4E4E;
+        }
+    </style>
 @endsection
 @section('content')
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session()->get('message') }}
-        </div>
-    @endif
     <section id="plans" class="d-flex flex-column justify-content-center align-items-center">
-        <div class="text-center mt-5 mb-5">
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        <div class="text-center mt-5 mb-3">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
         <div class="planschoose p-5">
@@ -61,21 +71,27 @@
                                                     <h6 style="font-weight: bold">FCFA</h6>
                                                     <h2>{{ $subscriptionplan->price }}<span>Per/Month</span></h2>
                                                 </div>
+                                                @if ($subscriptionplan->name == 'home')
+                                                    <a href="" class="firstlink" style="background: #F05940;">
+                                                    @elseif ($subscriptionplan->name == 'small_mid')
+                                                        <a href="" class="firstlink"
+                                                            style="background: #8568FC; border:none">
+                                                        @else
+                                                            <a href="" class="firstlink"
+                                                                style="background: #2CC974;border:none">
+                                                @endif
                                                 <div class="d-flex liens mb-5">
-                                                    <a href="" class="firstlink" style="background: #F05940;">Prend
-                                                        ta
-                                                        carte</a>
+
+                                                    Prend
+                                                    ta
+                                                    carte</a>
                                                 </div>
-                                                <div class="mb-3">
+                                                <div class="mb-3 plan-features">
                                                     @foreach ($subscriptionplan->features as $feature)
-                                                        <p><i class="bi bi-check-lg"
-                                                                style="color: green"></i>{{ $feature }}</p>
+                                                        <p><i class="bi bi-check-lg"></i>{{ $feature }}</p>
                                                     @endforeach
-                                                </div>
-                                                <div class="mb-3">
-                                                    <p style="color: #F05940;font-weight:bold"><i
-                                                            class="bi bi-x-lg"></i><span style="font-weight: bold ;">Setup
-                                                            Fee : </span>{{ $subscriptionplan->setupfee }} FCFA</p>
+                                                    <p><i style="color: #F05940;" class="bi bi-x-lg"></i>Setup
+                                                        Fee: {{ $subscriptionplan->setupfee }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,17 +109,17 @@
                                     <div class="col">
                                         <div class="card mb-3 h-100" data-plan-id="{{ $subscriptionplan->id }}">
                                             @if ($subscriptionplan->name == 'home')
-                                            <div class="card-header" style="background: #F1FCFF;">
-                                                HOME BUSINESS
-                                            </div>
+                                                <div class="card-header" style="background: #F1FCFF;">
+                                                    HOME BUSINESS
+                                                </div>
                                             @elseif ($subscriptionplan->name == 'small_mid')
-                                            <div class="card-header" style="background: #FFF6EC;">
-                                                SMALL & MID SIZE BUSINESS
-                                            </div>
+                                                <div class="card-header" style="background: #FFF6EC;">
+                                                    SMALL & MID SIZE BUSINESS
+                                                </div>
                                             @else
-                                            <div class="card-header" style="background: #F1FCFF;">
-                                                ENTERPRISE
-                                            </div>
+                                                <div class="card-header" style="background: #F1FCFF;">
+                                                    ENTERPRISE
+                                                </div>
                                             @endif
                                             <div class="card-body flex-column d-flex justify-content-center text-left p-4">
                                                 <div class="ms-3 mb-4">
@@ -111,19 +127,23 @@
                                                     <h2>{{ $subscriptionplan->price }}<span>&nbsp;&nbsp;Per/Year</span></h2>
                                                 </div>
                                                 <div class="d-flex liens mb-5">
-                                                    <a class="firstlink" style="background: #F05940;">Prend
-                                                        ta
-                                                        carte</a>
+                                                    @if ($subscriptionplan->name == 'home')
+                                                        <a href="" class="firstlink" style="background: #F05940;">
+                                                        @elseif ($subscriptionplan->name == 'small_mid')
+                                                            <a href="" class="firstlink"
+                                                                style="background: #8568FC; border:none">
+                                                            @else
+                                                                <a href="" class="firstlink"
+                                                                    style="background: #2CC974;border:none">
+                                                    @endif
+                                                    Prend ta carte</a>
                                                 </div>
-                                                <div class="mb-3">
+                                                <div class="mb-3 plan-features">
                                                     @foreach ($subscriptionplan->features as $feature)
                                                         <p><i class="bi bi-check-lg"></i>{{ $feature }}</p>
                                                     @endforeach
-                                                </div>
-                                                <div class="mb-3">
-                                                    <p style="color: #F05940;font-weight:bold"><i
-                                                            class="bi bi-x-lg"></i><span style="font-weight: bold ;">Setup
-                                                            Fee : </span>{{ $subscriptionplan->setupfee }} FCFA</p>
+                                                    <p><i style="color: #F05940;" class="bi bi-x-lg"></i>Setup
+                                                        Fee: {{ $subscriptionplan->setupfee }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,21 +169,24 @@
             </div> --}}
 
             <div class="acceptpay d-flex flex-column align-items-center mt-3">
-            <form id="plan-form" action="{{ route('saveplanSelection') }}" method="POST">
-                @csrf
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Subscription<span style="color:#F05940 "> term </span> and <span style="color:#F05940 "> agreement
-                        </span>
-                    </label>
-                </div>
-                <input type="hidden" name="website_id" id="website_id" value="{{ session('website_id') }}">
-                <input type="hidden" name="plan_id" id="selected-plan-id">
-                <div class="d-flex liens mb-5">
-                    <button type="submit" id="continue-button" class="firstlink" style="background: #F05940" disabled>Pay</button>
-                </div>
-            </form>
+                <form id="plan-form" action="{{ route('saveplanSelection', ['service_id' => $service->id]) }}"
+                    method="POST">
+                    @csrf
+                    <input type="hidden" name="service_id" value="{{ $service->id }}">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Subscription<span style="color:#F05940 "> term </span> and <span style="color:#F05940 ">
+                                agreement
+                            </span>
+                        </label>
+                    </div>
+                    <input type="hidden" name="plan_id" id="selected-plan-id">
+                    <div class="d-flex liens mb-5">
+                        <button type="submit" id="continue-button" class="firstlink" style="background: #F05940"
+                            >Pay</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -188,19 +211,19 @@
                     });
                     this.classList.add('active');
                     selectedPlanIdInput.value = this.getAttribute('data-plan-id');
-                    validateForm();
                 });
             });
 
-            termsCheckbox.addEventListener('change', validateForm);
 
-            function validateForm() {
-                if (selectedPlanIdInput.value && termsCheckbox.checked) {
-                    continueButton.removeAttribute('disabled');
-                } else {
-                    continueButton.setAttribute('disabled', 'disabled');
+            continueButton.addEventListener('click', function(event) {
+                if (!selectedPlanIdInput.value) {
+                    alert('Veuillez sélectionner un plan avant de continuer.');
+                    event.preventDefault();
+                } else if (!termsCheckbox.checked) {
+                    alert('Veuillez accepter les conditions avant de continuer.');
+                    event.preventDefault();
                 }
-            }
+            });
         });
     </script>
 @endsection

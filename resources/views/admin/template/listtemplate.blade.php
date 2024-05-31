@@ -54,7 +54,12 @@
                                     {{ $template->name }}
                                 </td>
                                 <td>
+                                    @if ($template->typeservice == 'ecom')
+                                    {{ Str::limit($template->productcategory, 30, '...') }}
+                                    @else
                                     {{ Str::limit($template->industrie, 30, '...') }}
+                                    @endif
+                                    
                                 </td>
                                 <td>
                                     <span class="badge badge-success">{{ $template->access_level }}</span>

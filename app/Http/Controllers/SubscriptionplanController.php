@@ -6,24 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Subscriptionplan;
 class SubscriptionplanController extends Controller
 {
-    // user 
-    // subscription plan index
-    public function index()
-    {
-        $subscriptionplans = Subscriptionplan::all();
-        foreach ($subscriptionplans as $plan) {
-            $plan->features = json_decode($plan->features);
-        }
-        return view('front_include.payement',compact('subscriptionplans'));
-    }
-
-
-
-
-
-
-
-
 
     // admin
     public function showsubscriptionform()
@@ -37,6 +19,7 @@ class SubscriptionplanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
+            'typeservice' => 'required|string',
             'duration' => 'required|string',
             'features' => 'nullable|array',
             'features.*' => 'string|max:255',
@@ -46,6 +29,7 @@ class SubscriptionplanController extends Controller
         $plans = Subscriptionplan::create([
             'name' => $request->name,
             'description' => $request->description,
+            'typeservice' => $request->typeservice,
             'price' => $request->price,
             'duration' => $request->duration,
             'features' => json_encode($request->features), // Conversion en JSON
@@ -88,6 +72,7 @@ class SubscriptionplanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
+            'typeservice' => 'required|string',
             'duration' => 'required|string',
             'features' => 'nullable|array',
             'features.*' => 'string|max:255',
@@ -97,6 +82,7 @@ class SubscriptionplanController extends Controller
         $Subscriptionplanid -> update([
             'name' => $request->name,
             'price' => $request->price,
+            'typeservice' => $request->typeservice,
             'duration' => $request->duration,
             'description' => $request->description,
             'features' => json_encode($request->features), // Conversion en JSON
