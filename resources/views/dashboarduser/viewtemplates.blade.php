@@ -9,49 +9,34 @@
                     <p>Provide company contact information
                     </p>
                     <div class="row row-cols-1 row-cols-md-3 mt-5">
-                        <div class="col">
-                            <div class="card">
-                                <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (2).png') }}"
-                                    width="100%" alt="">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h4 class="me-auto">Tactix Extend</h4>
-                                        <h4 class="templateprice ms-auto">FCFA 2000</h4>
+                        @if ($services)
+                        @foreach ($services as $service)
+                        <div class="col mt-5">
+                            <div class="card template-card" data-template-id="{{ $service->template->id }}"
+                                data-template-name="{{ $service->template->name }}" data-template-price="{{ $service->template->price }}">
+                                <img class="" src="{{ asset('storage/' . $service->template->thumbnail) }}" width="100%"
+                                    alt="">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="me-auto">{{ $service->template->name }}</h4>
+                                        <h4 class="templateprice ms-auto">
+                                            @if ($service->template->price === null)
+                                                FCFA 00
+                                            @else
+                                                FCFA {{ $service->template->price }}
+                                            @endif
+                                        </h4>
                                     </div>
-                                    <p>By Netzilians</p>
-                                    <a href="">Wordpress</a>
+                                    <p>By {{ $service->template->createby }}</p>
+                                    <span>{{ $service->template->typetemplate }}</span>
+                                    <div class="card-checkbox">
+                                        <input type="checkbox" checked disabled>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card">
-                                <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (3).png') }}"
-                                    width="100%" alt="">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h4 class="me-auto">Tactix Extend</h4>
-                                        <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                                    </div>
-                                    <p>By Netzilians</p>
-                                    <a href="">Wordpress</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <img class="" src="{{ asset('assets/images/templateswebtinz/Rectangle 41 (1).png') }}"
-                                    width="100%" alt="">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h4 class="me-auto">Tactix Extend</h4>
-                                        <h4 class="templateprice ms-auto">FCFA 2000</h4>
-                                    </div>
-                                    <p>By Netzilians</p>
-                                    <a href="">Wordpress</a>
-                                </div>
-                            </div>
-                        </div>
-
+                        @endforeach
+                        @endif
                     </div>
             </div>
         </div>

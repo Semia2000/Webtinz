@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('template_id')->references('id')->on('templates');
             $table->foreign('subscription_id')->references('id')->on('subscriptionplans');
+            $table->boolean('is_pay_done')->default(false);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->timestamps();

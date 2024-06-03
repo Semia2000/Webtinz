@@ -8,7 +8,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\CustumdigitalisationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\PaymentController;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -55,9 +55,9 @@ Route::get('payement', function () {
 Route::get('paysuccessful', function () {
     return view('front_include.paysuccessful');
 })->name('paysuccessful');
-Route::get('payement-process', function () {
-    return view('front_include.payement-process');
-})->name('payement-process');
+// Route::get('payement-process', function () {
+//     return view('front_include.payement-process');
+// })->name('payement-process');
 // Route::get('formsaboutcompany', function () {
 //     return view('front_include.formsaboutcompany');
 // })->name('formsaboutcompany');
@@ -78,9 +78,9 @@ Route::get('companyurl', function () {
     return view('dashboarduser.companyurl');
 })->name('companyurl');
 
-Route::get('viewtemplates', function () {
-    return view('dashboarduser.viewtemplates');
-})->name('viewtemplates');
+// Route::get('viewtemplates', function () {
+//     return view('dashboarduser.viewtemplates');
+// })->name('viewtemplates');
 Route::get('myprofile', function () {
     return view('dashboarduser.myprofile');
 })->name('myprofile');
@@ -137,6 +137,9 @@ Route::middleware( ['auth', 'logout.inactive'])->group(function () {
     Route::get('subscriptionuser', function () {
         return view('dashboarduser.subscription');
     })->name('subscriptionuser');
+    Route::get('viewtemplates', function () {
+        return view('dashboarduser.viewtemplates');
+    })->name('viewtemplates');
 });
 
 

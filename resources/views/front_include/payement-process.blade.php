@@ -3,6 +3,11 @@
 @endsection
 @section('content')
     <section class=" d-flex flex-column justify-content-center align-items-center">
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <div class="text-center mt-3 mb-3">
             <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
         </div>
@@ -113,12 +118,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="mobileMoneyForm" action="" method="POST">
+                        <form id="" action="{{ route('processMobileMoneyPayment') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="phoneNumber" class="form-label">Phone Number</label>
                                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
-                                <small style="color:#F05940">phone number must include country code. E.g. 229XXXXXXXX</small>
+                                <small style="color:#F05940">phone number must include country code. E.g.
+                                    229XXXXXXXX</small>
                             </div>
                             <div class="mb-3">
                                 <label for="country" class="form-label">Country</label>
@@ -133,6 +139,7 @@
                                 value="{{ $service->subscription && $service->template
                                     ? $service->subscription->price + $service->template->price + $service->subscription->setupfee
                                     : '0' }}">
+                            <input type="hidden" name="plan_id" value="{{ $service->subscription->id }}" id="selected-plan-id">
                             <input type="hidden" value="{{ $service->id }}" name="service_id">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -156,13 +163,13 @@
                 }
             });
 
-            const form = document.getElementById('mobileMoneyForm');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Handle the form submission logic here
-                // For example, send the data to the server using AJAX or submit the form
-                mobileMoneyModal.hide();
-            });
+            // const form = document.getElementById('mobileMoneyForm');
+            // form.addEventListener('submit', function(event) {
+            //     event.preventDefault();
+            //     // Handle the form submission logic here
+            //     // For example, send the data to the server using AJAX or submit the form
+            //     mobileMoneyModal.hide();
+            // });
         });
     </script>
 @endsection

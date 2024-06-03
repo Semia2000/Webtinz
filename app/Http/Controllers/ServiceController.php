@@ -198,11 +198,6 @@ class ServiceController extends Controller
 
         // Récupère l'utilisateur authentifié
         $service = Service::findOrFail($service_id);
-
-        $service->start_date = now();
-        // Calcule la date de fin en fonction de la durée du plan sélectionné
-        $plan = SubscriptionPlan::find($request->input('plan_id'));
-        $service->end_date = now()->addMonths($plan->duration);
         $service->subscription_id = $request->input('plan_id');
         $service->save();
 

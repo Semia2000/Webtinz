@@ -75,6 +75,14 @@ class UserController extends Controller
     // dashboard
     public function dashboarduserview()
     {
-        return view('dashboarduser.dashboard');
+        $user = Auth::user()->id;
+        $services = Service::where('user_id',$user);
+        return view('dashboarduser.dashboard',compact('services'));
+    }
+    public function ()
+    {
+        $user = Auth::user()->id;
+        $services = Service::where('user_id',$user);
+        return view('dashboarduser.dashboard',compact('services'));
     }
 }

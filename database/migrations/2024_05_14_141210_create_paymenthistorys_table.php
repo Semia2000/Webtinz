@@ -17,10 +17,14 @@ return new class extends Migration
             $table->id();
             $table->integer('payment_id');
             $table->foreignId('user_id');
+            $table->string('service_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('payment_date');
-            $table->float('amount');
+            $table->decimal('amount');
             $table->String('paymentmethod');
+            $table->String('currency');
+            $table->string('status');
+            $table->String('partyIdType');
             $table->timestamps();
         });
     }
