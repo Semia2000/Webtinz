@@ -79,10 +79,16 @@ class UserController extends Controller
         $services = Service::where('user_id',$user);
         return view('dashboarduser.dashboard',compact('services'));
     }
-    public function ()
+    public function viewtemplates()
     {
         $user = Auth::user()->id;
-        $services = Service::where('user_id',$user);
-        return view('dashboarduser.dashboard',compact('services'));
+        $services = Service::where('user_id',$user)->get();
+        return view('dashboarduser.viewtemplates',compact('services'));
+    }
+    public function subscriptionuser()
+    {
+        $user = Auth::user()->id;
+        $services = Service::where('user_id',$user)->get();
+        return view('dashboarduser.subscription',compact('services'));
     }
 }

@@ -13,6 +13,8 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.5",
         "laravelcollective/html": "^6.4",
+        "league/omnipay": "^3.2",
+        "omnipay/paypal": "^3.0",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {
@@ -61,7 +63,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",

@@ -9,9 +9,9 @@
                     <p>Provide company contact information
                     </p>
                     <div class="row row-cols-1 row-cols-md-3 mt-5">
-                        @if ($services)
+                        @if($services)
                         @foreach ($services as $service)
-                        <div class="col mt-5">
+                        <div class="col">
                             <div class="card template-card" data-template-id="{{ $service->template->id }}"
                                 data-template-name="{{ $service->template->name }}" data-template-price="{{ $service->template->price }}">
                                 <img class="" src="{{ asset('storage/' . $service->template->thumbnail) }}" width="100%"
@@ -29,14 +29,16 @@
                                     </div>
                                     <p>By {{ $service->template->createby }}</p>
                                     <span>{{ $service->template->typetemplate }}</span>
-                                    <div class="card-checkbox">
+                                    {{-- <div class="card-checkbox">
                                         <input type="checkbox" checked disabled>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
+                        </div>                          
+                        @endforeach 
                         @endif
+
+
                     </div>
             </div>
         </div>

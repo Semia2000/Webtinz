@@ -99,7 +99,7 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware( ['auth', 'logout.inactive'])->group(function () {
+Route::middleware(['auth', 'logout.inactive'])->group(function () {
     Route::get('/contactinfo/{service_id}', [UserController::class, 'showcontactinfo'])->name('contactinfo');
     Route::post('/storecontactinfo/{service_id}', [UserController::class, 'storeContactInfo'])->name('storecontactinfo');
     // User dashboard
@@ -131,15 +131,19 @@ Route::middleware( ['auth', 'logout.inactive'])->group(function () {
 
 
     // payment
+    // MTn Momo
     Route::post('/process-mobile-money-payment', [PaymentController::class, 'processMobileMoneyPayment'])->name('processMobileMoneyPayment');
+    // Paypal
+    Route::post('/process-paypal-payment', [PaymentController::class, 'processPaypalPayment'])->name('processPaypalPayment');
+    Route::get('/success', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/error', [PaymentController::class, 'error'])->name('payment.error');
+
 
     // user dashboard
-    Route::get('subscriptionuser', function () {
-        return view('dashboarduser.subscription');
-    })->name('subscriptionuser');
-    Route::get('viewtemplates', function () {
-        return view('dashboarduser.viewtemplates');
-    })->name('viewtemplates');
+
+    Route::get('/viewtemplates', [UserController::class, 'viewtemplates'])->name('viewtemplates');
+    Route::get('/subscriptionuser', [UserController::class, 'subscriptionuser'])->name('subscriptionuser');
+
 });
 
 
