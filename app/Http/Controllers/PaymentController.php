@@ -38,14 +38,15 @@ class PaymentController extends Controller
 
         $totalPrice = $request->input('totalPrice');
         $totalPriceinusd = round(($totalPrice / 601), 2);
-        $service = Service::findOrFail($request->input('service_id'));
+        $service_id = $request->input('service_id');
+        $plan_id = $request->input('plan_id');
         $currency = config('services.paypal.currency');
         try {
 
             $response = $this->gateway->purchase(array(
                 'amount' =>$totalPriceinusd ,
                 'currency' => $currency,
-                'returnUrl' => route('payment.success'),
+                'returnUrl' => route('payment.success',['service_id' => $service_id,'plan_id'=> $plan_id]),
                 'cancelUrl' => route('payment.error')
             ))->send();
 
@@ -63,52 +64,56 @@ class PaymentController extends Controller
 
     // Paypal get success
 
-    public function success(Request $request)
+    public function success(Request $request, $service_id,$plan_id)
     {
-        $service = Service::findOrFail($request->input('service_id'));
-
         if ($request->input('paymentId') && $request->input('PayerID')) {
-            $transaction = $this->gateway->completePurchase(
-                array(
-                    'payer_id' => $request->input('PayerID'),
-                    'transactionReference' => $request->input('paymentId')
-                )
-            );
-
+            $transaction = $this->gateway->completePurchase(array(
+                'payer_id' => $request->input('PayerID'),
+                'transactionReference' => $request->input('paymentId')
+            ));
+            $currency = config('services.paypal.currency');
+            // $service = Service::findOrFail($request->input('service_id'));
             $response = $transaction->send();
-            dd($response);
+            $arr = $response->getData();
+            $user = Auth::user();
+    
+            if ($response->isSuccessful()) {
+                $payment = new Payment();
+                $payment->user_id = $user->id;
+                $payment->service_id = $service_id;
+                $payment->paymentmethod = "Paypal";
+                $payment->payment_date = now();
+                $payment->payment_id = $arr['id'];
+                $payment->partyIdType = $arr['payer']['payer_info']['email'];
+                $payment->amount = $arr['transactions'][0]['amount']['total'];
+                $payment->currency = $currency;
+                $payment->status = $arr['state'];
+                
+                $payment->save();
+                $service = Service::findOrFail($service_id);
 
-            return "Payment is Successfull.  " ;
+                // remplir la table subscription
+                $service->start_date = now();
+                // Calcule la date de fin en fonction de la durée du plan sélectionné
+                $plan = Subscriptionplan::findOrFail($plan_id);
+                $service->end_date = now()->addMonths($plan->duration);
+                $service->is_pay_done = true;
 
-            // if ($response->isSuccessful()) {
+                $service->save();
 
-            //     $arr = $response->getData();
 
-            //     $user = Auth::user();
+            return view('front_include.paysuccessful', compact('service'));
 
-            //     $payment = new Payment();
-            //     $payment->user_id = $user->id;
-            //     $payment->paymentmethod = "Paypal";
-            //     $payment->payment_date = now();
-            //     $payment->payment_id = $arr['id'];
-            //     $payment->partyIdType = $arr['payer']['payer_info']['email'];
-            //     $payment->amount = $arr['transactions'][0]['amount']['total'];
-            //     $payment->currency = env('PAYPAL_CURRENCY');
-            //     $payment->status = $arr['state'];
-
-            //     dd($payment);
-
-            //     $payment->save();
-
-            //     return "Payment is Successfull. Your Transaction Id is : " . $arr['id'];
-
-            // } else {
-            //     return $response->getMessage();
-            // }
-        } else {
+            }
+            else{
+                return $response->getMessage();
+            }
+        }
+        else{
             return 'Payment declined!!';
         }
     }
+    
 
     // Paypal error get
     public function error()

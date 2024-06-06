@@ -207,4 +207,14 @@ class ServiceController extends Controller
 
     }
 
+
+
+    // For modify final summary page :process-payment
+        public function showallTemplate($service_id)
+    {
+        $service = Service::find($service_id);
+        $templates = Template::where('typeservice',$service->service_type)->get();
+        return view('front_include.choosetemplates',compact('service','templates'));
+    }
+
 }

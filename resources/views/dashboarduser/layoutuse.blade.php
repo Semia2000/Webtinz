@@ -48,17 +48,16 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Hi! <span style="color: #F05940">Steve Johson</span></a>
+                    <a href="index3.html" class="nav-link">Hi! <span style="color: #F05940">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span></a>
                 </li>
             </ul>
 
 
-            <div class="mx-auto  input-group rounded" style="width: 40%">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                    aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="bi bi-search"></i>
-                </span>
+            <div class="input-group position-relative mx-auto" style="width: 50%; background:#F8F8F8">
+                <input type="search" class="form-control" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" style="border-radius: 5px"/>
+                <i class="bi bi-search position-absolute top-50 end-0 me-2 translate-middle-y"
+                    style="pointer-events: none;"></i>
             </div>
 
             <!-- Right navbar links -->
@@ -97,7 +96,7 @@
                     </div>
                     <div class="info">
                         <p>welcome</p>
-                        <h4>steve Johnson</h4>
+                        <h4>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h4>
                     </div>
                     <div class=" ml-auto">
                         <i class="bi bi-three-dots"></i>

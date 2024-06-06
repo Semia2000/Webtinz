@@ -34,7 +34,7 @@ return [
     'paypal' => [
         'client_id' => env('PAYPAL_CLIENT_ID'),
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
-        // 'mode' => env('PAYPAL_MODE', 'sandbox'), // Vous pouvez définir le mode par défaut ici
+        'mode' => env('PAYPAL_MODE', 'sandbox'), // Vous pouvez définir le mode par défaut ici
         'currency' => env('PAYPAL_CURRENCY'),
     ],
 

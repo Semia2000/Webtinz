@@ -135,8 +135,13 @@ Route::middleware(['auth', 'logout.inactive'])->group(function () {
     Route::post('/process-mobile-money-payment', [PaymentController::class, 'processMobileMoneyPayment'])->name('processMobileMoneyPayment');
     // Paypal
     Route::post('/process-paypal-payment', [PaymentController::class, 'processPaypalPayment'])->name('processPaypalPayment');
-    Route::get('/success', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/success/{service_id}/{plan_id}', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/error', [PaymentController::class, 'error'])->name('payment.error');
+
+
+    // update final summary:process-payement
+    // Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
+
 
 
     // user dashboard

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+    
         Schema::create('paymenthistorys', function (Blueprint $table) {
             $table->id();
-            $table->integer('payment_id');
+            $table->string('payment_id');
             $table->foreignId('user_id');
             $table->string('service_id');
             $table->foreign('user_id')->references('id')->on('users');

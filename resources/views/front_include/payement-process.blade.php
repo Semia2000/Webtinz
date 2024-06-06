@@ -33,7 +33,7 @@
                                 No subscription plan selected
                             @endif
                         </h3>
-                        <h2>FCFA {{ $service->subscription->price }} <span><i class="bi bi-pencil"></i></span> </h2>
+                        <h2>FCFA {{ $service->subscription->price }}<span> <a href="{{ route('', ['service_id' => $service->id]) }}"><i class="bi bi-pencil"></i></span> </a></h2>
                         <hr>
                         <h5>Selected template</h5>
                         <h3>{{ $service->template->name }}</h3>
@@ -140,7 +140,7 @@
         @csrf
         <input type="hidden" name="totalPrice" value="{{ $service->subscription && $service->template ? $service->subscription->price + $service->template->price + $service->subscription->setupfee : '0' }}">
         <input type="hidden" name="plan_id" value="{{ $service->subscription->id }}">
-        <input type="hidden" value="{{ $service->id }}" name="service_id">
+        <input type="hidden" value="{{ $service->id }}" name="service_id" >
     </form>
 </section>
 @endsection
