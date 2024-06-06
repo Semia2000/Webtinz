@@ -140,7 +140,7 @@ Route::middleware(['auth', 'logout.inactive'])->group(function () {
 
 
     // update final summary:process-payement
-    // Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
+    Route::get('/showallTemplate/{service_id}', [ServiceController::class, 'showallTemplate'])->name('showallTemplate');
 
 
 
@@ -178,7 +178,7 @@ Route::get('summaryecom', function () {
 })->name('summaryecom');
 
 // Template choose
-Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
+// Route::get('/showallTemplate', [TemplateController::class, 'showallTemplate'])->name('showallTemplate');
 Route::get('templates/{template}/preview', [TemplateController::class, 'preview'])->name('templates.preview');
 
 

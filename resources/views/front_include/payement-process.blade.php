@@ -33,7 +33,7 @@
                                 No subscription plan selected
                             @endif
                         </h3>
-                        <h2>FCFA {{ $service->subscription->price }}<span> <a href="{{ route('', ['service_id' => $service->id]) }}"><i class="bi bi-pencil"></i></span> </a></h2>
+                        <h2>FCFA {{ $service->subscription->price }}<span> <a href="{{ route('viewsubscription', ['service_id' => $service->id]) }}"><i class="bi bi-pencil"></i></span> </a></h2>
                         <hr>
                         <h5>Selected template</h5>
                         <h3>{{ $service->template->name }}</h3>
@@ -43,11 +43,11 @@
                             @else
                                 FCFA {{ $service->template->price }}
                             @endif
-                            <span><i class="bi bi-pencil"></i></span>
+                            <span><a href="{{ route('showallTemplate', ['service_id' => $service->id]) }}"><i class="bi bi-pencil"></i></span> </a></span>
                         </h2>
                         <hr>
                         <h5>Setup Fee</h5>
-                        <h2>FCFA {{ $service->subscription->setupfee }} <span><i class="bi bi-pencil"></i></span> </h2>
+                        <h2>FCFA {{ $service->subscription->setupfee }} </h2>
                         <hr>
                     </div>
                     <div class="card-body">
