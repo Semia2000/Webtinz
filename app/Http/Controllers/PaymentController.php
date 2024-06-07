@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Service;
+use App\Models\ServiceUpgrade;
 use App\Models\Subscriptionplan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -135,23 +136,8 @@ class PaymentController extends Controller
         $totalPrice = $request->input('totalPrice');
         $totalPriceineuro = ($totalPrice / 655);
         $service = Service::findOrFail($request->input('service_id'));
+        $upgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
 
-        // // Logic for processing Mobile Money payment
-        // // This would typically involve calling an API for the Mobile Money provider
-
-        // try {
-        //     // Example logic for payment processing
-        //     // Replace with actual payment processing logic
-        //     $paymentResult = $this->processPaymentWithProvider($phoneNumber, $country, $totalPrice);
-
-        //     if ($paymentResult['status'] == 'success') {
-        //         return response()->json(['success' => true]);
-        //     } else {
-        //         return response()->json(['success' => false, 'message' => $paymentResult['message']]);
-        //     }
-        // } catch (\Exception $e) {
-        //     return response()->json(['success' => false, 'message' => $e->getMessage()]);
-        // }
         $collection = new Collection();
 
         $referenceId = $collection->requestToPay('yourTransactionId', $phoneNumber, $totalPriceineuro);
@@ -184,7 +170,67 @@ class PaymentController extends Controller
             $service->end_date = now()->addMonths($plan->duration);
             $service->is_pay_done = true;
 
-            return view('front_include.paysuccessful', compact('service'));
+            // Upgrade
+            $upgrade->start_date = now();
+            // Calcule la date de fin en fonction de la durée du plan sélectionné
+            $plan = Subscriptionplan::find($request->input('plan_id'));
+            $upgrade->end_date = now()->addMonths($plan->duration);
+            $upgrade->is_pay_done = true;
+
+            return view('front_include.paysuccessful', compact('service','upgrade'));
+
+        } else {
+            return redirect()->back()->with('success', 'Payment Not done');
+        }
+    }
+
+    public function processMobileMoneyPaymentForupgrade(Request $request)
+    {
+        $user = Auth::user();
+        // $payments = Payment::create([
+
+        // ]);
+
+        $phoneNumber = $request->input('phoneNumber');
+        $country = $request->input('country');
+        // convertir en euro
+        $totalPrice = $request->input('totalPrice');
+        $totalPriceineuro = ($totalPrice / 655);
+        $upgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
+
+        $collection = new Collection();
+
+        $referenceId = $collection->requestToPay('yourTransactionId', $phoneNumber, $totalPriceineuro);
+        $statustransaction = $collection->getTransactionStatus($referenceId);
+        $payment_id = $statustransaction['financialTransactionId'];
+        $amount = $statustransaction['amount'];
+        $currency = $statustransaction['currency'];
+        $partyIdType = $statustransaction['payer']['partyIdType'];
+        $phoneNumber = $statustransaction['payer']['partyId'];
+        $status = $statustransaction['status'];
+
+        if ($statustransaction['status'] === 'SUCCESSFUL') {
+            $payment = Payment::create([
+                'user_id' => $user->id,
+                'service_id' => $upgrade->id,
+                'payment_id' => $payment_id,
+                'payment_date' => now(),
+                'paymentmethod' => "Mtn Mobile Money",
+                'amount' => $amount,
+                'currency' => $currency,
+                'partyIdType' => $partyIdType,
+                'phoneNumber' => $phoneNumber,
+                'status' => $status
+            ]);
+
+            // Upgrade
+            $upgrade->start_date = now();
+            // Calcule la date de fin en fonction de la durée du plan sélectionné
+            $plan = Subscriptionplan::find($request->input('plan_id'));
+            $upgrade->end_date = now()->addMonths($plan->duration);
+            $upgrade->is_pay_done = true;
+
+            return view('Upgrade.paysucessful', compact('upgrade'));
 
         } else {
             return redirect()->back()->with('success', 'Payment Not done');

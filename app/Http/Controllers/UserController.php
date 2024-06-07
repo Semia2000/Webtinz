@@ -68,7 +68,7 @@ class UserController extends Controller
         } elseif ($selectedService == 'Custom') {
             return redirect()->route('custumform');
         }
-        
+
         return redirect()->route('letstart'); // Option par défaut
     }
 
@@ -77,19 +77,28 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
-        return view('dashboarduser.dashboard',compact('user', 'services'));
+        return view('dashboarduser.dashboard', compact('user', 'services'));
     }
     public function viewtemplates()
     {
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
-        return view('dashboarduser.viewtemplates',compact('user', 'services'));
+        return view('dashboarduser.viewtemplates', compact('user', 'services'));
     }
     public function subscriptionuser()
     {
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
-        $subscriptions = Subscriptionplan::all();
-        return view('dashboarduser.subscription',compact('user', 'services','subscriptions'));
+
+        // Filtrage des plans d'abonnement par type de service
+        $subscriptionsByServiceType = [];
+        foreach ($services as $service) {
+            $subscriptionsByServiceType[$service->id] = Subscriptionplan::where('typeservice', $service->service_type)->get();
+        }
+
+        return view('dashboarduser.subscription', compact('user', 'services', 'subscriptionsByServiceType'));
     }
+
+    
+
 }

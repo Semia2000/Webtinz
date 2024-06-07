@@ -9,6 +9,8 @@ use App\Http\Controllers\CustumdigitalisationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ServiceupgradeController;
+
 
 
 
@@ -142,6 +144,28 @@ Route::middleware(['auth', 'logout.inactive'])->group(function () {
     // update final summary:process-payement
     Route::get('/showallTemplate/{service_id}', [ServiceController::class, 'showallTemplate'])->name('showallTemplate');
 
+    // Upgrade Service
+    // Route::get('/showUpgradeForm/{service_id}', [ServiceupgradeController::class, 'showUpgradeForm'])->name('showUpgradeForm');
+    // Route::post('/showUpgradeForm/{service_id}/store', [ServiceController::class, 'store'])->name('showUpgradeForm.store');
+    // summary upgrade
+    Route::get('/showUpgradesummary/{service_id}', [ServiceupgradeController::class, 'showUpgradesummary'])->name('showUpgradesummary');
+    Route::post('/showUpgradesummary/{companyId}/{service_id}/store', [ServiceupgradeController::class, 'upgradeSummary'])->name('showUpgradesummary.store');
+
+    // upgrade Template
+    // update final summary:process-payement
+    Route::get('/showallUpgradeTemplate/{upgrade_id}', [ServiceupgradeController::class, 'showallUpgradeTemplate'])->name('showallUpgradeTemplate');
+    Route::post('/saveTemplateUpgrade/{upgrade_id}', [ServiceupgradeController::class, 'saveTemplateUpgrade'])->name('saveTemplateUpgrade');
+    Route::post('/processMobileMoneyPaymentForupgrade', [PaymentController::class, 'processMobileMoneyPaymentForupgrade'])->name('processMobileMoneyPaymentForupgrade');
+
+    // subscription upgrade
+    Route::get('/viewUpgradesubscription/{upgrade_id}', [ServiceupgradeController::class, 'viewUpgradesubscription'])->name('viewUpgradesubscription');
+    Route::post('/saveUpgradeplanSelection/{upgrade_id}', [ServiceupgradeController::class, 'saveUpgradeplanSelection'])->name('saveUpgradeplanSelection');
+
+
+    Route::get('/upgrade-summary', [ServiceupgradeController::class, 'showUpgradeSummary'])->name('showUpgradeSummary');
+    Route::get('/select-template', [ServiceupgradeController::class, 'selectTemplate'])->name('selectTemplate');
+    Route::post('/confirm-upgrade', [ServiceupgradeController::class, 'confirmUpgrade'])->name('confirmUpgrade');
+    Route::get('/upgrade-payment', [ServiceupgradeController::class, 'showUpgradePayment'])->name('showUpgradePayment');
 
 
     // user dashboard

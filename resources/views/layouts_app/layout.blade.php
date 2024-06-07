@@ -155,6 +155,9 @@
                         <li class="mb-2">
                             <a href="#!" class="text-white">Help Centre</a>
                         </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Copy Right</a>
+                        </li>
                         {{-- <li class="mb-2">
                             <a href="#!" class="text-white">Contact </a>
                         </li> --}}

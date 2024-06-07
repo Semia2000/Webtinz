@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class ServiceUpgrade extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
+        'service_id',
         'service_type',
         'description',
         'products_services',
@@ -18,33 +19,29 @@ class Service extends Model
         'sector',
         'productcategory',
         'others_services',
-        'template_id',
         'subscription_id',
+        'template_id',
+        'statusplan',
         'start_date',
         'end_date',
-        'statusplan',
         'is_pay_done'
         
+
     ];
 
-
-    public function user()
+    public function service()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function template()
-    {
-        return $this->belongsTo(Template::class);
+        return $this->belongsTo(Service::class);
     }
 
     public function subscription()
     {
-        return $this->belongsTo(SubscriptionPlan::class);
+        return $this->belongsTo(Subscriptionplan::class, 'subscription_id');
     }
 
-    public function upgrades()
+    public function template()
     {
-        return $this->hasMany(ServiceUpgrade::class);
+        return $this->belongsTo(Template::class, 'template_id');
     }
+
 }
