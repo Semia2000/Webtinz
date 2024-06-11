@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Bmatovu\MtnMomo\Products\Collection;
 use Bmatovu\MtnMomo\Exceptions\CollectionRequestException;
 use Omnipay\Omnipay;
+use App\Services\CurrencyConverterService;
 
 class PaymentController extends Controller
 {
@@ -18,39 +19,44 @@ class PaymentController extends Controller
 
     // Paypal payment
     private $gateway;
+    private $currencyConverter;
 
-    public function __construct()
+    public function __construct(CurrencyConverterService $currencyConverter)
     {
         $clientId = config('services.paypal.client_id');
         $clientSecret = config('services.paypal.client_secret');
         $testMode = config('services.paypal.mode') === 'sandbox';
 
-        // dd($clientId,$clientSecret,$testMode);
         $this->gateway = Omnipay::create('PayPal_Rest');
         $this->gateway->setClientId($clientId);
         $this->gateway->setSecret($clientSecret);
         $this->gateway->setTestMode($testMode);
+        $this->currencyConverter = $currencyConverter;
     }
 
 
 
     public function processPaypalPayment(Request $request)
     {
-
         $totalPrice = $request->input('totalPrice');
-        $totalPriceinusd = round(($totalPrice / 601), 2);
         $service_id = $request->input('service_id');
         $plan_id = $request->input('plan_id');
         $currency = config('services.paypal.currency');
+
+        // Conversion de la devise
+        $totalPriceInUSD = $this->currencyConverter->convert('XOF', $currency , $totalPrice);
+
+        if (!$totalPriceInUSD) {
+            return back()->withError('Error: Unable to convert currency');
+        }
+
         try {
-
-            $response = $this->gateway->purchase(array(
-                'amount' =>$totalPriceinusd ,
+            $response = $this->gateway->purchase([
+                'amount' => round($totalPriceInUSD, 2),
                 'currency' => $currency,
-                'returnUrl' => route('payment.success',['service_id' => $service_id,'plan_id'=> $plan_id]),
+                'returnUrl' => route('payment.success', ['service_id' => $service_id, 'plan_id' => $plan_id]),
                 'cancelUrl' => route('payment.error')
-            ))->send();
-
+            ])->send();
 
             if ($response->isRedirect()) {
                 $response->redirect(); // Redirige l'utilisateur vers PayPal
@@ -61,7 +67,6 @@ class PaymentController extends Controller
             return $th->getMessage();
         }
     }
-
 
     // Paypal get success
 
@@ -134,9 +139,12 @@ class PaymentController extends Controller
         $country = $request->input('country');
         // convertir en euro
         $totalPrice = $request->input('totalPrice');
-        $totalPriceineuro = ($totalPrice / 655);
         $service = Service::findOrFail($request->input('service_id'));
-        $upgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
+        $totalPriceineuro = $this->currencyConverter->convert('XOF', 'EUR' , $totalPrice);
+
+        if (!$totalPriceineuro) {
+            return back()->withError('Error: Unable to convert currency');
+        }
 
         $collection = new Collection();
 
@@ -170,14 +178,7 @@ class PaymentController extends Controller
             $service->end_date = now()->addMonths($plan->duration);
             $service->is_pay_done = true;
 
-            // Upgrade
-            $upgrade->start_date = now();
-            // Calcule la date de fin en fonction de la durée du plan sélectionné
-            $plan = Subscriptionplan::find($request->input('plan_id'));
-            $upgrade->end_date = now()->addMonths($plan->duration);
-            $upgrade->is_pay_done = true;
-
-            return view('front_include.paysuccessful', compact('service','upgrade'));
+            return view('front_include.paysuccessful', compact('service'));
 
         } else {
             return redirect()->back()->with('success', 'Payment Not done');
@@ -196,7 +197,8 @@ class PaymentController extends Controller
         // convertir en euro
         $totalPrice = $request->input('totalPrice');
         $totalPriceineuro = ($totalPrice / 655);
-        $upgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
+
+        $serviceupgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
 
         $collection = new Collection();
 
@@ -212,7 +214,7 @@ class PaymentController extends Controller
         if ($statustransaction['status'] === 'SUCCESSFUL') {
             $payment = Payment::create([
                 'user_id' => $user->id,
-                'service_id' => $upgrade->id,
+                'service_id' => $serviceupgrade->id,
                 'payment_id' => $payment_id,
                 'payment_date' => now(),
                 'paymentmethod' => "Mtn Mobile Money",
@@ -224,13 +226,13 @@ class PaymentController extends Controller
             ]);
 
             // Upgrade
-            $upgrade->start_date = now();
+            $serviceupgrade->start_date = now();
             // Calcule la date de fin en fonction de la durée du plan sélectionné
             $plan = Subscriptionplan::find($request->input('plan_id'));
-            $upgrade->end_date = now()->addMonths($plan->duration);
-            $upgrade->is_pay_done = true;
+            $serviceupgrade->end_date = now()->addMonths($plan->duration);
+            $serviceupgrade->is_pay_done = true;
 
-            return view('Upgrade.paysucessful', compact('upgrade'));
+            return view('Upgrade.paysucessful', compact('serviceupgrade'));
 
         } else {
             return redirect()->back()->with('success', 'Payment Not done');

@@ -58,7 +58,7 @@
                     @if ($service->service_type == 'ecom')
                     <div id="ecom-fields" class="hidden">
                         <div class="form-group mt-5">
-                            <label>Product Type</label><br>
+                            <label>Select Product Category</label><br>
                             <div class="row">
                                 <div class="col">
                                     <input type="radio" name="commerce_mode" value="multi_product" id="multi_product" checked>

@@ -169,10 +169,10 @@
             </div> --}}
 
             <div class="acceptpay d-flex flex-column align-items-center mt-3">
-                <form id="plan-form" action="{{ route('saveUpgradeplanSelection', ['upgrade_id' => $upgrade->id]) }}"
+                <form id="plan-form" action="{{ route('saveUpgradeplanSelection', ['id' => $serviceupgrade->id]) }}"
                     method="POST">
                     @csrf
-                    <input type="hidden" name="service_id" value="{{ $upgrade->service_id }}">
+                    <input type="hidden" name="service_id" value="{{ $serviceupgrade->id }}">
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">
@@ -181,7 +181,7 @@
                             </span>
                         </label>
                     </div>
-                    <input type="" name="plan_id" id="selected-plan-id">
+                    <input type="hidden" name="plan_id" id="selected-plan-id">
                     <div class="d-flex liens mb-5">
                         <button type="submit" id="continue-button" class="firstlink" style="background: #F05940"
                             >Pay</button>

@@ -26,7 +26,7 @@
                         @else
                             ENTERPRISE
                         @endif
-                    </span> subscription will expire on <span style="color:#F05940">{{ $service->end_date }}</span>
+                    </span> subscription start on <span style="color:#F05940">{{ $service->start_date }}</span>
                 </p>
                 <a href="{{ route('dashboarduser') }}">Go to Dashboard</a>
             </div>

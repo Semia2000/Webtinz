@@ -19,14 +19,14 @@
                 <h4>Payment Successful!</h4>
                 <p> Thank you for processing your most recent payment. <br>
                     Your <span style="font-weight: 600;">
-                        @if ($upgrade->subscription->name == 'home')
+                        @if ($serviceupgrade->subscription->name == 'home')
                             HOME BUSINESS
-                        @elseif ($upgrade->subscription->name == 'small_mid')
+                        @elseif ($serviceupgrade->subscription->name == 'small_mid')
                             SMALL & MID SIZE BUSINESS
                         @else
                             ENTERPRISE
                         @endif
-                    </span> subscription will expire on <span style="color:#F05940">{{ $upgrade->end_date }}</span>
+                    </span> subscription will expire on <span style="color:#F05940">{{ $serviceupgrade->end_date }}</span>
                 </p>
                 <a href="{{ route('dashboarduser') }}">Go to Dashboard</a>
             </div>

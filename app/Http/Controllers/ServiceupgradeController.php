@@ -14,82 +14,113 @@ use Illuminate\Support\Facades\Auth;
 class ServiceupgradeController extends Controller
 {
     //
+    public function serviceBegin($service_id)
+    {
+        $service = Service::findOrFail($service_id);
+        $newServiceType = $service->service_type == 'web' ? 'ecom' : 'web';
 
-    // public function showUpgradeForm($service_id)
-    // {
-    //     $service = Service::find($service_id);
-    //     $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
-    //     return view('Upgrade.formsaboutcompany', compact('service','productcategorys'));
-    // }
+        $serviceupgrade = ServiceUpgrade::create([
+            'user_id' => Auth::user()->id,
+            'service_id' => $service_id,
+            'service_type' => $newServiceType,
+        ]);
+        return redirect()->route('showUpgradeForm', ['id' => $serviceupgrade->id]);
+    }
 
-    // // save form service
-    // public function store(Request $request, $service_id)
-    // {
-    //     try {
-    //         $service = Service::findOrFail($service_id);
 
-    //         // Valider les données du formulaire
-    //         if ($service->service_type == 'ecom') {
-    //             $request->validate([
-    //                 'commerce_mode' => 'required|string',
-    //                 'productcategory' => 'required|array',
-    //                 'productcategory.*' => 'string',
-    //             ]);
-    //         } elseif ($service->service_type == 'web') {
-    //             $request->validate([
-    //                 'description' => 'required|string|max:255',
-    //                 'others_services' => 'required|string|max:255',
-    //                 'products_services' => 'required|string|max:255',
-    //                 'sector' => 'required|string|max:255',
-    //             ]);
-    //         }
+    public function showUpgradeForm($id)
+    {
+        $serviceupgrade = ServiceUpgrade::find($id);
+        $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
+        return view('Upgrade.formsaboutcompany', compact('serviceupgrade', 'productcategorys'));
+    }
 
-    //         // Mettre à jour les attributs du service
-            // $upgrade = new ServiceUpgrade();
-            // $upgrade->user_id = Auth::user()->id;
-            // $upgrade->service_type = $service->service_type;
-    //         $upgrade->description = $request->input('description');
-    //         $upgrade->products_services = $request->input('products_services');
-    //         $upgrade->sector = $request->input('sector');
-    //         $upgrade->commerce_mode = $request->input('commerce_mode');
-    //         $upgrade->others_services = $request->input('others_services');
+    // save form service
+    public function store(Request $request, $id)
+    {
+        try {
+            $serviceupgrade = ServiceUpgrade::findOrFail($id);
 
-    //         // Traiter les champs 'productcategory'
-    //         $productcategories = $request->input('productcategory');
+            // Valider les données du formulaire
+            if ($serviceupgrade->service_type == 'ecom') {
+                $request->validate([
+                    'commerce_mode' => 'required|string',
+                    'productcategory' => 'required|array',
+                    'productcategory.*' => 'string',
+                ]);
+            } elseif ($serviceupgrade->service_type == 'web') {
+                $request->validate([
+                    'description' => 'required|string|max:255',
+                    'others_services' => 'required|string|max:255',
+                    'products_services' => 'required|string|max:255',
+                    'sector' => 'required|string|max:255',
+                ]);
+            }
 
-    //         if (is_array($productcategories)) {
-    //             $upgrade->productcategory = implode(',', $productcategories);
-    //         } else {
-    //             $upgrade->productcategory = $productcategories;
-    //         }
+            // Mettre à jour les attributs du service
+            $serviceupgrade->description = $request->input('description');
+            $serviceupgrade->products_services = $request->input('products_services');
+            $serviceupgrade->sector = $request->input('sector');
+            $serviceupgrade->commerce_mode = $request->input('commerce_mode');
+            $serviceupgrade->others_services = $request->input('others_services');
 
-    //         // Sauvegarder les changements
-    //         $upgrade->save();
+            // Traiter les champs 'productcategory'
+            $productcategories = $request->input('productcategory');
 
-    //         // Rediriger avec un message de succès
-    //         return redirect()->route('showUpgradesummary', ['service_id' => $service->id])
-    //             ->with('success', 'Template uploaded successfully');
-    //     } catch (\Exception $e) {
-    //         // Afficher l'erreur pour le débogage
-    //         return back()->withErrors(['error' => $e->getMessage()]);
-    //     }
-    // }
+            if (is_array($productcategories)) {
+                $serviceupgrade->productcategory = implode(',', $productcategories);
+            } else {
+                $serviceupgrade->productcategory = $productcategories;
+            }
+            // Sauvegarder les changements
+            $serviceupgrade->save();
+
+            // Rediriger avec un message de succès
+            return redirect()->route('showUpgradesummary', ['id' => $serviceupgrade->id])
+                ->with('success', 'Template uploaded successfully');
+        } catch (\Exception $e) {
+            // Afficher l'erreur pour le débogage
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 
 
 
     // Summary page
-    public function showUpgradesummary($service_id)
+
+    public function showUpgradesummary($id)
     {
         $user = Auth::user()->id;
-        $service = Service::findOrFail($service_id);
         $companyinfo = Company::where('user_id', $user)->first();
         $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
-        $selectedSector = explode(',', $service->sector);
+        $service = null; // Initialiser le service à null par défaut
 
-        return view('Upgrade.Summarypage', compact('companyinfo', 'service','selectedSector','productcategorys'));
+        // Vérifier si le service d'upgrade existe dans la table ServiceUpgrade
+        $serviceupgrade = ServiceUpgrade::find($id);
+
+        // Si le service d'upgrade existe, charger les données du service d'upgrade
+        if ($serviceupgrade) {
+            $selectedSector = explode(',', $serviceupgrade->sector);
+        } else {
+            // Sinon, charger les données du service d'origine (service avec l'ID $id)
+            $service = Service::findOrFail($id);
+            $selectedSector = explode(',', $service->sector);
+        }
+
+        return view('Upgrade.Summarypage', compact('companyinfo', 'serviceupgrade', 'service', 'selectedSector', 'productcategorys'));
     }
+    // public function showUpgradesummary($id)
+    // {
+    //     $user = Auth::user()->id;
+    //     $serviceupgrade = ServiceUpgrade::findOrFail($id);
+    //     $companyinfo = Company::where('user_id', $user)->first();
+    //     $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
+    //     $selectedSector = explode(',', $serviceupgrade->sector);
 
-    public function upgradeSummary(Request $request, $companyId, $service_id)
+    //     return view('Upgrade.Summarypage', compact('companyinfo', 'serviceupgrade','selectedSector','productcategorys'));
+    // }
+
+    public function upgradeSummary(Request $request, $companyId, $id)
     {
         $company = Company::findOrFail($companyId);
         $company->update([
@@ -101,15 +132,25 @@ class ServiceupgradeController extends Controller
             'state' => $request->input('state'),
         ]);
 
-        $service = Service::findOrFail($service_id);
+        // Vérifier si l'entrée existe dans ServiceUpgrade
+        $serviceupgrade = ServiceUpgrade::find($id);
+
+        // Si $serviceupgrade n'existe pas, créer une nouvelle entrée
+        if (!$serviceupgrade) {
+            $service = Service::find($id);
+            $serviceupgrade = new ServiceUpgrade();
+            $serviceupgrade->user_id = Auth::user()->id;
+            $serviceupgrade->service_id= $service->id;
+            $serviceupgrade->service_type = $service->service_type;
+        }
 
         // Valider les données du formulaire
-        if ($service->service_type == 'ecom') {
+        if ($serviceupgrade->service_type == 'ecom') {
             $request->validate([
                 'commerce_mode' => 'required|string',
                 'productcategory' => 'required',
             ]);
-        } elseif ($service->service_type == 'web') {
+        } elseif ($serviceupgrade->service_type == 'web') {
             $request->validate([
                 'description' => 'required|string|max:255',
                 'others_services' => 'required|string|max:255',
@@ -118,61 +159,118 @@ class ServiceupgradeController extends Controller
             ]);
         }
 
-
-        $upgrade = new ServiceUpgrade();
-        $upgrade->user_id = Auth::user()->id;
-        $upgrade->service_id= $service->id;
-        $upgrade->service_type = $service->service_type;
-        $upgrade->description = $request->input('description');
-        $upgrade->products_services = $request->input('products_services');
-        $upgrade->sector = $request->input('sector');
-        $upgrade->commerce_mode = $request->input('commerce_mode');
-        $upgrade->others_services = $request->input('others_services');
+        // Mettre à jour les champs
+        $serviceupgrade->description = $request->input('description');
+        $serviceupgrade->products_services = $request->input('products_services');
+        $serviceupgrade->sector = $request->input('sector');
+        $serviceupgrade->commerce_mode = $request->input('commerce_mode');
+        $serviceupgrade->others_services = $request->input('others_services');
 
         // Traiter les champs 'productcategory'
         $productcategories = $request->input('productcategory');
 
         if (is_array($productcategories)) {
-            $upgrade->productcategory = implode(',', $productcategories);
+            $serviceupgrade->productcategory = implode(',', $productcategories);
         } else {
-            $upgrade->productcategory = $productcategories;
+            $serviceupgrade->productcategory = $productcategories;
         }
 
         // Sauvegarder les changements
-        $upgrade->save();
+        $serviceupgrade->save();
 
-        $servicetype = $upgrade->service_type;
+        $servicetype = $serviceupgrade->service_type;
         $templates = Template::where('typeservice', $servicetype)->get();
 
-        // Rediriger l'utilisateur vers une autre page après la mise à jour
-        return view('Upgrade.choosetemplate', compact('templates', 'upgrade'));
+        // Redirection vers une autre page après la mise à jour
+        return view('Upgrade.choosetemplate', compact('templates', 'serviceupgrade'));
     }
+
+
+
+    // public function upgradeSummary(Request $request, $companyId, $id)
+    // {
+    //     $company = Company::findOrFail($companyId);
+    //     $company->update([
+    //         'name' => $request->input('name'),
+    //         'email' => $request->input('email'),
+    //         'address' => $request->input('address'),
+    //         'tel' => $request->input('tel'),
+    //         'country' => $request->input('country'),
+    //         'state' => $request->input('state'),
+    //     ]);
+
+    //     $serviceupgrade = ServiceUpgrade::findOrFail($id);
+
+    //     // Valider les données du formulaire
+    //     if ($serviceupgrade->service_type == 'ecom') {
+    //         $request->validate([
+    //             'commerce_mode' => 'required|string',
+    //             'productcategory' => 'required',
+    //         ]);
+    //     } elseif ($serviceupgrade->service_type == 'web') {
+    //         $request->validate([
+    //             'description' => 'required|string|max:255',
+    //             'others_services' => 'required|string|max:255',
+    //             'products_services' => 'required|string|max:255',
+    //             'sector' => 'required|string|max:255',
+    //         ]);
+    //     }
+
+
+    //     // $upgrade = new ServiceUpgrade();
+    //     // $upgrade->user_id = Auth::user()->id;
+    //     // $upgrade->service_id= $service->id;
+    //     // $upgrade->service_type = $service->service_type;
+    //     $serviceupgrade->description = $request->input('description');
+    //     $serviceupgrade->products_services = $request->input('products_services');
+    //     $serviceupgrade->sector = $request->input('sector');
+    //     $serviceupgrade->commerce_mode = $request->input('commerce_mode');
+    //     $serviceupgrade->others_services = $request->input('others_services');
+
+    //     // Traiter les champs 'productcategory'
+    //     $productcategories = $request->input('productcategory');
+
+    //     if (is_array($productcategories)) {
+    //         $serviceupgrade->productcategory = implode(',', $productcategories);
+    //     } else {
+    //         $serviceupgrade->productcategory = $productcategories;
+    //     }
+
+    //     // Sauvegarder les changements
+    //     $serviceupgrade->save();
+
+    //     $servicetype = $serviceupgrade->service_type;
+    //     $templates = Template::where('typeservice', $servicetype)->get();
+
+    //     // Rediriger l'utilisateur vers une autre page après la mise à jour
+    //     return view('Upgrade.choosetemplate', compact('templates', 'serviceupgrade'));
+    // }
 
     // Save template
 
-    public function saveTemplateUpgrade(Request $request, $upgrade_id)
+    public function saveTemplateUpgrade(Request $request, $id)
     {
-        $upgrade = ServiceUpgrade::findOrFail($upgrade_id);
-        $upgrade->update(['template_id' => $request->input('template_id')]);
+        $serviceupgrade = ServiceUpgrade::findOrFail($id);
+        $serviceupgrade->update(['template_id' => $request->input('template_id')]);
 
-        return redirect()->route('viewUpgradesubscription', ['upgrade_id' => $upgrade->id])
+        return redirect()->route('viewUpgradesubscription', ['id' => $serviceupgrade->id])
             ->with(['message' => 'Template Successfully selected']);
     }
 
 
     // Save subscription
-    public function viewUpgradesubscription($upgrade_id)
+    public function viewUpgradesubscription($id)
     {
-        $upgrade = ServiceUpgrade::findOrFail($upgrade_id);
-        $servicetype= $upgrade->service_type;
-        $subscriptionplans = Subscriptionplan::where('typeservice',$servicetype)->get();
+        $serviceupgrade = ServiceUpgrade::findOrFail($id);
+        $servicetype = $serviceupgrade->service_type;
+        $subscriptionplans = Subscriptionplan::where('typeservice', $servicetype)->get();
         foreach ($subscriptionplans as $plan) {
             $plan->features = json_decode($plan->features);
         }
-        return view('Upgrade.payment', compact('subscriptionplans', 'upgrade'));
+        return view('Upgrade.payment', compact('subscriptionplans', 'serviceupgrade'));
     }
 
-    public function saveUpgradeplanSelection(Request $request, $service_id)
+    public function saveUpgradeplanSelection(Request $request, $id)
     {
         // Valide les données du formulaire
         // $request->validate([
@@ -181,23 +279,23 @@ class ServiceupgradeController extends Controller
         // ]);
 
         // Récupère l'utilisateur authentifié
-        $upgrade = ServiceUpgrade::findOrFail($service_id);
-        $upgrade->subscription_id = $request->input('plan_id');
-        $upgrade->save();
-        
+        $serviceupgrade = ServiceUpgrade::findOrFail($id);
+        $serviceupgrade->subscription_id = $request->input('plan_id');
+        $serviceupgrade->save();
+
 
         // subscription_summary
-        return view('Upgrade.payment-process', compact('upgrade'));
+        return view('Upgrade.payment-process', compact('serviceupgrade'));
 
     }
 
 
     // For modify final summary page :process-payment
-        public function showallUpgradeTemplate($upgrade_id)
+    public function showallUpgradeTemplate($id)
     {
-        $upgrade = ServiceUpgrade::find($upgrade_id);
-        $templates = Template::where('typeservice',$upgrade->service_type)->get();
-        return view('Upgrade.choosetemplate',compact('upgrade','templates'));
+        $serviceupgrade = ServiceUpgrade::find($id);
+        $templates = Template::where('typeservice', $serviceupgrade->service_type)->get();
+        return view('Upgrade.choosetemplate', compact('serviceupgrade', 'templates'));
     }
 
 }

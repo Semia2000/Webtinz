@@ -119,10 +119,10 @@
                         I accept <span style="color:#F05940">terms of use</span> & <span style="color:#F05940">Policy</span>
                     </label>
                 </div>
-                <form id="template-form" action="{{ route('saveTemplateUpgrade', ['upgrade_id' => $upgrade->id]) }}"
+                <form id="template-form" action="{{ route('saveTemplateUpgrade', ['id' => $serviceupgrade->id]) }}"
                     method="POST">
                     @csrf
-                    <input type="hidden" name="service_id" id="service_id" value="{{ $upgrade->service_id}}">
+                    <input type="hidden" name="service_id" id="service_id" value="{{ $serviceupgrade->id}}">
                     <input type="hidden" name="template_id" id="selected-template-id">
                     <button type="submit" id="continue-button">Continue</button>
                 </form>
@@ -142,7 +142,7 @@
             const continueButton = document.getElementById('continue-button');
 
             // Récupérer l'ID du template pré-sélectionné depuis le champ caché
-            const preselectedTemplateId = '{{ $upgrade->service->template_id }}';
+            const preselectedTemplateId = '{{ $serviceupgrade->service->template_id }}';
 
             // Variable pour garder une trace de la sélection du modèle
             let selectedTemplateId = null;

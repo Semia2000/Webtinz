@@ -37,5 +37,8 @@ return [
         'mode' => env('PAYPAL_MODE', 'sandbox'), // Vous pouvez définir le mode par défaut ici
         'currency' => env('PAYPAL_CURRENCY'),
     ],
+    'exchangerate' => [
+        'api_key' => env('EXCHANGE_RATE_API_KEY'),
+    ],
 
 ];

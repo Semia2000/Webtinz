@@ -39,24 +39,24 @@
                         <h3>{{ $service->template->name }}</h3>
                         <h2>
                             @if ($service->template->price === null)
-                                FCFA 00
+                                 00 FCFA
                             @else
-                                FCFA {{ $service->template->price }}
+                                 {{ $service->template->price }} FCFA
                             @endif
                             <span><a href="{{ route('showallTemplate', ['service_id' => $service->id]) }}"><i class="bi bi-pencil"></i></span> </a></span>
                         </h2>
                         <hr>
                         <h5>Setup Fee</h5>
-                        <h2>FCFA {{ $service->subscription->setupfee }} </h2>
+                        <h2> {{ $service->subscription->setupfee }} FCFA</h2>
                         <hr>
                     </div>
                     <div class="card-body">
                         <h3>Total Price </h3>
                         <h2>
-                            FCFA
+                            
                             {{ $service->subscription && $service->template
                                 ? $service->subscription->price + $service->template->price + $service->subscription->setupfee
-                                : 'N/A' }}
+                                : 'N/A' }}  FCFA
                         </h2>
                     </div>
                 </div>

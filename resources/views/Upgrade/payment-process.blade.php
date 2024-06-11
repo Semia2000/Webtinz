@@ -12,7 +12,7 @@
         <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
     </div>
     <div class="processpay d-flex flex-column justify-content-center align-items-center pt-5 mb-5" style="background-color:white;">
-        <input type="hidden" value="{{ $upgrade->id }}">
+        <input type="hidden" value="{{ $serviceupgrade->id }}">
         <div class="row row-cols-1 row-cols-md-2 pb-3">
             <div class="col-4">
                 <h4>Your subscription Summary</h4>
@@ -21,10 +21,10 @@
                     <div class="card-header pt-2">
                         <h5>Your Plan </h5>
                         <h3>
-                            @if ($upgrade->subscription)
-                                @if ($upgrade->subscription->name == 'home')
+                            @if ($serviceupgrade->subscription)
+                                @if ($serviceupgrade->subscription->name == 'home')
                                     Home Business Plan
-                                @elseif ($upgrade->subscription->name == 'small_mid')
+                                @elseif ($serviceupgrade->subscription->name == 'small_mid')
                                     Small & Mid Size Business Plan
                                 @else
                                     Enterprise Plan
@@ -33,29 +33,29 @@
                                 No subscription plan selected
                             @endif
                         </h3>
-                        <h2>FCFA {{ $upgrade->subscription->price }}<span> <a href="{{ route('viewUpgradesubscription', ['upgrade_id' => $upgrade->id]) }}"><i class="bi bi-pencil"></i></span> </a></h2>
+                        <h2>FCFA {{ $serviceupgrade->subscription->price }}<span> <a href="{{ route('viewUpgradesubscription', ['id' => $serviceupgrade->id]) }}"><i class="bi bi-pencil"></i></span> </a></h2>
                         <hr>
                         <h5>Selected template</h5>
-                        <h3>{{ $upgrade->template->name }}</h3>
+                        <h3>{{ $serviceupgrade->template->name }}</h3>
                         <h2>
-                            @if ($upgrade->template->price === null)
+                            @if ($serviceupgrade->template->price === null)
                                 FCFA 00
                             @else
-                                FCFA {{ $upgrade->template->price }}
+                                FCFA {{ $serviceupgrade->template->price }}
                             @endif
-                            <span><a href="{{ route('showallUpgradeTemplate', ['upgrade_id' => $upgrade->id]) }}"><i class="bi bi-pencil"></i></span> </a></span>
+                            <span><a href="{{ route('showallUpgradeTemplate', ['id' => $serviceupgrade->id]) }}"><i class="bi bi-pencil"></i></span> </a></span>
                         </h2>
                         <hr>
                         <h5>Setup Fee</h5>
-                        <h2>FCFA {{ $upgrade->subscription->setupfee }} </h2>
+                        <h2>FCFA {{ $serviceupgrade->subscription->setupfee }} </h2>
                         <hr>
                     </div>
                     <div class="card-body">
                         <h3>Total Price </h3>
                         <h2>
                             FCFA
-                            {{ $upgrade->subscription && $upgrade->template
-                                ? $upgrade->subscription->price + $upgrade->template->price + $upgrade->subscription->setupfee
+                            {{ $serviceupgrade->subscription && $serviceupgrade->template
+                                ? $serviceupgrade->subscription->price + $serviceupgrade->template->price + $serviceupgrade->subscription->setupfee
                                 : 'N/A' }}
                         </h2>
                     </div>
@@ -123,11 +123,11 @@
                             </select>
                         </div>
                         <input type="hidden" id="totalPrice" name="totalPrice"
-                            value="{{ $upgrade->subscription && $upgrade->template
-                                ? $upgrade->subscription->price + $upgrade->template->price + $upgrade->subscription->setupfee
+                            value="{{ $serviceupgrade->subscription && $serviceupgrade->template
+                                ? $serviceupgrade->subscription->price + $serviceupgrade->template->price + $serviceupgrade->subscription->setupfee
                                 : '0' }}">
-                        <input type="hidden" name="plan_id" value="{{ $upgrade->subscription->id }}" id="selected-plan-id">
-                        <input type="hidden" value="{{ $upgrade->id }}" name="upgrade_id">
+                        <input type="hidden" name="plan_id" value="{{ $serviceupgrade->subscription->id }}" id="selected-plan-id">
+                        <input type="hidden" value="{{ $serviceupgrade->id }}" name="upgrade_id">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -138,9 +138,9 @@
     <!-- PayPal Payment Form -->
     <form id="paypalForm" action="{{ route('processPaypalPayment') }}" method="POST" style="display: none;">
         @csrf
-        <input type="hidden" name="totalPrice" value="{{ $upgrade->subscription && $upgrade->template ? $upgrade->subscription->price + $upgrade->template->price + $upgrade->subscription->setupfee : '0' }}">
-        <input type="hidden" name="plan_id" value="{{ $upgrade->subscription->id }}">
-        <input type="hidden" value="{{ $upgrade->id }}" name="upgrade_id">
+        <input type="hidden" name="totalPrice" value="{{ $serviceupgrade->subscription && $serviceupgrade->template ? $serviceupgrade->subscription->price + $serviceupgrade->template->price + $serviceupgrade->subscription->setupfee : '0' }}">
+        <input type="hidden" name="plan_id" value="{{ $serviceupgrade->subscription->id }}">
+        <input type="hidden" value="{{ $serviceupgrade->id }}" name="upgrade_id">
     </form>
 </section>
 @endsection
