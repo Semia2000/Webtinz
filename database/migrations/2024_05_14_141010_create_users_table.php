@@ -26,7 +26,6 @@ return new class extends Migration
             $table->foreignId('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles');
             $table->string('otpcode');
-            $table->enum('is_otp_verified', [0, 1])->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

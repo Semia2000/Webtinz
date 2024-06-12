@@ -39,6 +39,7 @@ class OtpController extends Controller
 
         if ($request->otpcode == $user->otpcode) {
             // session(['otp_attempts' => 0]);
+            $user->update(['is_otp_validate' => true]);
             return redirect()->route('successOtp')->with('success', 'Vérification réussie');
         } else {
             // $attempts++;

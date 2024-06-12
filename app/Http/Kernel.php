@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'check.old.password' => \App\Http\Middleware\CheckOldPassword::class,
         'logout.inactive' => \App\Http\Middleware\LogoutInactiveUser::class,
+        'check.otp' => \App\Http\Middleware\CheckOtpValidation::class,
     ];
 }

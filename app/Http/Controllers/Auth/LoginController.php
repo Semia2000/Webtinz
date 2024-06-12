@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,8 +41,19 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        // Check if the user has validated OTP
+        if (!$user->is_otp_validate) {
+            Auth::logout();
+            return redirect()->route('otpverif')->with('warning', 'Vous devez vérifier votre code OTP.');
+        }
+
+        // Handle "Remember Me" functionality
         if ($request->has('remember')) {
             $this->guard()->setRememberDuration(1209600); // 14 days
         }
+
+        // Redirect to the intended path
+        return redirect()->intended($this->redirectPath());
     }
+
 }

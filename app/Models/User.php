@@ -24,7 +24,8 @@ class User extends Authenticatable
         'otpcode',
         'firstname',
         'lastname',
-        'tel'
+        'tel',
+        'is_otp_validate'
         
     ];
 
