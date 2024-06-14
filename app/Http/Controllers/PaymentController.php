@@ -44,7 +44,7 @@ class PaymentController extends Controller
         $currency = config('services.paypal.currency');
 
         // Conversion de la devise
-        $totalPriceInUSD = $this->currencyConverter->convert('XOF', $currency , $totalPrice);
+        $totalPriceInUSD = $this->currencyConverter->convert('XOF', $currency, $totalPrice);
 
         if (!$totalPriceInUSD) {
             return back()->withError('Error: Unable to convert currency');
@@ -70,19 +70,21 @@ class PaymentController extends Controller
 
     // Paypal get success
 
-    public function success(Request $request, $service_id,$plan_id)
+    public function success(Request $request, $service_id, $plan_id)
     {
         if ($request->input('paymentId') && $request->input('PayerID')) {
-            $transaction = $this->gateway->completePurchase(array(
-                'payer_id' => $request->input('PayerID'),
-                'transactionReference' => $request->input('paymentId')
-            ));
+            $transaction = $this->gateway->completePurchase(
+                array(
+                    'payer_id' => $request->input('PayerID'),
+                    'transactionReference' => $request->input('paymentId')
+                )
+            );
             $currency = config('services.paypal.currency');
             // $service = Service::findOrFail($request->input('service_id'));
             $response = $transaction->send();
             $arr = $response->getData();
             $user = Auth::user();
-    
+
             if ($response->isSuccessful()) {
                 $payment = new Payment();
                 $payment->user_id = $user->id;
@@ -94,7 +96,7 @@ class PaymentController extends Controller
                 $payment->amount = $arr['transactions'][0]['amount']['total'];
                 $payment->currency = $currency;
                 $payment->status = $arr['state'];
-                
+
                 $payment->save();
                 $service = Service::findOrFail($service_id);
 
@@ -108,18 +110,16 @@ class PaymentController extends Controller
                 $service->save();
 
 
-            return view('front_include.paysuccessful', compact('service'));
+                return view('front_include.paysuccessful', compact('service'));
 
-            }
-            else{
+            } else {
                 return $response->getMessage();
             }
-        }
-        else{
+        } else {
             return 'Payment declined!!';
         }
     }
-    
+
 
     // Paypal error get
     public function error()
@@ -140,7 +140,7 @@ class PaymentController extends Controller
         // convertir en euro
         $totalPrice = $request->input('totalPrice');
         $service = Service::findOrFail($request->input('service_id'));
-        $totalPriceineuro = $this->currencyConverter->convert('XOF', 'EUR' , $totalPrice);
+        $totalPriceineuro = $this->currencyConverter->convert('XOF', 'EUR', $totalPrice);
 
         if (!$totalPriceineuro) {
             return back()->withError('Error: Unable to convert currency');
@@ -185,59 +185,59 @@ class PaymentController extends Controller
         }
     }
 
-    // public function processMobileMoneyPaymentForupgrade(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     // $payments = Payment::create([
+    public function processMobileMoneyPaymentForupgrade(Request $request)
+    {
+        $user = Auth::user();
+        // $payments = Payment::create([
 
-    //     // ]);
+        // ]);
 
-    //     $phoneNumber = $request->input('phoneNumber');
-    //     $country = $request->input('country');
-    //     // convertir en euro
-    //     $totalPrice = $request->input('totalPrice');
-    //     $totalPriceineuro = ($totalPrice / 655);
+        $phoneNumber = $request->input('phoneNumber');
+        $country = $request->input('country');
+        // convertir en euro
+        $totalPrice = $request->input('totalPrice');
+        $totalPriceineuro = ($totalPrice / 655);
 
-    //     $serviceupgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
+        $serviceupgrade = ServiceUpgrade::findOrFail($request->input('upgrade_id'));
 
-    //     $collection = new Collection();
+        $collection = new Collection();
 
-    //     $referenceId = $collection->requestToPay('yourTransactionId', $phoneNumber, $totalPriceineuro);
-    //     $statustransaction = $collection->getTransactionStatus($referenceId);
-    //     $payment_id = $statustransaction['financialTransactionId'];
-    //     $amount = $statustransaction['amount'];
-    //     $currency = $statustransaction['currency'];
-    //     $partyIdType = $statustransaction['payer']['partyIdType'];
-    //     $phoneNumber = $statustransaction['payer']['partyId'];
-    //     $status = $statustransaction['status'];
+        $referenceId = $collection->requestToPay('yourTransactionId', $phoneNumber, $totalPriceineuro);
+        $statustransaction = $collection->getTransactionStatus($referenceId);
+        $payment_id = $statustransaction['financialTransactionId'];
+        $amount = $statustransaction['amount'];
+        $currency = $statustransaction['currency'];
+        $partyIdType = $statustransaction['payer']['partyIdType'];
+        $phoneNumber = $statustransaction['payer']['partyId'];
+        $status = $statustransaction['status'];
 
-    //     if ($statustransaction['status'] === 'SUCCESSFUL') {
-    //         $payment = Payment::create([
-    //             'user_id' => $user->id,
-    //             'service_id' => $serviceupgrade->id,
-    //             'payment_id' => $payment_id,
-    //             'payment_date' => now(),
-    //             'paymentmethod' => "Mtn Mobile Money",
-    //             'amount' => $amount,
-    //             'currency' => $currency,
-    //             'partyIdType' => $partyIdType,
-    //             'phoneNumber' => $phoneNumber,
-    //             'status' => $status
-    //         ]);
+        if ($statustransaction['status'] === 'SUCCESSFUL') {
+            $payment = Payment::create([
+                'user_id' => $user->id,
+                'service_id' => $serviceupgrade->id,
+                'payment_id' => $payment_id,
+                'payment_date' => now(),
+                'paymentmethod' => "Mtn Mobile Money",
+                'amount' => $amount,
+                'currency' => $currency,
+                'partyIdType' => $partyIdType,
+                'phoneNumber' => $phoneNumber,
+                'status' => $status
+            ]);
 
-    //         // Upgrade
-    //         $serviceupgrade->start_date = now();
-    //         // Calcule la date de fin en fonction de la durée du plan sélectionné
-    //         $plan = Subscriptionplan::find($request->input('plan_id'));
-    //         $serviceupgrade->end_date = now()->addMonths($plan->duration);
-    //         $serviceupgrade->is_pay_done = true;
+            // Upgrade
+            $serviceupgrade->start_date = now();
+            // Calcule la date de fin en fonction de la durée du plan sélectionné
+            $plan = Subscriptionplan::find($request->input('plan_id'));
+            $serviceupgrade->end_date = now()->addMonths($plan->duration);
+            $serviceupgrade->is_pay_done = true;
 
-    //         return view('Upgrade.paysucessful', compact('serviceupgrade'));
+            return view('Upgrade.paysucessful', compact('serviceupgrade'));
 
-    //     } else {
-    //         return redirect()->back()->with('success', 'Payment Not done');
-    //     }
-    // }
+        } else {
+            return redirect()->back()->with('success', 'Payment Not done');
+        }
+    }
 
 }
 

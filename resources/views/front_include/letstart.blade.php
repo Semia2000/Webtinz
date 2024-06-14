@@ -15,8 +15,8 @@
                         <form id="serviceForm" method="POST" action="{{ route('saveService') }}">
                             @csrf
                             <div class="radiochoice">
-                            <div class="form-group radiocheck mb-3">
-                                <input type="radio" class="form-check-input" id="radio1" name="service_type" value="web" checked>
+                            <div class="form-group radiocheck mb-3 active">
+                                <input type="radio" class="form-check-input" id="radio1" name="service_type" value="web" checked >
                                 <label class="form-check-label" for="radio1">
                                     <i class="bi bi-receipt mx-2"></i> Web Site
                                 </label>
@@ -34,7 +34,8 @@
                                 </label>
                             </div>
                             </div>
-                            <button type="submit" id="continueLink" class="btn btn-primary">Continue</button>
+                            <button type="submit" class="btn btn-primary"
+                            style="width: 50%; border:1px solid #F05940;background-color:#F05940" id="continueLink" >Continue</button>
                         </form>
 
                     </div>

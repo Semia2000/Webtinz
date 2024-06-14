@@ -10,6 +10,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceupgradeController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\ComingsoonController;
+
 
 
 
@@ -38,12 +40,12 @@ Route::get('/', function () {
     return view('comingsoon');
 })->name('welcome');
 
-// Route::get('payement', function () {
-//     return view('front_include.payement');
-// })->name('payement');
-// Route::get('paysuccessful', function () {
-//     return view('front_include.paysuccessful');
-// })->name('paysuccessful');
+Route::get('payement', function () {
+    return view('front_include.payement');
+})->name('payement');
+Route::get('paysuccessful', function () {
+    return view('front_include.paysuccessful');
+})->name('paysuccessful');
 
 Route::get('companyurl', function () {
     return view('dashboarduser.companyurl');
@@ -56,6 +58,8 @@ Route::get('bankdetail', function () {
 })->name('bankdetail');
 // endtest
 
+//comingssoon
+Route::post('/comingsoon', [ComingsoonController::class, 'comingsoon'])->name('comingsoon'); 
 
 Route::group(['middleware' => ['web']], function () {
     Auth::routes();

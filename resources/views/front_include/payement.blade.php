@@ -14,14 +14,14 @@
 @endsection
 @section('content')
     <section id="plans" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="text-center mt-5 mb-3">
+            <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
+        </div>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
         @endif
-        <div class="text-center mt-5 mb-3">
-            <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="">
-        </div>
         <div class="planschoose p-5">
             <div class="text-center mt-3 mb-5">
                 <h3>Choose Your Plan</h3>
@@ -183,8 +183,8 @@
                     </div>
                     <input type="hidden" name="plan_id" id="selected-plan-id">
                     <div class="d-flex liens mb-5">
-                        <button type="submit" id="continue-button" class="firstlink" style="background: #F05940"
-                            >Pay</button>
+                        <button type="submit" id="continue-button" class="firstlink"
+                            style="background: #F05940">Pay</button>
                     </div>
                 </form>
             </div>

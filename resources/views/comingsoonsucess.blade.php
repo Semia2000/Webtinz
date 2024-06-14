@@ -71,40 +71,8 @@
                 </div> --}}
                 </div>
                 <p class="text-muted">Coming soon</p>
-                @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                @endif
-                <h1 class="font-weight-bold">GET NOTIFIED WHEN WE WILL LAUNCH!</h1>
-                <form method="POST" action="{{ route('comingsoon') }}">
-                    @csrf
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control" name="companyname"
-                            placeholder="Enter your Company name" value="{{ old('companyname') }}">
-                        @if ($errors->has('companyname'))
-                            <span class="text-danger">{{ $errors->first('companyname') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Enter your email"
-                            value="{{ old('email') }}">
-                        @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="tel" class="form-control @error('tel') is-invalid @enderror" name="tel"
-                            placeholder="Enter your phone number" value="{{ old('tel') }}">
-                        @error('tel')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2 mt-2">Subscribe</button>
-                </form>
-
+                <h1 class="font-weight-bold">YOUR INFORMATIONS HAS BEEN SUCCESSFUL SENT !
+                </h1>
             </div>
             <div class="col-md-6 text-center">
                 <img src="{{ asset('assets/images/Businessman excited to launch new project.png') }}" alt="Illustration"

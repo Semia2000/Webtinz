@@ -61,10 +61,8 @@
                 </div>
             @endforeach
         @endif
-    </section>
 
-    <!-- Modal Upgrade -->
-    <div class="modal fade" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="upgradeModalLabel"
+        <div class="modal fade mt-5" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="upgradeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -91,6 +89,10 @@
             </div>
         </div>
     </div>
+    </section>
+
+    <!-- Modal Upgrade -->
+
 
 @endsection
 @section('js')
