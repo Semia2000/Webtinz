@@ -82,7 +82,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar pt-4" style="background-color: #141414">
             <!-- Brand Logo -->
-            <a href="" class=" p-4">
+            <a href="/" class=" p-4">
                 <img src="{{ asset('assets/images/logo (1).png') }}" width="150" height="40" alt="Webtinz Logo">
             </a>
 
@@ -192,7 +192,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('myprofile') ? 'active' : '' }}"
-                                href="{{ route('myprofile') }}">
+                                href="{{route('myprofile')}}">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     My Profile

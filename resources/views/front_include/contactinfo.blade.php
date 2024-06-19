@@ -171,7 +171,7 @@
                             <select id="state" name="state" class="form-select  form-select-md"
                                 aria-label=".form-select-md example">
                                 <option selected>Select State</option>
-                                <option value="Cotonou"></option>
+                                <option value="Cotonou">Cotonou</option>
                                 <option value="ketou">Ketou</option>
                             </select>
                         </div>

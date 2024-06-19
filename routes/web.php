@@ -1,20 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebsiteController;
-use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\CustumdigitalisationController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ServiceupgradeController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\CurrencyController;
-
-
-
-
-
+use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\ServiceupgradeController;
+use App\Http\Controllers\CustumdigitalisationController;
 
 
 /*
@@ -27,7 +23,6 @@ use App\Http\Controllers\CurrencyController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 // For test
 Route::get('/', function () {
@@ -43,9 +38,9 @@ Route::get('paysuccessful', function () {
 Route::get('companyurl', function () {
     return view('dashboarduser.companyurl');
 })->name('companyurl');
-Route::get('myprofile', function () {
-    return view('dashboarduser.myprofile');
-})->name('myprofile');
+
+
+
 Route::get('bankdetail', function () {
     return view('dashboarduser.bankdetail');
 })->name('bankdetail');
@@ -126,6 +121,9 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     Route::get('/viewtemplates', [UserController::class, 'viewtemplates'])->name('viewtemplates');
     Route::get('/subscriptionuser', [UserController::class, 'subscriptionuser'])->name('subscriptionuser');
 
+    //Profile update
+    Route::get('/myprofile', [UserController::class,'showEditForm'])->name('myprofile');
+    Route::post('/myprofile', [UserController::class,'updateCompany'])->name('myprofiles');
 });
 
 
@@ -148,4 +146,3 @@ Route::get('/successOtp', [OtpController::class, 'successOtp'])->name('successOt
 
 // another
 // service
-

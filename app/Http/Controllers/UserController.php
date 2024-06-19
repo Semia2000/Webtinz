@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Company;
-use App\Models\User_subscription;
-use App\Models\Subscriptionplan;
-use App\Models\Website;
 use App\Models\Service;
-
+use App\Models\Website;
 use Illuminate\Http\Request;
+
+use App\Models\Subscriptionplan;
+use App\Models\User_subscription;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -20,6 +23,7 @@ class UserController extends Controller
 
         return view('front_include.contactinfo', ['service' => $service]);
     }
+
     public function storeContactInfo(Request $request)
     {
         $request->validate([
@@ -71,7 +75,6 @@ class UserController extends Controller
 
         return redirect()->route('letstart'); // Option par défaut
     }
-
     // dashboard
     public function dashboarduserview()
     {
@@ -99,6 +102,79 @@ class UserController extends Controller
         return view('dashboarduser.subscription', compact('user', 'services', 'subscriptionsByServiceType'));
     }
 
-    
 
+    //Edit Profile
+    public function showEditForm(Request $request)
+    {
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+
+        $stateSelects = array();
+        $stateSelects = DB::table('companys')->select('state')->get();
+        // dd($stateSelects);
+        return view('dashboarduser.myprofile', compact('company', 'stateSelects'));
+    }
+
+    public function updateCompany(Request $request)
+    {
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+
+        $companyData = $request->validate([
+            'name' => 'string | required',
+            'email' => 'email | required',
+            'address' => 'string | required',
+            'tel' => 'required |string',
+            'country' => 'string | required',
+            'state' => 'string | required',
+        ]);
+
+
+
+        if ($request->password != "") {
+            $userUpdate = User::where("id", $user->id)->first();
+            $oldPass = $user->password;
+            $oldPassInput = $request->Oldpassword;
+            $newPassInput = $request->password;
+            $confPasswordInput = $request->Confpassword;
+
+            if ($newPassInput === $confPasswordInput) {
+
+                if (Hash::check($oldPassInput, $oldPass)) {
+
+                    if ($newPassInput === $oldPassInput) {
+
+                        return back()->with("Error", "You can't use the same password like the old, please change it !");
+                    } else {
+
+                        $updateUserPass = $request->validate([
+                            "password" => "string | min:8"
+                        ]);
+
+                        $updateUserPassHash = Hash::make($updateUserPass["password"]);
+
+                        $userUpdate->update([
+                            'password' => $updateUserPassHash  // Mise à jour du mot de passe dans la base de données
+                        ]);
+                    }
+                } else {
+                    return back()->with("Error", "The old password is wrong, Try again");
+                }
+            } else {
+                return back()->with("Error", "The new password isn't confirm, Try again");
+            }
+        }
+
+        $company->update($companyData);
+
+        if ($company->update($companyData)) {
+
+            return back()->with("Sucess", "Update Successfuly");
+
+        } else {
+
+            return back()->with("Error", "Error message");
+            
+        }
+    }
 }
