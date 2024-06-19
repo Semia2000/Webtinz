@@ -5,6 +5,8 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\SubscriptionplanController;
 use App\Http\Controllers\ProductcategoryController;
 use App\Http\Controllers\TypetemplateController;
+use App\Http\Controllers\SectorbusinessController;
+
 
 
 // routes/admin.php
@@ -49,6 +51,13 @@ Route::post('/productcategory.store', [ProductcategoryController::class, 'store'
 Route::get('productcategorylist', [ProductcategoryController::class, 'list'])->name('productcategorylist');
 Route::get('productcategory/{id}/edit', [ProductcategoryController::class, 'edit'])->name('productcategory.edit');
 Route::post('productcategory/{id}/update', [ProductcategoryController::class, 'update'])->name('productcategory.update');
+
+// SEctor business
+Route::get('/sectorbusiness', [SectorbusinessController::class, 'create'])->name('addsectorbusiness');
+Route::post('/sectorbusiness.store', [SectorbusinessController::class, 'store'])->name('sectorbusiness.store');
+Route::get('sectorbusinesslist', [SectorbusinessController::class, 'list'])->name('sectorbusinesslist');
+Route::get('sectorbusiness/{id}/edit', [SectorbusinessController::class, 'edit'])->name('sectorbusiness.edit');
+Route::post('sectorbusiness/{id}/update', [SectorbusinessController::class, 'update'])->name('sectorbusiness.update');
 
 // Type Template
 

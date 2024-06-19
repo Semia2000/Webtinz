@@ -77,7 +77,7 @@
                     </div>
                 @endif
                 <h1 class="font-weight-bold">GET NOTIFIED WHEN WE WILL LAUNCH!</h1>
-                <form method="POST" action="{{ route('comingsoon') }}">
+                <form method="POST" action="{{ route('comingsoon.store') }}">
                     @csrf
                     <div class="form-group mb-3">
                         <input type="text" class="form-control" name="companyname"

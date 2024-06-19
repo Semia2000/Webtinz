@@ -97,7 +97,7 @@
                     <div id="businessector" class="hidden">
                         <div class="mt-5">
                             <label for="sector" class="form-label labeltitle">Select Business Sector<span class="required">*</span></label>
-                            <div class="row mt-3 mb-5">
+                            {{-- <div class="row mt-3 mb-5">
                                 <div class="col">
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" type="checkbox" value="Automotive"
@@ -210,6 +210,24 @@
                                         </label>
                                     </div>
                                 </div>
+                            </div> --}}
+                            <div class="row">
+                                @php
+                                    $chunks = $productcategorys->chunk(5); // Divise les catégories en groupes de 5
+                                @endphp
+                                @foreach ($chunks as $chunk)
+                                    <div class="col">
+                                        @foreach ($chunk as $productcategory)
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" value="{{ $productcategory->name }}"
+                                                    name="productcategory[]" id="{{ $productcategory->name }}">
+                                                <label class="form-check-label" for="{{ $productcategory->name }}">
+                                                    {{ $productcategory->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

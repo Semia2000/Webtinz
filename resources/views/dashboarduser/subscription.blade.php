@@ -1,16 +1,20 @@
 @extends('dashboarduser.layoutuse')
+
 @section('links')
 @endsection
+
 @section('content')
     <section id="plans" class="p-5 subscription">
         @if ($services)
             @foreach ($services as $service)
-                <h4 class="mb-3">Service Type : {{ $service->service_type }}</h4>
+                <h4 class="mb-3">Service Type: {{ $service->service_type }}</h4>
                 <div class="row row-cols-1 row-cols-md-3 mb-4">
-                    @foreach ($subscriptionsByServiceType[$service->id] as $subscription)
+                    @foreach ($subscriptionsByServiceType[$service->id]['plans'] as $subscription)
                         <div class="col-md-4 mt-3">
                             <div
-                                class="card mb-3 h-100 {{ $service->subscription && $service->subscription->id == $subscription->id ? 'border-primary' : '' }}">
+                                class="card mb-3 h-100 
+                            {{ $service->subscription && $service->subscription->id == $subscription->id ? 'border-primary' : '' }}
+                            {{ $subscriptionsByServiceType[$service->id]['upgrades']->contains('subscription_id', $subscription->id) ? 'border-success' : '' }}">
                                 <div class="card-header"
                                     style="background: {{ $subscription->name == 'home' ? '#F1FCFF' : ($subscription->name == 'small_mid' ? '#FFF6EC' : '#F1FCFF') }};">
                                     {{ strtoupper(str_replace('_', ' ', $subscription->name)) }}
@@ -18,7 +22,7 @@
                                 <div class="card-body flex-column d-flex justify-content-center text-left p-4">
                                     <div class="ms-3 mb-4">
                                         <h6 style="font-weight: bold">FCFA</h6>
-                                        <h2>{{ $subscription->price }}<span>&nbsp;&nbsp;Per/6momths</span></h2>
+                                        <h2>{{ $subscription->price }}<span>&nbsp;&nbsp;Per/6months</span></h2>
                                     </div>
                                     <div class="mb-4 mt-4">
                                         <ul class="nav nav-pills flex-column flex-sm-row text-center border-0 rounded-nav"
@@ -41,17 +45,25 @@
                                             {{ $subscription->setupfee }}</p>
                                     </div>
                                 </div>
-                                <div class="d-flex liens text-center p-1">
+                                <div class="d-flex justify-content-between p-2">
                                     @if ($service->subscription && $service->subscription->id == $subscription->id)
-                                        <a href="" class="firstlink btn btn-secondary w-100"
+                                        <a href="" class="btn btn-secondary flex-grow-1 mx-1"
                                             style="background: green;">Renews {{ $service->end_date }}</a>
+                                        @if ($subscriptionsByServiceType[$service->id]['upgrades']->isNotEmpty())
+                                        <a href="{{ route('confirmCancel', ['subscriptionId' => $subscription->id]) }}" class="btn btn-danger flex-grow-1 mx-1">Cancel</a>
+                                            {{-- <button class="btn btn-danger flex-grow-1 mx-1" data-toggle="modal"
+                                                data-target="#cancelModal"></button> --}}
+                                        @endif
+                                    @elseif ($subscriptionsByServiceType[$service->id]['upgrades']->contains('subscription_id', $subscription->id))
+                                        <a href="" class="btn btn-secondary flex-grow-1 mx-1"
+                                            style="background: green;">Renew {{ $subscription->start_date }}</a>
                                     @elseif ($service->subscription && $subscription->price > $service->subscription->price)
-                                        <button class="btn btn-primary w-100 upgrade-btn"
+                                        <button class="btn btn-primary flex-grow-1 mx-1"
                                             data-service-id="{{ $service->id }}" data-toggle="modal"
                                             data-target="#upgradeModal"
-                                            style="background-color: #F05940;border:1px solid #F05940">Upgrade</button>
+                                            style="background-color: #F05940; border:1px solid #F05940">Upgrade</button>
                                     @else
-                                        <button disabled class="btn btn-secondary w-100"
+                                        <button disabled class="btn btn-secondary flex-grow-1 mx-1"
                                             style="background-color: #F05940;">Upgrade</button>
                                     @endif
                                 </div>
@@ -63,38 +75,42 @@
         @endif
 
         <div class="modal fade mt-5" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="upgradeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="upgradeModalLabel">Choose Upgrade Type</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Do you want to upgrade within the same service or to another service?</p>
-                </div>
-                <div class="modal-footer">
-                    <!-- Bouton pour l'upgrade dans le même service -->
-                    <a href="{{ route('showUpgradesummary',['id' =>$service->id]) }}"
-                        class="btn btn-primary upgrade-same-service">Upgrade Same Service</a>
-                    <!-- Bouton pour l'upgrade vers un autre service -->
-                    <form id="upgradeForm" action="{{ route('serviceBegin.store', ['service_id' => $service->id]) }}"
-                        method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-secondary">Upgrade Different Service</button>
-                    </form>
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="upgradeModalLabel">Choose Upgrade Type</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to upgrade within the same service or to another service?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Bouton pour l'upgrade dans le même service -->
+                        <a href="{{ route('showUpgradesummary', ['id' => $service->id]) }}"
+                            class="btn btn-primary upgrade-same-service">Upgrade Same Service</a>
+                        <!-- Bouton pour l'upgrade vers un autre service -->
+                        <form id="upgradeForm" action="{{ route('serviceBegin.store', ['service_id' => $service->id]) }}"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary">Upgrade Different Service</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Modal Cancel -->
+        <!-- Ajoutez cette section juste avant la fin de la section content -->
+        <!-- Modal Cancel -->
+
+
     </section>
 
-    <!-- Modal Upgrade -->
-
-
 @endsection
+
 @section('js')
     <script>
         $(document).ready(function() {
@@ -107,6 +123,11 @@
             $('#upgradeForm').submit(function(e) {
                 e.preventDefault(); // Empêcher le formulaire de se soumettre normalement
                 $(this).unbind('submit').submit(); // Soumettre le formulaire
+            });
+
+            // Gérer le clic sur le bouton de cancel
+            $('.btn-danger').click(function() {
+                $('#cancelModal').modal('show');
             });
         });
     </script>

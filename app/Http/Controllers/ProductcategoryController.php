@@ -12,6 +12,7 @@ class ProductcategoryController extends Controller
     public function create(){
         return view('admin.Productcategory.addproductcategory');
     }
+    
     public function store(Request $request){
         $request->validate([
             'name.*' => 'required|string|max:255',

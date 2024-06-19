@@ -233,7 +233,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('templateslist') }}" class="nav-link">
+            <a href="{{ route('addsectorbusiness') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Business Sector

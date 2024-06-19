@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
+use App\Models\Sectorbusiness;
 use App\Models\Service;
 use App\Models\Company;
 use App\Models\Template;
@@ -41,8 +42,9 @@ class ServiceController extends Controller
     public function showFormgenerale($service_id)
     {
         $service = Service::findOrFail($service_id);
+        $sectorsbusiness = Sectorbusiness::orderBy('name','asc')->get();
         $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
-        return view('front_include.formgenerale', compact('service','productcategorys'));
+        return view('front_include.formgenerale', compact('service','productcategorys','sectorsbusiness'));
     }
 
     // save form service

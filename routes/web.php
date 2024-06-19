@@ -32,13 +32,13 @@ use App\Http\Controllers\ComingsoonController;
 
 
 // For test
-// Route::get('/', function () {
-//     return view('front_include.home');
-// })->name('welcome');
-
 Route::get('/', function () {
-    return view('comingsoon');
+    return view('front_include.home');
 })->name('welcome');
+
+Route::get('/comingsoon', function () {
+    return view('comingsoon');
+})->name('comingsoon');
 
 Route::get('payement', function () {
     return view('front_include.payement');
@@ -59,7 +59,7 @@ Route::get('bankdetail', function () {
 // endtest
 
 //comingssoon
-Route::post('/comingsoon', [ComingsoonController::class, 'comingsoon'])->name('comingsoon'); 
+Route::post('/comingsoon.store', [ComingsoonController::class, 'comingsoon'])->name('comingsoon.store'); 
 
 Route::group(['middleware' => ['web']], function () {
     Auth::routes();
@@ -135,6 +135,9 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     Route::get('/viewtemplates', [UserController::class, 'viewtemplates'])->name('viewtemplates');
     Route::get('/subscriptionuser', [UserController::class, 'subscriptionuser'])->name('subscriptionuser');
 
+    // cancel subscription
+    Route::get('/subscription/{subscriptionId}', [UserController::class, 'confirmCancellation'])
+    ->name('confirmCancel');
 });
 
 

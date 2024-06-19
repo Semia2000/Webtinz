@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
         // Check if the user has validated OTP
         if (!$user->is_otp_validate) {
-            Auth::logout();
+            // Auth::logout();
             return redirect()->route('otpverif')->with('warning', 'Vous devez vérifier votre code OTP.');
         }
 
