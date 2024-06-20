@@ -171,7 +171,7 @@
                             <select id="state" name="state" class="form-select  form-select-md"
                                 aria-label=".form-select-md example">
                                 <option selected>Select State</option>
-                                <option value="Cotonou"></option>
+                                <option value="Cotonou">Cotonou</option>
                                 <option value="ketou">Ketou</option>
                             </select>
                         </div>
@@ -184,8 +184,9 @@
                             <select id="sector" name="sector" class="form-select form-select-md"
                                 aria-label=".form-select-md example">
                                 <option value="" selected>Select Your Industrie</option>
-                                <option value="Agro">Agonomie</option>
-                                <option value="tech">Technologie</option>
+                                @foreach ($sectorsbusiness as $sectorbusiness)
+                                <option value="{{ $sectorbusiness->name }}">{{ $sectorbusiness->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 

@@ -82,7 +82,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar pt-4" style="background-color: #141414">
             <!-- Brand Logo -->
-            <a href="" class=" p-4">
+            <a href="{{ route('welcome') }}" class=" p-4">
                 <img src="{{ asset('assets/images/logo (1).png') }}" width="150" height="40" alt="Webtinz Logo">
             </a>
 
@@ -121,24 +121,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('welcome') ? 'active' : '' }}"
-                                href="{{ route('welcome') }}">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Home
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('letstart') ? 'active' : '' }}"
-                                href="{{ route('letstart') }}">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Our services
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('companyurl') ? 'active' : '' }}"
                                 href="{{ route('companyurl') }}">
                                 <i class="nav-icon far fa-image"></i>
@@ -165,7 +147,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
@@ -189,7 +171,7 @@
                                     Ecommerce Cashout
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('myprofile') ? 'active' : '' }}"
                                 href="{{ route('myprofile') }}">

@@ -6,6 +6,7 @@ use App\Models\TypeTemplate;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\ProductCategory;
+use App\Models\Sectorbusiness;
 
 
 class TemplateController extends Controller
@@ -15,7 +16,8 @@ class TemplateController extends Controller
     {
         $typetemplates = TypeTemplate::orderBy('name', 'asc')->get();
         $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
-        return view('admin.template.addtemplate', compact('typetemplates', 'productcategorys'));
+        $sectorsbusiness = Sectorbusiness::orderBy('name','asc')->get();
+        return view('admin.template.addtemplate', compact('typetemplates', 'productcategorys','sectorsbusiness'));
     }
 
 
@@ -79,9 +81,9 @@ class TemplateController extends Controller
         $template = Template::findOrFail($id);
         $typetemplates = TypeTemplate::orderBy('name', 'asc')->get();
         $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
-        $selectedIndustries = explode(',', $template->industrie);
+        $sectorsbusiness = Sectorbusiness::orderBy('name','asc')->get();
 
-        return view('admin.template.update', compact('template', 'selectedIndustries', 'typetemplates', 'productcategorys'));
+        return view('admin.template.update', compact('template', 'sectorsbusiness', 'typetemplates', 'productcategorys'));
     }
 
 

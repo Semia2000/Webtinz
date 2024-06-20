@@ -94,7 +94,7 @@
                     </div>
                     @endif
 
-                    <div id="businessector" class="hidden">
+                    <div id="businessector" class="hidden mb-4">
                         <div class="mt-5">
                             <label for="sector" class="form-label labeltitle">Select Business Sector<span class="required">*</span></label>
                             {{-- <div class="row mt-3 mb-5">
@@ -211,18 +211,18 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="row">
+                            <div class="row mt-3">
                                 @php
-                                    $chunks = $productcategorys->chunk(5); // Divise les catégories en groupes de 5
+                                    $chunks = $sectorsbusiness->chunk(5); // Divise les catégories en groupes de 5
                                 @endphp
                                 @foreach ($chunks as $chunk)
                                     <div class="col">
-                                        @foreach ($chunk as $productcategory)
+                                        @foreach ($chunk as $sectorbusiness)
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="{{ $productcategory->name }}"
-                                                    name="productcategory[]" id="{{ $productcategory->name }}">
-                                                <label class="form-check-label" for="{{ $productcategory->name }}">
-                                                    {{ $productcategory->name }}
+                                                <input class="form-check-input" type="checkbox" value="{{ $sectorbusiness->name }}"
+                                                    name="sector" id="{{ $sectorbusiness->name }}" onclick="limitSelection(this)">
+                                                <label class="form-check-label" for="{{ $sectorbusiness->name }}">
+                                                    {{ $sectorbusiness->name }}
                                                 </label>
                                             </div>
                                         @endforeach

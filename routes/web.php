@@ -3,15 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebsiteController;
-use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\CustumdigitalisationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceupgradeController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ComingsoonController;
-
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CancelplanController;
 
 
 
@@ -136,7 +135,7 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     Route::get('/subscriptionuser', [UserController::class, 'subscriptionuser'])->name('subscriptionuser');
 
     // cancel subscription
-    Route::get('/subscription/{subscriptionId}', [UserController::class, 'confirmCancellation'])
+    Route::get('/subscription/{subscriptionId}', [CancelplanController::class, 'confirmCancellation'])
     ->name('confirmCancel');
 });
 
@@ -149,6 +148,9 @@ Route::post('/otpverif.verify', [OtpController::class, 'verify'])->name('otpveri
 Route::get('/successOtp', [OtpController::class, 'successOtp'])->name('successOtp');
 
 
+// country,state and phone number
+Route::get('/api/countries', [CountryController::class, 'countries']);
+Route::get('/api/countries/{countryCode}/states', [CountryController::class, 'states']);
 
 
 // subscription

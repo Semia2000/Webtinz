@@ -102,119 +102,25 @@
                             <div id="businessector">
                                 <div class="form-goup mt-3">
                                     <label for="industrie">Business Sector</label>
-                                    <div class="row ">
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Automotive"
-                                                    name="industrie[]" id="sector_automotive">
-                                                <label class="form-check-label" for="sector_automotive">
-                                                    Automotive
-                                                </label>
+                                    <div class="row mt-3">
+                                        @php
+                                            $chunks = $sectorsbusiness->chunk(5); // Divise les catégories en groupes de 5
+                                        @endphp
+                                        @foreach ($chunks as $chunk)
+                                            <div class="col">
+                                                @foreach ($chunk as $sectorbusiness)
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="{{ $sectorbusiness->name }}" name="industrie[]"
+                                                            id="{{ $sectorbusiness->name }}">
+                                                        <label class="form-check-label"
+                                                            for="{{ $sectorbusiness->name }}">
+                                                            {{ $sectorbusiness->name }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Business Support"
-                                                    name="industrie[]" id="sector_business_support">
-                                                <label class="form-check-label" for="sector_business_support">
-                                                    Business Support
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Computers"
-                                                    name="industrie[]" id="sector_computers">
-                                                <label class="form-check-label" for="sector_computers">
-                                                    Computers
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Entertainment"
-                                                    name="industrie[]" id="sector_entertainment">
-                                                <label class="form-check-label" for="sector_entertainment">
-                                                    Entertainment
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Education"
-                                                    name="industrie[]" id="sector_education">
-                                                <label class="form-check-label" for="sector_education">
-                                                    Education
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Real Estate"
-                                                    name="industrie[]" id="sector_real_estate">
-                                                <label class="form-check-label" for="sector_real_estate">
-                                                    Real Estate
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Travels"
-                                                    name="industrie[]" id="sector_travels">
-                                                <label class="form-check-label" for="sector_travels">
-                                                    Travels
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Others"
-                                                    name="industrie[]" id="sector_others">
-                                                <label class="form-check-label" for="sector_others">
-                                                    Others
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Retail"
-                                                    name="industrie[]" id="sector_retail">
-                                                <label class="form-check-label" for="sector_retail">
-                                                    Retail
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Personal Care"
-                                                    name="industrie[]" id="sector_personal_care">
-                                                <label class="form-check-label" for="sector_personal_care">
-                                                    Personal Care
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Health & Medicine"
-                                                    name="industrie[]" id="sector_health_medicine">
-                                                <label class="form-check-label" for="sector_health_medicine">
-                                                    Health & Medicine
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Home & Garden"
-                                                    name="industrie[]" id="sector_home_garden">
-                                                <label class="form-check-label" for="sector_home_garden">
-                                                    Home & Garden
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="Information Technology" name="industrie[]"
-                                                    id="sector_information_technology">
-                                                <label class="form-check-label" for="sector_information_technology">
-                                                    Information Technology
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Food & Dining"
-                                                    name="industrie[]" id="sector_food_dining">
-                                                <label class="form-check-label" for="sector_food_dining">
-                                                    Food & Dining
-                                                </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" value="Manufacturing"
-                                                    name="industrie[]" id="sector_manufacturing">
-                                                <label class="form-check-label" for="sector_manufacturing">
-                                                    Manufacturing
-                                                </label>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -222,15 +128,15 @@
                                 <label for="thumbnail">Template Thumbnail</label>
                                 <input type="file" name="thumbnail" class="form-control" accept="image/*" required>
                                 @if ($errors->has('thumbnail'))
-                                <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
-                            @endif
+                                    <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
+                                @endif
                             </div>
                             <div class="form-group mt-3">
                                 <label for="zip_file">Template ZIP File</label>
                                 <input type="file" name="zip_file" class="form-control" accept=".zip" required>
                                 @if ($errors->has('zip_file'))
-                                <span class="text-danger">{{ $errors->first('zip_file') }}</span>
-                            @endif
+                                    <span class="text-danger">{{ $errors->first('zip_file') }}</span>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary">Upload Template</button>
                         </form>
