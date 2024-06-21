@@ -192,18 +192,18 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">USER MANAGEMENT</li>
           <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+            <a href="{{ route('usersubscriptionmanage') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                User
+                User Subscription Manage
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+            <a href="{{ route('userlist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-               Admin
+                User Account
               </p>
             </a>
           </li>
@@ -306,7 +306,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-  @yield('js')
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -341,5 +341,6 @@
 {{-- <script src="dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+@yield('js')
 </body>
 </html>

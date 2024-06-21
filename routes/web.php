@@ -14,10 +14,6 @@ use App\Http\Controllers\CancelplanController;
 
 
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -137,6 +133,8 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     // cancel subscription
     Route::get('/subscription/{subscriptionId}', [CancelplanController::class, 'confirmCancellation'])
     ->name('confirmCancel');
+    Route::get('/subscription/{subscriptionId}', [CancelplanController::class, ''])
+    ->name('');
 });
 
 

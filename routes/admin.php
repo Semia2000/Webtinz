@@ -6,6 +6,7 @@ use App\Http\Controllers\SubscriptionplanController;
 use App\Http\Controllers\ProductcategoryController;
 use App\Http\Controllers\TypetemplateController;
 use App\Http\Controllers\SectorbusinessController;
+use App\Http\Controllers\Admin\UsermanageController;
 
 
 
@@ -67,3 +68,11 @@ Route::get('typetemplatelist', [TypetemplateController::class, 'list'])->name('t
 Route::get('typetemplate/{id}/edit', [TypetemplateController::class, 'edit'])->name('typetemplate.edit');
 Route::post('typetemplate/{id}/update', [TypetemplateController::class, 'update'])->name('typetemplate.update');
 
+// Uer Manage
+// User subscription manage
+Route::get('/usersubscriptionmanage', [UsermanageController::class,'UserSubscription'])->name('usersubscriptionmanage');
+
+
+// User account manage
+// activate and desactivate user
+Route::get('/userlist', [UsermanageController::class,'userlist'])->name('userlist');

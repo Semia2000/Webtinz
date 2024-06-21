@@ -40,6 +40,15 @@ class User extends Authenticatable
         return $this->hasOne(Company::class);
     }
 
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+    public function upgrades()
+    {
+        return $this->hasMany(ServiceUpgrade::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
