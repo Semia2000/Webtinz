@@ -15,14 +15,19 @@
                         <div class="card-header">
                             <h3 class="card-title">Account User List</h3>
                         </div>
+
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <th>User Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -32,30 +37,24 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->tel }}</td>
                                             <td>
-                                                @if ($user->status == 1)
-                                                    <button type="button" class="btn btn-block btn-success">Active</button>
-                                                @else
-                                                <button type="button"
-                                                class="btn btn-block btn-danger">Desactivate</button>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning btn-flat">
+                                                <div class="btn-group d-flex justify-content-between w-100">
+                                                    <button type="button" class="btn @if ($user->status == 1) btn-success @else btn-danger  @endif">
                                                         @if ($user->status == 1)
-                                                        Active
-                                                    @else
-                                                        Deactivated
-                                                    @endif
+                                                        Activate
+                                                        @else
+                                                        Deactivate
+                                                        @endif
                                                     </button>
                                                     <button type="button"
-                                                        class="btn btn-warning btn-flat dropdown-toggle dropdown-icon"
+                                                        class="btn @if ($user->status == 1) btn-success @else btn-danger @endif dropdown-toggle dropdown-icon"
                                                         data-toggle="dropdown">
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item" href="#">Activate</a>
-                                                        <a class="dropdown-item" href="#">Desactivate</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('users.activate', ['user' => $user->id]) }}">Activate </a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('users.deactivate', ['user' => $user->id]) }}">Deactivate</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -66,7 +65,6 @@
                                     <th>User Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tfoot>
                             </table>

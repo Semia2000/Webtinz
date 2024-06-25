@@ -41,19 +41,26 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        // Check if the user account is active
+        if ($user->status == 0) {
+            Auth::logout(); // Déconnexion de l'utilisateur
+            return redirect()->route('login')->with('error', 'Your account has been deactivated. Please contact the administrator.');
+        }
+    
         // Check if the user has validated OTP
         if (!$user->is_otp_validate) {
             // Auth::logout();
-            return redirect()->route('otpverif')->with('warning', 'Vous devez vérifier votre code OTP.');
+            return redirect()->route('otpverif')->with('warning', 'You need to check your OTP code.');
         }
-
+    
         // Handle "Remember Me" functionality
         if ($request->has('remember')) {
             $this->guard()->setRememberDuration(1209600); // 14 days
         }
-
+    
         // Redirect to the intended path
         return redirect()->intended($this->redirectPath());
     }
+    
 
 }

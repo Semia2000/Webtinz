@@ -34,6 +34,11 @@
     .brand-link span{
         color: red;
     }
+    .alert-success{
+      color: #3c763d !important; 
+      background-color: #dff0d8 !important;
+      border-color: #d6e9c6 !important;
+    }
   </style>
 
   @yield('links')
@@ -233,7 +238,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('addsectorbusiness') }}" class="nav-link">
+            <a href="{{ route('sectorbusinesslist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Business Sector

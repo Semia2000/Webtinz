@@ -37,16 +37,22 @@
                                             <td>{{ $service->subscription->price }} FCFA</td>
                                             <td>{{ $service->subscription->duration }} Months</td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning btn-flat">Action</button>
-                                                    <button type="button" class="btn btn-warning btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                      <span class="sr-only">Toggle Dropdown</span>
+                                                <div class="btn-group d-flex justify-content-between w-100">
+                                                    <button type="button" class="btn  @if ($service->is_deployed == 1) btn-success @else btn-warning  @endif">
+                                                        @if ($service->is_deployed == 0)
+                                                            Pending deployment
+                                                        @else
+                                                            Deployed
+                                                        @endif
+                                                    </button>
+                                                    <button type="button" class="btn @if ($service->is_deployed == 1) btn-success @else btn-warning @endif dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                      <a class="dropdown-item" href="#">Pending deployement</a>
-                                                      <a class="dropdown-item" href="#">Deployed</a>
+                                                        <a class="dropdown-item" href="{{ route('toggledeployment', ['service_id' => $service->id, 'action' => 'nodeployed']) }}">Pending deployment</a>
+                                                        <a class="dropdown-item" href="{{ route('toggledeployment', ['service_id' => $service->id, 'action' => 'deployed']) }}">Deployed</a>
                                                     </div>
-                                                  </div>
+                                                </div>   
                                             </td>
                                         </tr>
                                     @endforeach

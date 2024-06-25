@@ -39,7 +39,7 @@ class CancelplanController extends Controller
 
         public function paymentcreate(Request $request)
         {
-            return view('Upgrade.process-cancelpay')
+            return view('Upgrade.process-cancelpay');
         }
 
     public function __construct(CurrencyConverterService $currencyConverter)

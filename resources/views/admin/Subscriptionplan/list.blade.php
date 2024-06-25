@@ -85,11 +85,11 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm"  id="confirmDeleteModal" data-plan-id="{{ $subscriptionplan->id }}" onclick="deletePlan()">
-                                        <i class="fas fa-trash">
-                                        </i>
+                                    <a class="btn btn-danger btn-sm delete-plan-btn" data-plan-id="{{ $subscriptionplan->id }}" onclick="deletePlan(this)">
+                                        <i class="fas fa-trash"></i>
                                         Delete
                                     </a>
+                                    
                                 </td>
                             </tr>
                         @endforeach
@@ -104,18 +104,17 @@
     </section>
 @endsection
 @section('js')
-    <!-- JavaScript pour gérer la suppression -->
     <script>
-        function deletePlan() {
-            var planId = document.getElementById('confirmDeleteModal').getAttribute('data-plan-id');
-            if (confirm("Are you sure you want to delete this plan?")) {
+        function deletePlan(element) {
+            var planId = element.getAttribute('data-plan-id');
+            if (confirm("Are you sure you want to delete this plan  ?" )) {
                 // Si l'utilisateur clique sur OK, redirigez vers la route de suppression avec l'identifiant du plan
-                window.location.href = "{{ url('subscription') }}/" + planId ;
+                window.location.href = "{{ url('subscription') }}/" + planId + "/delete";
             } else {
                 // Si l'utilisateur clique sur Annuler, redirigez simplement
-                window.location.href = "{{ route('subscriptionlist') }}";
+                // Ici, vous pouvez choisir de ne rien faire ou de rediriger quelque part d'autre
             }
         }
     </script>
-    
 @endsection
+

@@ -12,15 +12,15 @@
                 <p>Penalty fees apply for all plan cancellations before 18 months</p>
                 <p>The fees that will be applied to your cancellation are:
                     <strong>{{ $penaltyAmount }} XOF</strong></p>
-                    <a href="" class="btn btn-danger">Confirm Cancel</a>
-                    <form  action="{{  }}"
+                    {{-- <a href="" class="btn btn-danger">Confirm Cancel</a> --}}
+                    <form  action=""
                         method="POST">
                         @csrf
-                        <input type="hidden" name="service_id" va
+                        <input type="hidden" name="plan_id" value="{{ $subscription->id }}">
                         <input type="hidden" name="plan_id" id="selected-plan-id">
                         <div class="d-flex liens mb-5">
                             <button type="submit" id="continue-button" class="firstlink"
-                                style="background: #F05940">Pay</button>
+                                style="background: #F05940">Confirm Cancel</button>
                         </div>
                     </form>
             </div>

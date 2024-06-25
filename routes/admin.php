@@ -43,7 +43,7 @@ Route::get('subscriptionlist', [SubscriptionplanController::class, 'listsubscrip
 Route::get('subscription/{id}/view', [SubscriptionplanController::class, 'view'])->name('subscription.view');
 Route::get('subscription/{id}/edit', [SubscriptionplanController::class, 'edit'])->name('subscription.edit');
 Route::post('subscription/{id}/update', [SubscriptionplanController::class, 'update'])->name('subscription.update');
-Route::get('/subscription/{id}', [SubscriptionplanController::class, 'destroy'])->name('subscription.delete');
+Route::get('/subscription/{id}/delete', [SubscriptionplanController::class, 'destroy'])->name('subscription.delete');
 
 // Product Category
 
@@ -71,8 +71,14 @@ Route::post('typetemplate/{id}/update', [TypetemplateController::class, 'update'
 // Uer Manage
 // User subscription manage
 Route::get('/usersubscriptionmanage', [UsermanageController::class,'UserSubscription'])->name('usersubscriptionmanage');
-
+Route::get('/usersubscription/{service_id}/{action}', [UsermanageController::class,'toggleDeployment']) ->name('toggledeployment')
+->where('action', 'deployed|nodeployed');
 
 // User account manage
 // activate and desactivate user
 Route::get('/userlist', [UsermanageController::class,'userlist'])->name('userlist');
+Route::get('/users/{user}/activate', [UsermanageController::class,'activate'])->name('users.activate');
+Route::get('/users/{user}/deactivate', [UsermanageController::class,'deactivate'])->name('users.deactivate');
+
+// User purchase history
+Route::get('/userpurchasehistory', [UsermanageController::class,'userpurchasehistory'])->name('userpurchasehistory');

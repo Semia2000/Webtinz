@@ -17,9 +17,9 @@ class UserController extends Controller
     public function showcontactinfo(Request $request, $service_id)
     {
         $service = Service::findOrFail($service_id);
-        $sectorsbusiness = Sectorbusiness::orderBy('name','asc')->get();
+        $sectorsbusiness = Sectorbusiness::orderBy('name', 'asc')->get();
 
-        return view('front_include.contactinfo', ['service' => $service , 'sectorsbusiness'=>$sectorsbusiness]);
+        return view('front_include.contactinfo', ['service' => $service, 'sectorsbusiness' => $sectorsbusiness]);
     }
     public function storeContactInfo(Request $request)
     {
@@ -122,7 +122,50 @@ class UserController extends Controller
         return view('dashboarduser.subscription', compact('user', 'services', 'subscriptionsByServiceType'));
     }
 
+    // Current plan subscription
+    public function currentPlan()
+    {
+        $user = Auth::user();
+        $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
 
+        return view('dashboarduser.subscription.currentplan', compact('user', 'services'));
+    }
+
+    // New plan subscription for upgrades
+
+    public function newupgradePlan()
+    {
+        $user = Auth::user();
+        $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
+    
+        // Filtrage des plans d'abonnement par type de service et ajout des upgrades
+        $subscriptionsByServiceType = [];
+        foreach ($services as $service) {
+            // Récupérer le plan actif du service s'il existe
+            $currentSubscription = $service->subscription;
+    
+            // Récupérer tous les plans d'abonnement pour ce type de service
+            $subscriptionPlans = Subscriptionplan::where('typeservice', $service->service_type)->get();
+    
+            // Récupérer les upgrades pour ce service
+            $upgradePlans = ServiceUpgrade::where('service_id', $service->id)->get();
+    
+            // Exclure le plan actif s'il existe des plans d'abonnement
+            $filteredSubscriptionPlans = $subscriptionPlans->reject(function ($plan) use ($currentSubscription) {
+                return $currentSubscription && $plan->id === $currentSubscription->id;
+            });
+    
+            // Ajouter les données filtrées au tableau
+            $subscriptionsByServiceType[$service->id] = [
+                'current' => $currentSubscription,
+                'upgrades' => $upgradePlans,
+                'plans' => $filteredSubscriptionPlans,
+            ];
+        }
+    
+        return view('dashboarduser.subscription.newplan', compact('user', 'services', 'subscriptionsByServiceType'));
+    }
+    
 
 
 }

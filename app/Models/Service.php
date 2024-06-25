@@ -23,7 +23,8 @@ class Service extends Model
         'start_date',
         'end_date',
         'statusplan',
-        'is_pay_done'
+        'is_pay_done',
+        'is_deployed'
         
     ];
 

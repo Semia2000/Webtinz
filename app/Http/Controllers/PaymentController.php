@@ -100,11 +100,6 @@ class PaymentController extends Controller
                 $payment->save();
                 $service = Service::findOrFail($service_id);
 
-                // remplir la table subscription
-                $service->start_date = now();
-                // Calcule la date de fin en fonction de la durée du plan sélectionné
-                $plan = Subscriptionplan::findOrFail($plan_id);
-                $service->end_date = now()->addMonths($plan->duration);
                 $service->is_pay_done = true;
 
                 $service->save();
@@ -171,11 +166,6 @@ class PaymentController extends Controller
                 'status' => $status
             ]);
 
-            // remplir la table subscription
-            $service->start_date = now();
-            // Calcule la date de fin en fonction de la durée du plan sélectionné
-            $plan = Subscriptionplan::find($request->input('plan_id'));
-            $service->end_date = now()->addMonths($plan->duration);
             $service->is_pay_done = true;
 
             return view('front_include.paysuccessful', compact('service'));
@@ -225,11 +215,7 @@ class PaymentController extends Controller
                 'status' => $status
             ]);
 
-            // Upgrade
-            $serviceupgrade->start_date = now();
-            // Calcule la date de fin en fonction de la durée du plan sélectionné
-            $plan = Subscriptionplan::find($request->input('plan_id'));
-            $serviceupgrade->end_date = now()->addMonths($plan->duration);
+
             $serviceupgrade->is_pay_done = true;
 
             return view('Upgrade.paysucessful', compact('serviceupgrade'));

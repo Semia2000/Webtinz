@@ -7,7 +7,7 @@
     <title>Webtinz| Dashboard</title>
 
     <!-- Font Awesome -->
-<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
@@ -48,14 +48,16 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Hi! <span style="color: #F05940">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span></a>
+                    <a href="index3.html" class="nav-link">Hi! <span
+                            style="color: #F05940">{{ Auth::user()->firstname }}
+                            {{ Auth::user()->lastname }}</span></a>
                 </li>
             </ul>
 
 
             <div class="input-group position-relative mx-auto" style="width: 50%; background:#F8F8F8">
                 <input type="search" class="form-control" placeholder="Search" aria-label="Search"
-                    aria-describedby="search-addon" style="border-radius: 5px"/>
+                    aria-describedby="search-addon" style="border-radius: 5px" />
                 <i class="bi bi-search position-absolute top-50 end-0 me-2 translate-middle-y"
                     style="pointer-events: none;"></i>
             </div>
@@ -129,7 +131,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link {{ Request::is('subscriptionuser') ? 'active' : '' }}"
                                 href="{{ route('subscriptionuser') }}">
                                 <i class="nav-icon far fa-image"></i>
@@ -137,6 +139,31 @@
                                     Subscriptions
                                 </p>
                             </a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Subscription
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Request::is('currentuserPlan') ? 'active' : '' }}"
+                                    href="{{ route('currentuserPlan') }}">
+                                        <i class="nav-icon fas fa-edit ms-3"></i>
+                                        <p>Current Plan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Request::is('newuserPlan') ? 'active' : '' }}"
+                                    href="{{ route('newuserPlan') }}">
+                                        <i class="nav-icon fas fa-edit nav-icon ms-3"></i>
+                                        <p>New Plan</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  {{ Request::is('viewtemplates') ? 'active' : '' }}"
@@ -190,21 +217,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}"
-                                    href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                            <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}"
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    <i class="nav-icon far fa-image"></i>
-                                    <p>
-                                        {{ __('Logout') }}
-                                    </p>
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    {{ __('Logout') }}
+                                </p>
 
-                                </a>
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                             {{-- <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}"
                                 href="{{ route('logout') }}">
                                 <i class="nav-icon far fa-image"></i>

@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group mt-3" id="price" class="hidden">
                                 <label for="price">Template Price</label>
-                                <input type="number" id="price" name="price" value="  {{ $template->price }}"
+                                <input type="number" id="price" name="price" value="{{ $template->price }}"
                                     class="form-control">
                             </div>
                             <div class="form-group mt-3">

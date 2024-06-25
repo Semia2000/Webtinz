@@ -14,9 +14,21 @@
         <div class="row row-cols-1 row-cols-md-2">
 
             <div class="col signuptext" style="background-color: white;">
-                <div class="p-4">
+
+                <div class="p-2">
                     <h2>{{ __('Login') }}</h2>
                     <p>Continue to Webtinz</p>
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

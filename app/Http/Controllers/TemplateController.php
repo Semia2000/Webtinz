@@ -82,8 +82,8 @@ class TemplateController extends Controller
         $typetemplates = TypeTemplate::orderBy('name', 'asc')->get();
         $productcategorys = ProductCategory::orderBy('name', 'asc')->get();
         $sectorsbusiness = Sectorbusiness::orderBy('name','asc')->get();
-
-        return view('admin.template.update', compact('template', 'sectorsbusiness', 'typetemplates', 'productcategorys'));
+        $selectedCategories = ProductCategory::all();
+        return view('admin.template.update', compact('template', 'sectorsbusiness', 'typetemplates', 'productcategorys',));
     }
 
 

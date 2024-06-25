@@ -111,7 +111,9 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     Route::get('/showallUpgradeTemplate/{id}', [ServiceupgradeController::class, 'showallUpgradeTemplate'])->name('showallUpgradeTemplate');
     Route::post('/saveTemplateUpgrade/{id}', [ServiceupgradeController::class, 'saveTemplateUpgrade'])->name('saveTemplateUpgrade');
     Route::post('/processMobileMoneyPaymentForupgrade', [PaymentController::class, 'processMobileMoneyPaymentForupgrade'])->name('processMobileMoneyPaymentForupgrade');
+
     // subscription upgrade
+
     Route::get('/viewUpgradesubscription/{id}', [ServiceupgradeController::class, 'viewUpgradesubscription'])->name('viewUpgradesubscription');
     Route::post('/saveUpgradeplanSelection/{id}', [ServiceupgradeController::class, 'saveUpgradeplanSelection'])->name('saveUpgradeplanSelection');
     Route::get('/upgrade-summary', [ServiceupgradeController::class, 'showUpgradeSummary'])->name('showUpgradeSummary');
@@ -128,13 +130,13 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
 
     // user dashboard
     Route::get('/viewtemplates', [UserController::class, 'viewtemplates'])->name('viewtemplates');
-    Route::get('/subscriptionuser', [UserController::class, 'subscriptionuser'])->name('subscriptionuser');
+    Route::get('/currentuserPlan', [UserController::class, 'currentPlan'])->name('currentuserPlan');
+    Route::get('/newuserPlan', [UserController::class, 'newupgradePlan'])->name('newuserPlan');
 
     // cancel subscription
     Route::get('/subscription/{subscriptionId}', [CancelplanController::class, 'confirmCancellation'])
     ->name('confirmCancel');
-    Route::get('/subscription/{subscriptionId}', [CancelplanController::class, ''])
-    ->name('');
+
 });
 
 

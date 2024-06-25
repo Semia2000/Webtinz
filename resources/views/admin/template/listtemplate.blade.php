@@ -55,11 +55,11 @@
                                 </td>
                                 <td>
                                     @if ($template->typeservice == 'ecom')
-                                    {{ Str::limit($template->productcategory, 30, '...') }}
+                                        {{ Str::limit($template->productcategory, 30, '...') }}
                                     @else
-                                    {{ Str::limit($template->industrie, 30, '...') }}
+                                        {{ Str::limit($template->industrie, 30, '...') }}
                                     @endif
-                                    
+
                                 </td>
                                 <td>
                                     <span class="badge badge-success">{{ $template->access_level }}</span>
@@ -79,17 +79,15 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" id="confirmDelete" data-template-id="{{ $template->id }}" onclick="deletetemplate()">
-                                        <i class="fas fa-trash">
-                                        </i>
+
+                                    <a class="btn btn-danger btn-sm delete-plan-btn" data-template-id="{{ $template->id }}"
+                                        onclick="deletetemplate(this)">
+                                        <i class="fas fa-trash"></i>
                                         Delete
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
-
-
-
                     </tbody>
                 </table>
             </div>
@@ -100,15 +98,15 @@
     </section>
 @endsection
 @section('js')
-        <!-- JavaScript pour gérer la suppression -->
-        <script>
-            function deletetemplate() {
-                var templateId = document.getElementById('confirmDelete').getAttribute('data-template-id');
-                if (confirm("Are you sure you want to delete this template?")) {
-                    window.location.href = "{{ url('templates') }}/" + templateId ;
-                } else {
-                    window.location.href = "{{ route('templateslist') }}";
-                }
+    <!-- JavaScript pour gérer la suppression -->
+    <script>
+        function deletetemplate(element) {
+            var templateId = element.getAttribute('data-template-id');
+            if (confirm("Are you sure you want to delete this template?")) {
+                window.location.href = "{{ url('templates') }}/" + templateId;
+            } else {
+                window.location.href = "{{ route('templateslist') }}";
             }
-        </script>
+        }
+    </script>
 @endsection
