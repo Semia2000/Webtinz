@@ -13,46 +13,33 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">User Subscriptions</h3>
+                            <h3 class="card-title">Account User List</h3>
                         </div>
+
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <th>User Name</th>
                                     <th>Company Name</th>
-                                    <th>Type Service</th>
-                                    <th>Plan</th>
-                                    <th>Price</th>
-                                    <th>Duration</th>
-                                    <th>status</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>History</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($services as $service)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $service->user->firstname }} {{ $service->user->lastname }}</td>
-                                            <td>{{ optional($service->user->company)->name }}</td>
-                                            <td>{{ $service->service_type }}</td>
-                                            <td>{{ $service->subscription->name }}</td>
-                                            <td>{{ $service->subscription->price }} FCFA</td>
-                                            <td>{{ $service->subscription->duration }} Months</td>
+                                            <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+                                            <td>{{ $user->company->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->tel }}</td>
                                             <td>
-                                                <div class="btn-group d-flex justify-content-between w-100">
-                                                    <button type="button" class="btn  @if ($service->is_deployed == 1) btn-success @else btn-warning  @endif">
-                                                        @if ($service->is_deployed == 0)
-                                                            Pending deployment
-                                                        @else
-                                                            Deployed
-                                                        @endif
-                                                    </button>
-                                                    <button type="button" class="btn @if ($service->is_deployed == 1) btn-success @else btn-warning @endif dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item" href="{{ route('toggledeployment', ['service_id' => $service->id, 'action' => 'nodeployed']) }}">Pending deployment</a>
-                                                        <a class="dropdown-item" href="{{ route('toggledeployment', ['service_id' => $service->id, 'action' => 'deployed']) }}">Deployed</a>
-                                                    </div>
-                                                </div>   
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -60,11 +47,9 @@
                                 <tfoot>
                                     <th>User Name</th>
                                     <th>Company Name</th>
-                                    <th>Type Service</th>
-                                    <th>Plan</th>
-                                    <th>Price</th>
-                                    <th>Duration</th>
-                                    <th>status</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>History</th>
                                 </tfoot>
                             </table>
                         </div>

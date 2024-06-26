@@ -35,6 +35,10 @@ Route::get('/comingsoon', function () {
     return view('comingsoon');
 })->name('comingsoon');
 
+Route::get('/langue', function () {
+    return view('langue');
+})->name('langue');
+
 Route::get('payement', function () {
     return view('front_include.payement');
 })->name('payement');

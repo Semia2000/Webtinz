@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductcategoryController;
 use App\Http\Controllers\TypetemplateController;
 use App\Http\Controllers\SectorbusinessController;
 use App\Http\Controllers\Admin\UsermanageController;
+use App\Http\Controllers\Admin\AdminController;
 
 
 
@@ -82,3 +83,7 @@ Route::get('/users/{user}/deactivate', [UsermanageController::class,'deactivate'
 
 // User purchase history
 Route::get('/userpurchasehistory', [UsermanageController::class,'userpurchasehistory'])->name('userpurchasehistory');
+
+// sendnewsletter
+Route::get('/send-email', [AdminController::class,  'shownewsletterForm'])->name('send.email.form');
+Route::post('/send-email', [AdminController::class, 'sendnewsletter'])->name('send.email');

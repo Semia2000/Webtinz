@@ -212,6 +212,22 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('send.email.form') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                News Letter
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('userpurchasehistory') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                User Purchase History
+              </p>
+            </a>
+          </li>
           <li class="nav-header">CONTENT MANAGEMENT </li>
           <li class="nav-item">
             <a href="{{ route('typetemplatelist') }}" class="nav-link">
@@ -221,6 +237,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item">
             <a href="{{ route('templateslist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>

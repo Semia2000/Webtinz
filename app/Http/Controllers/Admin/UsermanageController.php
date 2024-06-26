@@ -14,7 +14,7 @@ class UsermanageController extends Controller
     //Manage subscription
     // confirm whether the site is deployed or not
     public function UserSubscription(){
-        $services = Service::with(['template', 'subscription','user'])->get();
+        $services = Service::with(['template', 'subscription','user.company'])->get();
 
         return view('admin.UserManage.subscriptionmanage', compact('services'));
     }
@@ -62,8 +62,8 @@ class UsermanageController extends Controller
     // user purchase history
     public function userpurchasehistory()
     {
-        $services = Service::with(['template', 'subscription','user'])->get();
-
-        return view('admin.UserManage.subscriptionmanage', compact('services'));
+        $users = User::all();
+        $services = Service::with(['template', 'subscription','user.company'])->get();
+        return view('admin.UserManage.userpurchasehistory', compact('services','users'));
     }
 }
