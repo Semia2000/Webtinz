@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('access_level');
-            $table->string('typeservice');
-            $table->string('createby');
+            $table->string('name',191);
+            $table->string('description',191);
+            $table->string('access_level',191);
+            $table->string('typeservice',191);
+            $table->string('createby',191);
             $table->integer('price')->nullable();
-            $table->string('typetemplate');
-            $table->string('productcategory')->nullable();
-            $table->string('commerce_mode')->nullable();  // if it is multiple or single for ecom
-            $table->string('industrie')->nullable();
-            $table->string('thumbnail'); // For the template preview image
-            $table->string('zip_file'); // For the template zip file
+            $table->string('typetemplate',191);
+            $table->string('productcategory',191)->nullable();
+            $table->string('commerce_mode',191)->nullable();  // if it is multiple or single for ecom
+            $table->string('industrie',191)->nullable();
+            $table->string('thumbnail',191); // For the template preview image
+            $table->string('zip_file',191); // For the template zip file
             $table->timestamps();
         });
     }

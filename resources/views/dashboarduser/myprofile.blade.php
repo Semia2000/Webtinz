@@ -85,6 +85,72 @@
                         </div>
                     </div>
 
+
+                    {{-- Divion for Personals information  --}}
+                        <hr>
+                    <div class="row mb-2">
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="firstname">First name<span class="required">*</span></label>
+                                <div class="input-group position-relative">
+                                    <input id="firstname" type="firstname" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $company->user->firstname }}" required autocomplete="firstname" placeholder="firstname">
+                                    <i class="bi bi-person-circle position-absolute top-50 end-0  me-2 translate-middle-y"
+                                        style="pointer-events: none;"></i>
+                                        @error('firstname')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <label for="lastname">Last name<span class="required">*</span></label>
+                                <div class="input-group position-relative">
+                                    <input id="lastname" type="lastname" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $company->user->lastname }}" required autocomplete="lastname" placeholder="lastname">
+                                    <i class="bi bi-person-circle position-absolute top-50 end-0  me-2 translate-middle-y"
+                                        style="pointer-events: none;"></i>
+                                        @error('lastname')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="pemail">Personal email<span class="required">*</span></label>
+                                <div class="input-group position-relative">
+                                    <input id="pemail" type="email" class="form-control @error('pemail') is-invalid @enderror" name="pemail" value="{{ $company->user->email }}" required autocomplete="pemail" placeholder="pemail" readonly>
+                                    <i class="bi bi-envelope position-absolute top-50 end-0  me-2 translate-middle-y"
+                                        style="pointer-events: none;"></i>
+                                        @error('pemail')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="col">
+                                <label for="ptel">Phone No<span class="required">*</span></label>
+                                <div class="input-group position-relative">
+                                    <input id="ptel" type="ptel" class="form-control @error('ptel') is-invalid @enderror" name="ptel" value="{{ $company->user->tel }}" required autocomplete="ptel" placeholder="ptel">
+                                    <i class="bi  bi-ptelephone position-absolute top-50 end-0  me-2 translate-middle-y"
+                                        style="pointer-events: none;"></i>
+                                        @error('ptel')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="row mt-3 mb-4">
                             <div class="col">

@@ -129,10 +129,31 @@ class UserController extends Controller
             'state' => 'string | required',
         ]);
 
+        // firstname lastname pemail ptel
+        $personalData = $request->validate([
+            'firstname' => 'string | required',
+            'lastname' => 'string | required',
+            'pemail' => 'email | required',
+            'ptel' => 'required |string',
+        ]);
 
+        // Personal information 
+        $firstname = $request->input('firstname');
+        $pemail = $request->input('pemail');
+        $ptel = $request->input('ptel');
+        $lastname = $request->input('lastname');
+
+        // Mettre à jour les données de l'utilisateur
+        $userUpdate = User::where("id", $user->id)->first();
+        $userUpdate->update([
+            'firstname' => $firstname,
+            'email' => $pemail,
+            'tel' => $ptel,
+            'lastname' => $lastname
+        ]);
 
         if ($request->password != "") {
-            $userUpdate = User::where("id", $user->id)->first();
+            // $userUpdate = User::where("id", $user->id)->first();
             $oldPass = $user->password;
             $oldPassInput = $request->Oldpassword;
             $newPassInput = $request->password;
@@ -170,11 +191,9 @@ class UserController extends Controller
         if ($company->update($companyData)) {
 
             return back()->with("Sucess", "Update Successfuly");
-
         } else {
 
             return back()->with("Error", "Error message");
-            
         }
     }
 }

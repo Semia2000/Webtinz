@@ -40,8 +40,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -181,7 +179,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ittiq ittiq</a>
+          <a href="#" class="d-block">{{ Auth::user()->firstname ." ". Auth::user()->lastname }}</a>
         </div>
       </div>
 
@@ -190,97 +188,103 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">USER MANAGEMENT</li>
+          @if ($master_admin)
+            {{-- <li class="nav-header">USER MANAGEMENT</li>
+            <li class="nav-item">
+              <a href="{{ route('subscriptionlist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Users subscription list
+                </p>
+              </a>
+            </li> --}}
+          @endif
           <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+            <a href="{{ route('staffmanage') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                User
+                Staff Management
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
+
+          @if ($master_admin)
+            <li class="nav-item">
+              <a href="{{ route('subscriptionlist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                Admin
+                </p>
+              </a>
+            </li>
+          @endif
+
+          @if ($master_admin)
+            <li class="nav-header">CONTENT MANAGEMENT </li>
+            <li class="nav-item">
+              <a href="{{ route('typetemplatelist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Type Template
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('templateslist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Template
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('productcategorylist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Product Category
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('templateslist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Business Sector
+                </p>
+              </a>
+            </li>
+            <li class="nav-header">SUBSCRIPTION MANAGEMENT</li>
+            <li class="nav-item">
+              <a href="{{ route('subscriptionlist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  Subscription
+                </p>
+              </a>
+            </li>
+            <li class="nav-header">EARNING MANAGEMENT </li>
+            
+            <li class="nav-item">
+              <a href="{{ route('subscriptionlist') }}" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                  User Earning
+                </p>
+              </a>
+            </li>
+          @endif
+          <li class="nav-item mb-5">
+            <a href="{{ route('logout') }}" class="nav-link"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon far fa-image"></i>
               <p>
-               Admin
+                Logout
               </p>
             </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                class="d-none">
+                @csrf
+            </form>            
           </li>
-          <li class="nav-header">CONTENT MANAGEMENT </li>
-          <li class="nav-item">
-            <a href="{{ route('typetemplatelist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Type Template
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('templateslist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Template
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('productcategorylist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Product Category
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('templateslist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Business Sector
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">SUBSCRIPTION MANAGEMENT</li>
-          <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Subscription
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">EARNING MANAGEMENT </li>
-          <li class="nav-item">
-            <a href="{{ route('subscriptionlist') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                User Earning
-              </p>
-            </a>
-          </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
-              <p>
-                Search
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/search/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Search</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enhanced</p>
-                </a>
-              </li>
-            </ul>
-          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

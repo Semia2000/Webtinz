@@ -9,4 +9,4 @@
             <iframe src="{{ asset('storage/templates/' . $template->zip_file) }}" width="100%" height="600px"></iframe>
         </div>
     </section>
-@endsection
+@endsection 
