@@ -207,7 +207,6 @@
               </p>
             </a>
           </li>
-
           @if ($master_admin)
             <li class="nav-item">
               <a href="{{ route('subscriptionlist') }}" class="nav-link">
@@ -293,6 +292,8 @@
   </aside>
 
   <div class="content-wrapper mt-5">
+    
+    <a onclick="goBack()" class="btn btn-default mx-2 my-1">Go Back</a>
 
     @yield('content')
 
@@ -345,5 +346,13 @@
 {{-- <script src="dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
+{{-- Script Go back --}}
+  <script>
+    function goBack() {
+        window.history.back();
+    }
+  </script>
+{{-- End Script Go back --}}
 </body>
 </html>

@@ -40,6 +40,9 @@
                                 Email
                             </th>
                             <th>
+                                Status
+                            </th>
+                            <th>
                                 Actions
                             </th>
                         </tr>
@@ -63,17 +66,26 @@
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-sm"
-                                        href="{{ route('addstafmem.edit', $user->id) }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm"  id="confirmDeleteModal" data-plan-id="{{ $user->id }}" onclick="deletePlan()">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
+                                    {{ $user->status ==1 ? 'Active' : 'Disable' }}
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <a class="btn btn-info btn-sm mx-1"
+                                            href="{{ route('addstafmem.edit', $user->id) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('addstafmem.updatestatus', $user->id) }}" method="POST" class=" mx-1">
+                                            @csrf
+                                            <input type="number" name="status" id="status" hidden value="{{ $user->status!=1 ? '1' : '0' }}">
+                                            <button type="submit" class="btn {{ $user->status ==1 ? 'btn-danger' : 'btn-success' }}  btn-sm"  id="confirmDeleteModal" data-plan-id="{{ $user->status }}">
+                                                <i class="fas {{ $user->status ==1 ? 'fa-trash' : 'fa-check' }} ">
+                                                </i>
+                                                {{ $user->status ==1 ? 'Disabled' : 'Active' }}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -87,19 +99,5 @@
         </div>
     </section>
 @endsection
-@section('js')
-    <!-- JavaScript pour gérer la suppression -->
-    <script>
-        function deletePlan() {
-            var planId = document.getElementById('confirmDeleteModal').getAttribute('data-plan-id');
-            if (confirm("Are you sure you want to delete this plan?")) {
-                // Si l'utilisateur clique sur OK, redirigez vers la route de suppression avec l'identifiant du plan
-                window.location.href = "{{ url('addstafmem') }}/" + planId ;
-            } else {
-                // Si l'utilisateur clique sur Annuler, redirigez simplement
-                window.location.href = "{{ route('addstafmem') }}";
-            }
-        }
-    </script>
-    
+@section('js')    
 @endsection

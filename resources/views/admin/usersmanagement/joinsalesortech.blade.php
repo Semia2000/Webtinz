@@ -3,7 +3,11 @@
 @endsection
 @section('content')
     <section class="content">
-
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -27,7 +31,7 @@
                                 Custommer
                             </td>
                             <td>
-                                {{ $serviceShow->user->firstname ." ". $serviceShow->user->lastname }}
+                                {{ $serviceShow->user->firstname . ' ' . $serviceShow->user->lastname }}
                             </td>
 
                         </tr>
@@ -54,52 +58,59 @@
                                 Pay Satus
                             </td>
                             <td>
-                                {{ $serviceShow->is_pay_done != 0 ? "Done" : "Pending" }}
+                                {{ $serviceShow->is_pay_done != 0 ? 'Done' : 'Pending' }}
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>
-                                Sales Rep
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    <div class="row">    
-                                        <div class="col-lg">
-                                            @foreach ($salesManagers  as $salesManager )
+                        @if ($master_admin)
+                            <tr>
+                                <td>
+                                    Sales Rep
+                                </td>
+                                <td>
+                                    <form action="{{ route('joinsales.join', $serviceShow->id) }}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg">
                                                 <select name="sales_id" id="sales_id" class="form-control custom-select  ">
-                                                    <option value="{{ $salesManager->id }}">{{ $salesManager->firstname }}</option>
-                                                </select>                                    
-                                            @endforeach 
+                                                    @foreach ($salesManagers as $salesManager)
+                                                        <option value="{{ $salesManager->id }}"
+                                                            {{ $serviceShow->sales_id == $salesManager->id ? 'selected' : '' }}>
+                                                            {{ $salesManager->firstname }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
-                                        <button class="btn btn-primary">Save</button>
-                                    </div>
-                                </form> 
-                            </td>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
 
-                        </tr>
-                        <tr>
-                            <td>
-                                Tech Manager
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    @csrf
-                                    <div class="row">    
-                                        <div class="col-lg">
-                                            @foreach ($techManagers  as $techManager )
-                                                <select name="sales_id" id="sales_id" class="form-control custom-select  ">
-                                                    <option value="{{ $techManager->id }}">{{ $techManager->firstname }}</option>
-                                                </select>                                    
-                                            @endforeach 
+                        @if ($sale_manager)
+                            <tr>
+                                <td>
+                                    Tech Manager
+                                </td>
+                                <td>
+                                    <form action="{{ route('jointech.join', $serviceShow->id) }}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg">
+                                                <select name="tech_id" id="tech_id" class="form-control custom-select  ">
+                                                    @foreach ($techManagers as $techManager)
+                                                        <option value="{{ $techManager->id }}"
+                                                            {{ $serviceShow->tech_id == $techManager->id ? 'selected' : '' }}>
+                                                            {{ $techManager->firstname }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
-                                        <button class="btn btn-primary">Save</button>
-                                    </div>
-                                </form>    
-                            </td>
-
-                        </tr>
-
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

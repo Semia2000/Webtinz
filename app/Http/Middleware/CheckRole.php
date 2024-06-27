@@ -38,7 +38,13 @@ class CheckRole
         */
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect('login');
+            if (request()->is('backoffice')) {
+                // Rediriger vers la page de connexion admin
+                return redirect()->route('adminlogin'); 
+            } else {
+
+                return redirect('login');
+            }
         }
 
         // Get the authenticated user
@@ -52,6 +58,8 @@ class CheckRole
         //Check role
         $userAuth = User::find($user->id);
         $master_admin = $admin_user = $sale_manager = $technical_manager = false;
+
+        // Check if user has one of the required roles
         if ($user) {
             if ($userAuth->hasRole('master_admin')) {
 

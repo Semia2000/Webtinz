@@ -9,13 +9,13 @@
             <div class="card-header">
                 <h3 class="card-title">Subscription plans</h3>
 
-                <div class="card-tools">
-                    <a class="btn btn-primary btn-sm" href="{{-- route('') --}}">
+                {{-- <div class="card-tools">
+                    <a class="btn btn-primary btn-sm" href="">
                         <i class="fas fa-plus">
                         </i>
                         Add plans
                     </a>
-                </div>
+                </div> --}}
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
@@ -116,18 +116,33 @@
                                 Subscription
                             </td>
                             <td>
-                                {{ $serviceShow->subscription_id }}
+                                {{ $serviceShow->subscription->name }}
                             </td>
 
+                        </tr>
+                        <tr>
+                            <td>
+                                Sales Rep
+                            </td>
+                            <td>
+                                {{ $serviceShow->sales->firstname ." ". $serviceShow->sales->lastname }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tech Manager
+                            </td>
+                            <td>
+                                {{ $serviceShow->tech->firstname ." ". $serviceShow->tech->lastname }}
+                            </td>
                         </tr>
                         <tr>
                             <td>
                                 Pay Satus
                             </td>
                             <td>
-                                
+                                {{ $serviceShow->is_pay_done == 0 ? "No" : "Yes" }}
                             </td>
-
                         </tr>
                         <tr>
                             <td>

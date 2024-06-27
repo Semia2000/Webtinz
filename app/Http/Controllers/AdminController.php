@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+
+    public function adminLogin(){
+        return view('admin.adminlogin');
+    }
+
+
     public function index(){
         return  view('admin.usersmanagement.index');
     }
@@ -131,12 +137,26 @@ class AdminController extends Controller
             'right' => 'required',
             /*'right.*' => 'integer'*/
         ]);
-
+        // dd($userUpdate->update($fields));
         $userUpdate->update($fields);
 
         return back()->with('success', 'User created successfully.');
     }
 
+    public function updateStatus(Request $request, $id){
+
+        $user = User::findOrFail($id);
+
+        $userUpdate = User::where("id", $user->id)->first();
+ 
+        $fields = $request->validate([
+            'status' =>'required|integer',
+        ]);
+       // dd($fields);
+        $userUpdate->update($fields);
+
+        return back()->with('success', 'User status has been changed.');
+    }
     public function listservices(){
 
         $servicesList = Service::all();
@@ -159,14 +179,25 @@ class AdminController extends Controller
         return view("admin.usersmanagement.joinsalesortech", compact("serviceShow","salesManagers","techManagers", ));
     }
 
-    public function addSales($isales){
+    public function joinSales(Request $request, $idproj){
+        $idSales = $request->validate([
+            'sales_id' =>'required|integer',
+        ]);
+        $service = Service::where('id', '=', $idproj);
+
+        $service->update($idSales);
 
         return back()->with("success","Sales has be join to the project");
     }
 
 
-    public function addTech($idtech){
+    public function jointech(Request $request, $idproj){
+        $idTech = $request->validate([
+            'tech_id' =>'required|integer',
+        ]);
+        $service = Service::where('id', '=', $idproj);
 
+        $service->update($idTech);
         
         return back()->with("success","Tech has be join to the project");
     }

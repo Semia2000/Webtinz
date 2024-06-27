@@ -9,20 +9,33 @@ use App\Http\Controllers\TypetemplateController;
 
 
 
+use Illuminate\Support\Facades\Auth;
 
 // Admin routes 
 
-Route::middleware(['auth','logout.inactive', 'check.otp' , 'role:master_admin,admin_manager,sale_manager'])->group(function () {
 
-    Route::get('/backoffice', function () {
-        return view('admin.dashboard');
+    Route::middleware(['logout.inactive', 'check.otp' , 'role:master_admin,admin_manager,sale_manager,technical_manager'])->get('/backoffice', function () {
+        if (!Auth::check()) {
+            // Redirection vers la page de connexion admin si l'utilisateur n'est pas authentifié
+            return redirect()->route('adminlogin');
+        }else{
+            return view('admin.dashboard');
+        }
     })->name('backoffice');
+
+
+Route::get('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin');
+
+Route::middleware(['auth','logout.inactive', 'check.otp' , 'role:master_admin,admin_manager,sale_manager,technical_manager'])->group(function () {
+
 
     // services management
     Route::get('/serviceslist', [AdminController::class, 'listservices'])->name('serviceslist');
     Route::get('/serviceslist/{id}/view', [AdminController::class, 'show'])->name('serviceslist.show');
     // join sales or tech
     Route::get('/joinsalesortech/{id}/join', [AdminController::class, 'joinSalesOrTech'])->name('joinsalesortech.join');
+    Route::post('/joinsales/{id}/join', [AdminController::class, 'joinSales'])->name('joinsales.join');
+    Route::post('/jointech/{id}/join', [AdminController::class, 'jointech'])->name('jointech.join');
     
 
 });
@@ -69,9 +82,9 @@ Route::middleware(['auth','logout.inactive', 'check.otp', 'role:master_admin'])-
 });
 
 // Sale Manager routes
-Route::middleware(['auth','logout.inactive', 'check.otp' , 'role:master_admin,sale_manager'])->group(function () {
+Route::middleware(['auth','logout.inactive', 'check.otp' , 'role:master_admin,sale_manager,technical_manager'])->group(function () {
 
-    //User Management addstafmem addstafmem.edit
+    //User Management addstafmem 
 
     Route::get('/staffmanage', [AdminController::class, 'index'])->name('staffmanage');
     Route::get('viewstaffmanage', [AdminController::class, 'list'])->name('viewstaffmanage');
@@ -79,6 +92,7 @@ Route::middleware(['auth','logout.inactive', 'check.otp' , 'role:master_admin,sa
     Route::post('/addstafmem', [AdminController::class, 'store'])->name('addstafmem.store');
     Route::get('/addstafmem/{id}/edit', [AdminController::class, 'edit'])->name('addstafmem.edit');
     Route::post('/addstafmem/{id}/update', [AdminController::class, 'update'])->name('addstafmem.update');
+    Route::post('/addstafmem/{id}/updatestatus', [AdminController::class, 'updateStatus'])->name('addstafmem.updatestatus');
 
 });
 

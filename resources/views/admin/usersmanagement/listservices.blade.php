@@ -74,7 +74,7 @@
                                             href="{{ route('joinsalesortech.join', $listItem->id) }}">
                                             <i class="fas fa-plus">
                                             </i>
-                                            Join Sales/Tech manager
+                                            Sales/Tech manager
                                         </a>
                                         <a class="btn btn-danger btn-sm"  id="confirmDeleteModal" data-plan-id="{{ $listItem->id }}">
                                             <i class="fas fa-trash">

@@ -26,9 +26,12 @@ class User extends Authenticatable
         'lastname',
         'tel',
         'is_otp_validate',
-        'right'
+        'right',
+        'status'
         
     ];
+
+   
 
     public function role(){
 
