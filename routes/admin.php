@@ -83,6 +83,9 @@ Route::get('/users/{user}/deactivate', [UsermanageController::class,'deactivate'
 
 // User purchase history
 Route::get('/userpurchasehistory', [UsermanageController::class,'userpurchasehistory'])->name('userpurchasehistory');
+Route::get('/viewpurchasehistory/{id}/history', [UsermanageController::class, 'viewpurchasehistory'])
+    ->name('viewpurchasehistory.history');
+
 
 // sendnewsletter
 Route::get('/send-email', [AdminController::class,  'shownewsletterForm'])->name('send.email.form');

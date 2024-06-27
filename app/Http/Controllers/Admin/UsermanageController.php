@@ -66,4 +66,20 @@ class UsermanageController extends Controller
         $services = Service::with(['template', 'subscription','user.company'])->get();
         return view('admin.UserManage.userpurchasehistory', compact('services','users'));
     }
+
+    public function viewpurchasehistory($id)
+    {
+        $user = User::find($id);
+    
+        if (!$user) {
+            abort(404); // Ou retourner une vue d'erreur appropriée
+        }
+    
+        $services = Service::where('user_id', $id)
+            ->with(['template', 'subscription', 'user.company'])
+            ->get();
+    
+        return view('admin.UserManage.viewpurchasehistory', compact('services', 'user'));
+    }
+    
 }

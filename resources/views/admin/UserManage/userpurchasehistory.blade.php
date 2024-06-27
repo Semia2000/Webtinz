@@ -38,9 +38,7 @@
                                             <td>{{ $user->company->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->tel }}</td>
-                                            <td>
-                                                
-                                            </td>
+                                            <td><a href="{{ route('viewpurchasehistory.history', ['id' => $user->id]) }}" class="btn btn-block btn-primary">View History</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -85,7 +83,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+                // "buttons": ["csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
