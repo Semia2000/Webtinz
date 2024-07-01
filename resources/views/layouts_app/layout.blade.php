@@ -68,9 +68,17 @@
                                     @endif
                                     
                                     @if (auth()->check())
-                                        <li class="nav-item ">
-                                            <a class="nav-link fistlink" href="{{ route('dashboarduser') }}">Dashboard</a>
-                                        </li>
+                                        @if (Auth::user()->role_id == 1)
+                                            <li class="nav-item ">
+                                                <a class="nav-link fistlink" href="{{ route('dashboarduser') }}">Dashboard</a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link fistlink" href="{{ route('backoffice') }}">Dashboard</a>
+                                            </li>                                            
+                                        @endif
+
+                                        
                                     @endif
 
                                     <div class="dropdown">
@@ -97,8 +105,18 @@
                     </div>
                 </div>
             </nav>
+            
 
             <div class="container title-header">
+                <center>
+                    <div class="row">
+                        @if(session('error'))
+                            <div class="alert alert-danger container col-md-5">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                    </div>
+                </center>
                 <h3>Establish your <br>
                     <span class="circle-word">web</span> presence & e-commerce <br>
                     capabilities with <span>Webtinz</span>
@@ -110,7 +128,6 @@
             </div>
 
         </div>
-
     </header>
 
     <main>

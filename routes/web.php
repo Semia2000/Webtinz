@@ -28,6 +28,7 @@ use App\Http\Controllers\CustumdigitalisationController;
 Route::get('/', function () {
     return view('front_include.home');
 })->name('welcome');
+
 Route::get('payement', function () {
     return view('front_include.payement');
 })->name('payement');
@@ -53,8 +54,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
+Route::middleware(['auth', 'logout.inactive', 'check.otp', 'role:user'])->group(function () {
     Route::get('/contactinfo/{service_id}', [UserController::class, 'showcontactinfo'])->name('contactinfo');
     Route::post('/storecontactinfo/{service_id}', [UserController::class, 'storeContactInfo'])->name('storecontactinfo');
     // User dashboard
@@ -124,6 +124,13 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     //Profile update
     Route::get('/myprofile', [UserController::class,'showEditForm'])->name('myprofile');
     Route::post('/myprofile', [UserController::class,'updateCompany'])->name('myprofiles');
+
+    
+// New Otp
+Route::get('/sendnewotp', [OtpController::class, 'createNewOtp'])->name('sendnew.otp');
+Route::post('/newotp.verify', [OtpController::class, 'verifyNewOtp'])->name('verify.otp');
+
+
 });
 
 

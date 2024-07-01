@@ -63,7 +63,6 @@
                             </div>
 
                         </div>
-
                         <div class="row mb-4">
                             <div class="col">
                                 <label for="country">Country<span class="required">*</span></label>name email address tel state
@@ -123,7 +122,8 @@
                             <div class="col">
                                 <label for="pemail">Personal email<span class="required">*</span></label>
                                 <div class="input-group position-relative">
-                                    <input id="pemail" type="email" class="form-control @error('pemail') is-invalid @enderror" name="pemail" value="{{ $company->user->email }}" required autocomplete="pemail" placeholder="pemail" readonly>
+                                    <input id="pemail" type="email" class="form-control @error('pemail') is-invalid @enderror" name="pemail" value="{{ $company->user->email }}" required autocomplete="pemail" placeholder="pemail">
+                                    <input id="invalidMail" type="email" class="form-control" name="invalidMail" value="{{ $company->user->email }}" autocomplete="invalidMail" hidden>
                                     <i class="bi bi-envelope position-absolute top-50 end-0  me-2 translate-middle-y"
                                         style="pointer-events: none;"></i>
                                         @error('pemail')
@@ -192,51 +192,141 @@
                 </form>
 
 
-                {{-- <form action="" method="" enctype="multipart/form-data">
-                    @csrf
-                    <h3>Update password</h3>
-                    <div class="row">
-                        <div class="row mt-3 mb-4 ">
-                            <div class="col">
-                                <label for="Oldpassword">Old Password<span class="required">*</span></label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control " id="Oldpassword" placeholder="Old password" name="Oldpassword">
-                                    <i class="bi bi-person-circle position-absolute top-50 end-0  me-2 translate-middle-y"
-                                        style="pointer-events: none;"></i>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <label for="password">New Password<span class="required">*</span></label>
-                                <div class="input-group position-relative">
-                                    <input type="password" class="form-control pr-5" id="password" placeholder="New password" name="password">
-                                    <i class="bi bi-envelope position-absolute top-50 end-0  me-2 translate-middle-y"
-                                        style="pointer-events: none;"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label for="Confpassword">Confirm New Password<span class="required">*</span></label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="Confpassword" placeholder="Confirm password" name="Confpassword">
-                                    <i class="bi bi-lock position-absolute top-50 end-0  me-2 translate-middle-y"
-                                        style="pointer-events: none;"></i>
-                                </div>
-                            </div>
-                            <div class="col"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-info btn-block" style="width: 100%; border:1px solid #F05940"> Update password </button>
-                    </div>
-                </form> --}}
-
             </div>
         </div>
     </section>
+
+    
+    <!-- Modal Confirmation -->
+    <div class="modal fade" id="confirmModal" style="margin-top: 10% !important;"  tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Confirm Email Change</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to change your email?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmChange">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal OTP -->
+    <div class="modal fade" style="margin-top: 10% !important;" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="otpForm">
+                        @csrf
+                        <div class="form-group">
+                            <label for="otp">OTP:</label>
+                            <input type="text" class="form-control" id="otp" name="otp">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Verify OTP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let emailTimeout;
+        let newEmail;
+
+        $('#pemail').on('input', function() {
+            clearTimeout(emailTimeout);
+            emailTimeout = setTimeout(function() {
+                $('#confirmModal').modal('show');
+            }, 2000); // 2 seconds
+        });
+
+/*
+        $('#confirmChange').on('click', function() {
+            $('#confirmModal').modal('hide');
+            newEmail = $('#pemail').val();
+            $('#otpModal').modal('show');
+        });
+*/
+        $('#confirmChange').on('click', function() {
+            $('#confirmModal').modal('hide');
+
+            // Appel de la route via AJAX pour déclencher une action côté serveur
+            $.ajax({
+                url: '{{ route("sendnew.otp") }}', // Endpoint de la route à appeler
+                type: 'GET', // Méthode HTTP GET par défaut
+                success: function(response) {
+                    // Gérer la réponse si nécessaire
+                    console.log('Route called successfully');
+                    
+                    var otp = response.otp;
+                    console.log(otp);
+                    // Afficher le modal pour l'OTP ici si nécessaire
+                    $('#otpModal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    // Gérer les erreurs si nécessaire
+                    console.error('Error calling route:', error);
+                    alert('Failed to call route. Please try again.');
+                }
+            });
+        });
+
+        var oldPMail = $('#invalidMail').val();
+        var newMail = $('#pemail').val();
+
+        $('#otpForm').on('submit', function(e) {
+            e.preventDefault();
+
+            const otp = $('#otp').val();
+            $.ajax({
+                url: '{{ route("verify.otp") }}',
+                type: 'POST',
+                data: {
+                    _token: $('input[name="_token"]').val(),
+                    otp: otp,
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        $('#otpModal').modal('hide');
+                        alert('OTP verification successfully!');
+                        $('#pemail').val(newMail);
+                        console.log(newMail);
+                        // location.reload(); // Recharger la page pour refléter les changements
+                    } else {
+                        alert('Invalid OTP. Please try again.');
+                        $('#pemail').val(oldPMail);
+                        console.log(oldPMail);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error verifying OTP:', error);
+                    alert('Failed to verify OTP. Please try again.');
+                    $('#pemail').val(oldPMail);
+                    console.log(oldPMail); 
+                }
+            });
+        });
+
+    });
+</script>
+
 @section('js')
 @endsection

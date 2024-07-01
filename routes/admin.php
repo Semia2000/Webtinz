@@ -14,14 +14,7 @@ use Illuminate\Support\Facades\Auth;
 // Admin routes 
 
 
-    Route::middleware(['logout.inactive', 'check.otp' , 'role:master_admin,admin_manager,sale_manager,technical_manager'])->get('/backoffice', function () {
-        if (!Auth::check()) {
-            // Redirection vers la page de connexion admin si l'utilisateur n'est pas authentifié
-            return redirect()->route('adminlogin');
-        }else{
-            return view('admin.dashboard');
-        }
-    })->name('backoffice');
+Route::middleware(['logout.inactive', 'check.otp' , 'role:master_admin,admin_manager,sale_manager,technical_manager'])->get('/backoffice', [AdminController::class, 'backofficeAccess'])->name('backoffice');
 
 
 Route::get('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin');

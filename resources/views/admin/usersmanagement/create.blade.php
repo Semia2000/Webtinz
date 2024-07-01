@@ -32,6 +32,12 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('roor') }}
+                    </div>
+                @endif
                 <h1>Add staff member</h1>
                 <div class="card card-primary">
                     <div class="card-body">

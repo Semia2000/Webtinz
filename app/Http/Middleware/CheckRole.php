@@ -52,12 +52,12 @@ class CheckRole
 
         // Check if user has one of the required roles
         if (!in_array($user->role->name, $roles)) {
-            return redirect('/'); // Or show a 403 page
+            return redirect('/')->with("error", "You are not authorized"); // Or show a 403 page
         }
 
         //Check role
         $userAuth = User::find($user->id);
-        $master_admin = $admin_user = $sale_manager = $technical_manager = false;
+        $master_admin = $admin_user = $sale_manager = $technical_manager = $simple_user = false;
 
         // Check if user has one of the required roles
         if ($user) {
@@ -77,6 +77,10 @@ class CheckRole
 
                 $technical_manager = true;
 
+            }elseif($userAuth->hasRole('user')) {
+
+                $simple_user = true;
+
             }
         }
 
@@ -85,6 +89,7 @@ class CheckRole
             'admin_user' => $admin_user,
             'sale_manager' => $sale_manager,
             'technical_manager' => $technical_manager,
+            'user' => $simple_user,
         ]);
 
        return $next($request);

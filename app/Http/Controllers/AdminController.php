@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+    function backofficeAccess() {
+
+        $userGuest = Auth::user();
+
+        if (!Auth::check()) {
+            // Redirection vers la page de connexion admin si l'utilisateur n'est pas authentifié
+            return redirect()->route('adminlogin');
+        }else{
+            if ($userGuest->role_id == 2) {
+
+                return view('admin.dashboard');
+            } else {
+                $servicesAffects = Service::where('sales_id', '=', $userGuest->id)->get();
+
+                return view('admin.dashboard', compact('servicesAffects'));
+            }
+            
+
+
+        }
+    }
 
     public function adminLogin(){
         return view('admin.adminlogin');

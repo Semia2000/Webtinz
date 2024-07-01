@@ -22,8 +22,7 @@ class TemplateController extends Controller
 
 
     // to submit a template
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         // Valider les données du formulaire
         $request->validate([
             'name' => 'required|string|max:255|unique:templates,name',
@@ -138,8 +137,6 @@ class TemplateController extends Controller
 
         return view('admin.template.update', compact('template', 'selectedIndustries', 'typetemplates', 'productcategorys'));
     }
-
-
 
     // view all detail for each template
     public function view($id)

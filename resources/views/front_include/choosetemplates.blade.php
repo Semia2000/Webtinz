@@ -57,40 +57,42 @@
             opacity: 1;
         }
 
-        /*    
-            .template-list {
-                display: flex;
-                flex-wrap: wrap;
-            }
-            .template-item {
-                margin: 10px;
-            }
-            #loading {
-                display: none;
-                text-align: center;
-            }
-            iframe {
-                width: 100%;
-                height: 600px;
-                border: none;
-            }
-        */
+        /*
+                .template-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                .template-item {
+                    margin: 10px;
+                }
+                #loading {
+                    display: none;
+                    text-align: center;
+                }
+                iframe {
+                    width: 100%;
+                    height: 600px;
+                    border: none;
+                }
+            */
 
         /* CSS personnalisé */
         @media (min-width: 100px) {
             .modal-lg {
-                max-width: 95vw;
-                margin-top: 3%;
+                max-width: 97vw;
+                margin-top: 5px !important;
             }
         }
-        #btn-close{
+
+        #btn-close {
             color: #F8F8F8 !important;
             background-color: red !important;
         }
-        iframe{
+
+        iframe {
             min-width: 100% !important;
             max-width: 100% !important;
-            min-height: 70vh;
+            min-height: 89vh;
             margin: 0px !important;
         }
     </style>
@@ -117,40 +119,43 @@
                 <!-- Les templates seront chargés ici dynamiquement -->
             </div> --}}
 
-                <!-- Modal -->
+            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg"> <!-- Utilisation de modal-lg pour un modal large -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Preview Template</h5>
-                    <span type="button" id="btn-close" class="bg-danger btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></span>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Preview Template</h5>
+                            <span type="button" id="btn-close" class="bg-danger btn-close text-white"
+                                data-bs-dismiss="modal" aria-label="Close"></span>
+                        </div>
+                        <div class="modal-body" style="margin: 0px !important; padding: 0px 10px 0px 10px">
+                            <iframe id="template-preview-frame"
+                                style="border: 0.5px solid; margin: 0px !important"></iframe>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                    <iframe id="template-preview-frame" style="border: 0.5px solid;"></iframe>
-                    </div>
-                </div>
                 </div>
             </div>
             {{-- End Preview Section --}}
 
             {{-- Preview Script --}}
-            
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
 
             {{-- End Preview Script --}}
 
 
 
 
-            
+
             <div class="row row-cols-1 row-cols-md-3">
 
-            
+
                 @foreach ($templates as $template)
-                    <div class="col mt-5"  class="template-list" id="template-list{{ $template->id }}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div class="col mt-5" class="template-list" id="template-list{{ $template->id }}" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
                         <div class="card template-card" data-template-id="{{ $template->id }}"
-                            data-template-name="{{ $template->name }}" data-template-price="{{ $template->price }}" >
-                            <img class="" src="{{ asset('storage/'.$template->thumbnail) }}" width="100%"
+                            data-template-name="{{ $template->name }}" data-template-price="{{ $template->price }}">
+                            <img class="" src="{{ asset('storage/' . $template->thumbnail) }}" width="100%"
                                 alt="">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center">
@@ -170,9 +175,9 @@
                                 </div>
                             </div>
                         </div>
-                        
-                                {{-- <div  class="template-list" id="template-list{{ $template->id }}"></div> --}}
-                                <div id="loading"></div>
+
+                        {{-- <div  class="template-list" id="template-list{{ $template->id }}"></div> --}}
+                        <div id="loading"></div>
                     </div>
                 @endforeach
             </div>
@@ -208,8 +213,9 @@
             // Script pour gérer la prévisualisation des templates
             @foreach ($templates as $template)
                 // Construire l'ID complet avec l'ID unique du template
-                const templateList{{ $template->id }} = document.getElementById('template-list{{ $template->id }}');
-                
+                const templateList{{ $template->id }} = document.getElementById(
+                    'template-list{{ $template->id }}');
+
                 if (templateList{{ $template->id }}) {
                     // Associer un événement onclick à chaque template-list
                     templateList{{ $template->id }}.onclick = function() {
@@ -219,14 +225,14 @@
                     console.error('Élément avec l\'ID "template-list{{ $template->id }}" non trouvé.');
                 }
             @endforeach
-            
+
         });
-    
+
         function previewTemplate(file) {
             const loading = document.getElementById('loading');
             const previewFrame = document.getElementById('template-preview-frame');
             loading.style.display = 'block';
-    
+
             previewFrame.src = file;
             previewFrame.onload = () => {
                 loading.style.display = 'none';
@@ -234,7 +240,6 @@
             };
         }
     </script>
-    
 @endsection
 
 @section('js')

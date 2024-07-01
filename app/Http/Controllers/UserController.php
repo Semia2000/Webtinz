@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\Models\User;
+use App\Mail\Otpmail;
 use App\Models\Company;
 use App\Models\Service;
+
 use App\Models\Website;
 use Illuminate\Http\Request;
-
 use App\Models\Subscriptionplan;
 use App\Models\User_subscription;
 use Illuminate\Support\Facades\DB;
@@ -17,15 +19,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function showcontactinfo(Request $request, $service_id)
-    {
+    public function showcontactinfo(Request $request, $service_id){
         $service = Service::findOrFail($service_id);
 
         return view('front_include.contactinfo', ['service' => $service]);
     }
 
-    public function storeContactInfo(Request $request)
-    {
+    public function storeContactInfo(Request $request){
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -76,20 +76,17 @@ class UserController extends Controller
         return redirect()->route('letstart'); // Option par défaut
     }
     // dashboard
-    public function dashboarduserview()
-    {
+    public function dashboarduserview(){
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
         return view('dashboarduser.dashboard', compact('user', 'services'));
     }
-    public function viewtemplates()
-    {
+    public function viewtemplates(){
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
         return view('dashboarduser.viewtemplates', compact('user', 'services'));
     }
-    public function subscriptionuser()
-    {
+    public function subscriptionuser(){
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
 
@@ -104,8 +101,7 @@ class UserController extends Controller
 
 
     //Edit Profile
-    public function showEditForm(Request $request)
-    {
+    public function showEditForm(Request $request){
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
 
@@ -115,8 +111,7 @@ class UserController extends Controller
         return view('dashboarduser.myprofile', compact('company', 'stateSelects'));
     }
 
-    public function updateCompany(Request $request)
-    {
+    public function updateCompany(Request $request){
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
 
@@ -145,6 +140,10 @@ class UserController extends Controller
 
         // Mettre à jour les données de l'utilisateur
         $userUpdate = User::where("id", $user->id)->first();
+
+        // $otp = rand(100000, 999999);  \Mail::to($user->email)->send(new \App\Mail\Otpmail($otp));
+
+
         $userUpdate->update([
             'firstname' => $firstname,
             'email' => $pemail,
@@ -196,4 +195,5 @@ class UserController extends Controller
             return back()->with("Error", "Error message");
         }
     }
+
 }
