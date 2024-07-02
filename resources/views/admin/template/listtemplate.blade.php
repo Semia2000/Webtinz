@@ -65,8 +65,7 @@
                                     <span class="badge badge-success">{{ $template->access_level }}</span>
                                 </td>
                                 <td>
-                                    <img alt="Avatar" width="100" height="auto"
-                                        src="{{ asset('storage/' . $template->thumbnail) }}">
+                                    <img src="{{ Storage::disk('s3')->url($template->thumbnail) }}" alt="Thumbnail" width="100" height="auto">
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="{{ route('templates.view', $template->id) }}">

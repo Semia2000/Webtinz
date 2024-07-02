@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\TypeTemplate;
 use Illuminate\Http\Request;
 use App\Models\Template;
@@ -24,7 +24,6 @@ class TemplateController extends Controller
     // to submit a template
     public function store(Request $request)
     {
-        // Valider les données du formulaire
         $request->validate([
             'name' => 'required|string|max:255|unique:templates,name',
             'typeservice' => 'required|string',
@@ -33,11 +32,13 @@ class TemplateController extends Controller
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'zip_file' => 'required|mimes:zip|max:10240',
         ]);
-
-        // Traitement des fichiers
-        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-        $zipFilePath = $request->file('zip_file')->store('templates', 'public');
-
+    
+        // Enregistrer le thumbnail sur S3
+        $thumbnailPath = Storage::disk('s3')->put('thumbnails', $request->file('thumbnail'));
+    
+        // Enregistrer le fichier ZIP sur S3
+        $zipFilePath = Storage::disk('s3')->put('templates', $request->file('zip_file'));
+    
         // Créer le nouveau template
         $template = new Template();
         $template->name = $request->name;
@@ -48,10 +49,13 @@ class TemplateController extends Controller
         $template->createby = $request->createby;
         $template->price = $request->price;
         $template->typetemplate = $request->typetemplate;
+    
+        // Assigner les chemins des fichiers sur S3 au modèle
         $template->thumbnail = $thumbnailPath;
         $template->zip_file = $zipFilePath;
+    
+        // Traiter et sauvegarder d'autres attributs comme 'industrie' et 'productcategory'
 
-        // Traiter les champs 'industrie' et 'productcategory'
         $industries = $request->input('industrie');
         $productcategories = $request->input('productcategory');
 
@@ -66,12 +70,12 @@ class TemplateController extends Controller
         } else {
             $template->productcategory = $productcategories;
         }
-
-        // Sauvegarder le template dans la base de données
+    
         $template->save();
-
+    
         return redirect()->route('templateslist')->with('success', 'Template uploaded successfully');
     }
+    
 
 
 

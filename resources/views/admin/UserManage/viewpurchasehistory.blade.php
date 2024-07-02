@@ -44,15 +44,15 @@
                             </div>
                         @endif
                     </div>
-                    <div  class="card">
+                    <div class="card" >
                         <div class="card-body">
                             <table id="example1" class="table  table-striped">
                                 <thead>
                                     <th>Purchase History</th>
                                 </thead>
-                                <tbody id="printableArea">
+                                <tbody>
                                     @foreach ($services as $service)
-                                        <tr>
+                                        <tr id="printableArea">
                                             <td>
                                                 <div class="card">
                                                     <div class="card-header">
@@ -63,10 +63,10 @@
                                                                 data-card-widget="collapse" title="Collapse">
                                                                 <i class="fas fa-minus"></i>
                                                             </button>
-                                                            <button type="button" class="btn btn-tool"
+                                                            {{-- <button type="button" class="btn btn-tool"
                                                                 data-card-widget="remove" title="Remove">
                                                                 <i class="fas fa-times"></i>
-                                                            </button>
+                                                            </button> --}}
                                                         </div>
                                                     </div>
                                                     <div class="card-body">
@@ -215,7 +215,6 @@
                                                     <!-- /.card-body -->
                                                 </div>
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -200,7 +200,7 @@
             <a href="{{ route('usersubscriptionmanage') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                User Subscription Manage
+                Project Delivery
               </p>
             </a>
           </li>
@@ -216,7 +216,7 @@
             <a href="{{ route('send.email.form') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                News Letter
+                Resend Welcome Email
               </p>
             </a>
           </li>

@@ -89,7 +89,7 @@
                             </td>
                             <td>
                                 <img alt="Avatar" width="100" height="auto"
-                                    src="{{ asset('storage/' . $template->thumbnail) }}">
+                                    src="{{ $template->thumbnail }}">
                             </td>
                         </tr>
 
