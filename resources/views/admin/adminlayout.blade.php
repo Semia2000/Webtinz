@@ -45,8 +45,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -55,7 +53,9 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{{ request()->url() == route('backoffice') ? "/" : route('backoffice')  }}" class="nav-link">
+          Home
+        </a>
       </li>
     </ul>
 
@@ -186,7 +186,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ittiq ittiq</a>
+          <a href="#" class="d-block">{{ Auth::user()->firstname ." ". Auth::user()->lastname }}</a>
         </div>
       </div>
 
@@ -195,15 +195,9 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">USER MANAGEMENT</li>
-          <li class="nav-item">
-            <a href="{{ route('usersubscriptionmanage') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Project Delivery
-              </p>
-            </a>
-          </li>
+          @if ($master_admin)
+          <li class="nav-header">USER MANAGEMENT </li>
+
           <li class="nav-item">
             <a href="{{ route('userlist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
@@ -221,6 +215,16 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('staffmanage') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Staff Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">PROJECTS MANAGEMENT </li>
+          <li class="nav-item">
             <a href="{{ route('userpurchasehistory') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
@@ -228,6 +232,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('usersubscriptionmanage') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Project Delivery
+              </p>
+            </a>
+          </li>
+
           <li class="nav-header">CONTENT MANAGEMENT </li>
           <li class="nav-item">
             <a href="{{ route('typetemplatelist') }}" class="nav-link">
@@ -237,7 +250,6 @@
               </p>
             </a>
           </li>
-
           <li class="nav-item">
             <a href="{{ route('templateslist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
@@ -262,6 +274,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-header">SUBSCRIPTION MANAGEMENT</li>
           <li class="nav-item">
             <a href="{{ route('subscriptionlist') }}" class="nav-link">
@@ -271,7 +284,9 @@
               </p>
             </a>
           </li>
+
           <li class="nav-header">EARNING MANAGEMENT </li>
+          
           <li class="nav-item">
             <a href="{{ route('subscriptionlist') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
@@ -279,6 +294,20 @@
                 User Earning
               </p>
             </a>
+          </li>
+          @endif
+          
+          <li class="nav-item mb-5">
+            <a href="{{ route('logout') }}" class="nav-link"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                class="d-none">
+                @csrf
+            </form>            
           </li>
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -304,13 +333,13 @@
             </ul>
           </li> --}}
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
 
   <div class="content-wrapper mt-5">
+    
+    <a onclick="goBack()" class="btn btn-default mx-2 my-1">Go Back</a>
 
     @yield('content')
 
@@ -364,5 +393,13 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 @yield('js')
+
+{{-- Script Go back --}}
+  <script>
+    function goBack() {
+        window.history.back();
+    }
+  </script>
+{{-- End Script Go back --}}
 </body>
 </html>

@@ -26,6 +26,14 @@ return new class extends Migration
             $table->unsignedBigInteger('template_id')->nullable();
             $table->unsignedBigInteger('subscription_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            
+            // project assignment
+            $table->unsignedBigInteger('sales_id')->nullable();
+            $table->foreign('sales_id')->references('id')->on('users');// sales_id tech_id
+            $table->unsignedBigInteger('tech_id')->nullable();
+            $table->foreign('tech_id')->references('id')->on('users');// sales_id tech_id
+            // end project assignment
+
             $table->foreign('template_id')->references('id')->on('templates');
             $table->foreign('subscription_id')->references('id')->on('subscriptionplans');
             $table->boolean('is_pay_done')->default(false);
@@ -34,7 +42,7 @@ return new class extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
         });
-    }
+    } // 2024_05_29_143515_create_services_table
 
     /**
      * Reverse the migrations.

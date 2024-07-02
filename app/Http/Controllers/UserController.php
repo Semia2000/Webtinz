@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\Models\User;
+use App\Mail\Otpmail;
 use App\Models\Company;
 use App\Models\Sectorbusiness;
 use App\Models\Subscriptionplan;
@@ -9,20 +12,22 @@ use App\Models\Service;
 use App\Models\ServiceUpgrade;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\User_subscription;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
-    public function showcontactinfo(Request $request, $service_id)
-    {
+    public function showcontactinfo(Request $request, $service_id){
         $service = Service::findOrFail($service_id);
         $sectorsbusiness = Sectorbusiness::orderBy('name', 'asc')->get();
 
         return view('front_include.contactinfo', ['service' => $service, 'sectorsbusiness' => $sectorsbusiness]);
     }
-    public function storeContactInfo(Request $request)
-    {
+
+    public function storeContactInfo(Request $request){
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -72,16 +77,13 @@ class UserController extends Controller
 
         return redirect()->route('letstart'); // Option par défaut
     }
-
     // dashboard
-    public function dashboarduserview()
-    {
+    public function dashboarduserview(){
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
         return view('dashboarduser.dashboard', compact('user', 'services'));
     }
-    public function viewtemplates()
-    {
+    public function viewtemplates(){
         $user = Auth::user();
         $services = Service::with(['template', 'subscription'])->where('user_id', $user->id)->get();
         return view('dashboarduser.viewtemplates', compact('user', 'services'));
@@ -166,6 +168,102 @@ class UserController extends Controller
         return view('dashboarduser.subscription.newplan', compact('user', 'services', 'subscriptionsByServiceType'));
     }
     
+
+    //Edit Profile
+    public function showEditForm(Request $request){
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+
+        $stateSelects = array();
+        $stateSelects = DB::table('companys')->select('state')->get();
+        // dd($stateSelects);
+        return view('dashboarduser.myprofile', compact('company', 'stateSelects'));
+    }
+
+    public function updateCompany(Request $request){
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+
+        $companyData = $request->validate([
+            'name' => 'string | required',
+            'email' => 'email | required',
+            'address' => 'string | required',
+            'tel' => 'required |string',
+            'country' => 'string | required',
+            'state' => 'string | required',
+        ]);
+
+        // firstname lastname pemail ptel
+        $personalData = $request->validate([
+            'firstname' => 'string | required',
+            'lastname' => 'string | required',
+            'pemail' => 'email | required',
+            'ptel' => 'required |string',
+        ]);
+
+        // Personal information 
+        $firstname = $request->input('firstname');
+        $pemail = $request->input('pemail');
+        $ptel = $request->input('ptel');
+        $lastname = $request->input('lastname');
+
+        // Mettre à jour les données de l'utilisateur
+        $userUpdate = User::where("id", $user->id)->first();
+
+        // $otp = rand(100000, 999999);  \Mail::to($user->email)->send(new \App\Mail\Otpmail($otp));
+
+
+        $userUpdate->update([
+            'firstname' => $firstname,
+            'email' => $pemail,
+            'tel' => $ptel,
+            'lastname' => $lastname
+        ]);
+
+        if ($request->password != "") {
+            // $userUpdate = User::where("id", $user->id)->first();
+            $oldPass = $user->password;
+            $oldPassInput = $request->Oldpassword;
+            $newPassInput = $request->password;
+            $confPasswordInput = $request->Confpassword;
+
+            if ($newPassInput === $confPasswordInput) {
+
+                if (Hash::check($oldPassInput, $oldPass)) {
+
+                    if ($newPassInput === $oldPassInput) {
+
+                        return back()->with("Error", "You can't use the same password like the old, please change it !");
+                    } else {
+
+                        $updateUserPass = $request->validate([
+                            "password" => "string | min:8"
+                        ]);
+
+                        $updateUserPassHash = Hash::make($updateUserPass["password"]);
+
+                        $userUpdate->update([
+                            'password' => $updateUserPassHash  // Mise à jour du mot de passe dans la base de données
+                        ]);
+                    }
+                } else {
+                    return back()->with("Error", "The old password is wrong, Try again");
+                }
+            } else {
+                return back()->with("Error", "The new password isn't confirm, Try again");
+            }
+        }
+
+        $company->update($companyData);
+
+        if ($company->update($companyData)) {
+
+            return back()->with("Sucess", "Update Successfuly");
+        } else {
+
+            return back()->with("Error", "Error message");
+        }
+    }
 
 
 }

@@ -57,7 +57,12 @@ class LoginController extends Controller
         if ($request->has('remember')) {
             $this->guard()->setRememberDuration(1209600); // 14 days
         }
-    
+
+
+        // if admin roles : master_admin / admin_user / sale_manager / technical_manager
+        if ($user->hasRole('master_admin') || $user->hasRole('admin_user') || $user->hasRole('sale_manager') || $user->hasRole('technical_manager')) {
+            return redirect('/backoffice');
+        }
         // Redirect to the intended path
         return redirect()->intended($this->redirectPath());
     }

@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" />
 
-    
+
     {{-- css links --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
@@ -26,7 +26,7 @@
         <div class="contains-header">
             <nav class="navbar  navbar-expand-lg" id="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img src="{{ asset('assets/images/logo (1).png') }}" alt="Logo" width="150px"
                             class="d-inline-block align-text-top">
                     </a>
@@ -56,14 +56,30 @@
                                     <a class="nav-link" href="#">Help Center</a>
                                 </li>
                             </ul>
-                            <div class="navbar-button  d-flex">
+                            <div class="navbar-button d-flex">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item ">
-                                        <a class="nav-link fistlink" href="{{ route('login') }}">Login</a>
-                                    </li>
-                                    <li class="nav-item mx-2">
-                                        <a class="nav-link getstart" href="{{ route('register') }}">Sign UP</a>
-                                    </li>
+                                    @if (!auth()->check())
+                                        <li class="nav-item ">
+                                            <a class="nav-link fistlink" href="{{ route('login') }}">Login</a>
+                                        </li>
+                                        <li class="nav-item mx-2">
+                                            <a class="nav-link getstart" href="{{ route('register') }}">Sign UP</a>
+                                        </li>
+                                    @endif
+                                    
+                                    @if (auth()->check())
+                                        @if (Auth::user()->role_id == 1)
+                                            <li class="nav-item ">
+                                                <a class="nav-link fistlink" href="{{ route('dashboarduser') }}">Dashboard</a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link fistlink" href="{{ route('backoffice') }}">Dashboard</a>
+                                            </li>                                            
+                                        @endif
+
+                                        
+                                    @endif
 
                                     <div class="dropdown">
                                         <button class="language-select dropdown-toggle" type="button"
@@ -89,8 +105,18 @@
                     </div>
                 </div>
             </nav>
+            
 
             <div class="container title-header">
+                <center>
+                    <div class="row">
+                        @if(session('error'))
+                            <div class="alert alert-danger container col-md-5">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                    </div>
+                </center>
                 <h3>Establish your <br>
                     <span class="circle-word">web</span> presence & e-commerce <br>
                     capabilities with <span>Webtinz</span>
@@ -102,7 +128,6 @@
             </div>
 
         </div>
-
     </header>
 
     <main>
@@ -225,12 +250,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let timeout;
-    
+
         function resetTimeout() {
             clearTimeout(timeout);
             timeout = setTimeout(logoutUser, 100 * 60 * 1000); // 100 minutes in milliseconds
         }
-    
+
         function logoutUser() {
             fetch('{{ route('logout') }}', {
                 method: 'POST',
@@ -244,7 +269,7 @@
                 }
             });
         }
-    
+
         // Reset the timeout on any user activity
         window.onload = resetTimeout;
         document.onmousemove = resetTimeout;
@@ -252,7 +277,7 @@
         document.onclick = resetTimeout;
         document.onscroll = resetTimeout;
     </script>
-    
+
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');

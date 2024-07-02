@@ -28,6 +28,13 @@ class Service extends Model
         
     ];
 
+    public function sales(){
+        return $this->hasOne(User::class, 'id', 'sales_id');
+    }
+
+    public function tech(){
+        return $this->hasOne(User::class, 'id', 'tech_id');
+    }
 
     public function user()
     {

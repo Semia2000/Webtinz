@@ -201,7 +201,7 @@
                         </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('myprofile') ? 'active' : '' }}"
-                                href="{{ route('myprofile') }}">
+                                href="{{route('myprofile')}}">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     My Profile

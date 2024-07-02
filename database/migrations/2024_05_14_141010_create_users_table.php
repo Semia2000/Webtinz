@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() // 
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles');
             $table->string('otpcode');
+            $table->string('right')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

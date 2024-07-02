@@ -432,7 +432,7 @@
                     <h4>/ Montly</h4>
                 </div>
             </div>
-            
+
 
             <div class="col-7 d-flex align-items-center justify-content-center">
                 <div class="text-center">

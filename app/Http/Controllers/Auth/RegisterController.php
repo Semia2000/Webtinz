@@ -74,7 +74,7 @@ class RegisterController extends Controller
 
         // Send the OTP via email
         \Mail::to($user->email)->send(new \App\Mail\Otpmail($otp));
-
+        
         return $user;
     }
 }

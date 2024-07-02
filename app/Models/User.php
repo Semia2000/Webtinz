@@ -25,18 +25,26 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'tel',
-        'is_otp_validate'
+        'is_otp_validate',
+        'right',
+        'status'
         
     ];
 
-    public function role()
-    {
+   
+
+    public function role(){
+
         return $this->belongsTo(Role::class, 'role_id');
     }
 
+    public function hasRole($role){
+        // Vérifie si l'utilisateur a le rôle spécifié
+        return $this->role()->where('name', $role)->exists();
+    }
 
-    public function company()
-    {
+    public function company(){
+
         return $this->hasOne(Company::class);
     }
 

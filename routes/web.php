@@ -1,17 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustumdigitalisationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ServiceupgradeController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ComingsoonController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CancelplanController;
-
+use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\ServiceupgradeController;
 
 
 /*
@@ -24,7 +25,6 @@ use App\Http\Controllers\CancelplanController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 // For test
 Route::get('/', function () {
@@ -49,9 +49,9 @@ Route::get('paysuccessful', function () {
 Route::get('companyurl', function () {
     return view('dashboarduser.companyurl');
 })->name('companyurl');
-Route::get('myprofile', function () {
-    return view('dashboarduser.myprofile');
-})->name('myprofile');
+
+
+
 Route::get('bankdetail', function () {
     return view('dashboarduser.bankdetail');
 })->name('bankdetail');
@@ -66,8 +66,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
+Route::middleware(['auth', 'logout.inactive', 'check.otp', 'role:user'])->group(function () {
     Route::get('/contactinfo/{service_id}', [UserController::class, 'showcontactinfo'])->name('contactinfo');
     Route::post('/storecontactinfo/{service_id}', [UserController::class, 'storeContactInfo'])->name('storecontactinfo');
     // User dashboard
@@ -141,6 +140,16 @@ Route::middleware(['auth', 'logout.inactive', 'check.otp'])->group(function () {
     Route::get('/subscription/{subscriptionId}', [CancelplanController::class, 'confirmCancellation'])
     ->name('confirmCancel');
 
+    //Profile update
+    Route::get('/myprofile', [UserController::class,'showEditForm'])->name('myprofile');
+    Route::post('/myprofile', [UserController::class,'updateCompany'])->name('myprofiles');
+
+    
+// New Otp
+Route::get('/sendnewotp', [OtpController::class, 'createNewOtp'])->name('sendnew.otp');
+Route::post('/newotp.verify', [OtpController::class, 'verifyNewOtp'])->name('verify.otp');
+
+
 });
 
 
@@ -166,4 +175,3 @@ Route::get('/api/countries/{countryCode}/states', [CountryController::class, 'st
 
 // another
 // service
-
